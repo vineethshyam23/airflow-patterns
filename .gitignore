@@ -89,3 +89,8 @@ Thumbs.db
 *.bak
 *.backup
 *~
+
+# Development/Internal Documentation (not for public portfolio)
+SESSION*.md
+PHASE*.md
+PUSH_TO_GITHUB.md

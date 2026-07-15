@@ -6,7 +6,7 @@
 
 ## Quick Stats
 
-- **Complexity**: ⭐⭐⭐⭐ Advanced
+- **Complexity**:  Advanced
 - **Production Usage**: Daily, 50K+ invoices/day
 - **Avg Execution Time**: 45 minutes (for 10K invoices)
 - **Success Rate**: 99.7%
@@ -575,7 +575,7 @@ write_errors_to_gcs(error_list)
 
 ## Production Lessons Learned
 
-### ✅ What Worked
+### What Worked
 
 1. **500 Records Per Task**
    - Tested 100, 500, 1000, 5000 chunk sizes
@@ -593,7 +593,7 @@ write_errors_to_gcs(error_list)
    - CSV format easy to share with business users
    - Detailed context for debugging
 
-### ❌ What Didn't Work
+### What Didn't Work
 
 1. **Processing All at Once**
    - Initial attempt: single task, 50K records
@@ -608,7 +608,7 @@ write_errors_to_gcs(error_list)
    - Initial version failed silently
    - Fix: Explicit error list per chunk
 
-### 💡 Key Insights
+###  Key Insights
 
 - **Chunk size matters**: Too small = overhead, too large = timeout
 - **PostgreSQL is your friend**: Use it for reads

@@ -94,7 +94,7 @@ with DAG(
     # Get total records at DAG parse time
     total_records = get_total_records()
     
-    print(f"📊 Total records to process: {total_records}")
+    print(f"Total records to process: {total_records}")
     
     # Dynamic TaskGroup
     with TaskGroup(group_id='process_records') as task_group:

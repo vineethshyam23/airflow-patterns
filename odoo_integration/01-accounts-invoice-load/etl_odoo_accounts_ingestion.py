@@ -78,7 +78,7 @@ def echo_total_invoices(**context):
         task_ids='get_total_invoices', 
         key='return_value'
     )
-    print(f"📊 Total invoices to be processed: {total}")
+    print(f"Total invoices to be processed: {total}")
     return total
 
 

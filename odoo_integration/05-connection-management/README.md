@@ -72,13 +72,13 @@ class Connection:
             
             # Verify connection
             user_obj = odoo_client.env.user
-            logging.info(f"✅ Connected to Odoo as {user_obj.name}")
+            logging.info(f"Connected to Odoo as {user_obj.name}")
             logging.info(f"   Company: {user_obj.company_id.name}")
             
             return odoo_client
             
         except Exception as e:
-            logging.error(f"❌ Failed to connect to Odoo: {e}")
+            logging.error(f"Failed to connect to Odoo: {e}")
             raise e
     
     @staticmethod
@@ -116,12 +116,12 @@ class Connection:
                 connect_timeout=30000  # 30 second timeout
             )
             
-            logging.info(f"✅ Connected to PostgreSQL: {odoo_creds.get('hostname')}")
+            logging.info(f"Connected to PostgreSQL: {odoo_creds.get('hostname')}")
             
             return connection
             
         except (Exception, Error) as error:
-            logging.error(f"❌ Error connecting to PostgreSQL: {error}")
+            logging.error(f"Error connecting to PostgreSQL: {error}")
             raise error
     
     @staticmethod
@@ -149,27 +149,27 @@ class Connection:
             try:
                 result = func(*args, **kwargs)
                 if i > 1:
-                    logging.info(f"✅ Retry {i-1} succeeded")
+                    logging.info(f"Retry {i-1} succeeded")
                 return result
                 
             except (odoorpc.error.RPCError, psycopg2.DatabaseError,
                     urllib.error.URLError, TimeoutError) as e:
-                logging.warning(f"⚠️ Attempt {i}/{_MAX_RETRIES} failed: {str(e)}")
+                logging.warning(f"Attempt {i}/{_MAX_RETRIES} failed: {str(e)}")
                 
                 if i < _MAX_RETRIES:
-                    logging.info(f"⏳ Waiting {_WAIT_TIME}s before retry...")
+                    logging.info(f"Waiting {_WAIT_TIME}s before retry...")
                     time.sleep(_WAIT_TIME)
                     i += 1
                     continue
                 else:
-                    raise RuntimeError(f"❌ All {_MAX_RETRIES} retries failed for {func.__name__}")
+                    raise RuntimeError(f"All {_MAX_RETRIES} retries failed for {func.__name__}")
                     
             except Exception as e:
                 # Non-retryable error, raise immediately
-                logging.error(f"❌ Non-retryable error: {str(e)}")
+                logging.error(f"Non-retryable error: {str(e)}")
                 raise e
         
-        raise RuntimeError(f"❌ Unexpected: exited retry loop for {func.__name__}")
+        raise RuntimeError(f"Unexpected: exited retry loop for {func.__name__}")
 ```
 
 ---
@@ -280,7 +280,7 @@ def odoo_connection(odoo_creds):
         yield odoo
     finally:
         odoo.logout()
-        logging.info("✅ Odoo connection closed")
+        logging.info("Odoo connection closed")
 
 # Usage
 with odoo_connection(odoo_creds) as odoo:
@@ -296,10 +296,10 @@ with odoo_connection(odoo_creds) as odoo:
 ### OdooRPC (XML-RPC)
 
 **Use For**:
-- ✅ Creates (new records)
-- ✅ Updates (existing records)
-- ✅ Deletes
-- ✅ Any operation requiring business logic validation
+- Creates (new records)
+- Updates (existing records)
+- Deletes
+- Any operation requiring business logic validation
 
 **Pros**:
 - Respects Odoo's business rules
@@ -316,10 +316,10 @@ with odoo_connection(odoo_creds) as odoo:
 ### PostgreSQL Direct
 
 **Use For**:
-- ✅ Complex queries with joins
-- ✅ Bulk ID resolution
-- ✅ Aggregations
-- ✅ Data validation checks
+- Complex queries with joins
+- Bulk ID resolution
+- Aggregations
+- Data validation checks
 
 **Pros**:
 - 10x faster than OdooRPC for reads
@@ -328,10 +328,10 @@ with odoo_connection(odoo_creds) as odoo:
 - Connection pooling
 
 **Cons**:
-- ❌ Bypasses business logic (use only for reads!)
-- ❌ No compute field triggers
-- ❌ No audit trail
-- ❌ Can see internal table structure
+- Bypasses business logic (use only for reads!)
+- No compute field triggers
+- No audit trail
+- Can see internal table structure
 
 ---
 
@@ -466,7 +466,7 @@ From 116 DAGs over 3 years:
 
 ## Best Practices
 
-✅ **DO**:
+**DO**:
 - Always use SSL/TLS (`jsonrpc+ssl`, `sslmode=require`)
 - Set reasonable timeouts (30s default)
 - Close connections when done (`odoo.logout()`, `conn.close()`)
@@ -474,7 +474,7 @@ From 116 DAGs over 3 years:
 - Log connection details (user, database, hostname)
 - Use PostgreSQL for read-heavy operations
 
-❌ **DON'T**:
+**DON'T**:
 - Store credentials in code
 - Use PostgreSQL for writes (bypasses business logic)
 - Hold connections longer than necessary

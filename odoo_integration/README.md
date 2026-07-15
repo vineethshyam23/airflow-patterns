@@ -331,28 +331,28 @@ From 3 years of production data:
 ## Best Practices Learned
 
 ### Code Organization
-✅ **Separate domain classes**: `Odoo` for accounts, `Data` for leads  
-✅ **Shared utilities**: `odoo_utils.Connection` for all DAGs  
-✅ **Query libraries**: Centralized BigQuery queries  
-✅ **Dataclasses**: Type-safe data models
+**Separate domain classes**: `Odoo` for accounts, `Data` for leads  
+**Shared utilities**: `odoo_utils.Connection` for all DAGs  
+**Query libraries**: Centralized BigQuery queries  
+**Dataclasses**: Type-safe data models
 
 ### Error Handling
-✅ **Retry decorator**: `@func_with_retries` for transient failures  
-✅ **Per-record try-catch**: Don't fail entire batch  
-✅ **Error logging to GCS**: Detailed investigation data  
-✅ **Alert thresholds**: Slack/email when error rate > 5%
+**Retry decorator**: `@func_with_retries` for transient failures  
+**Per-record try-catch**: Don't fail entire batch  
+**Error logging to GCS**: Detailed investigation data  
+**Alert thresholds**: Slack/email when error rate > 5%
 
 ### Performance
-✅ **Dual connections**: OdooRPC + PostgreSQL  
-✅ **Caching**: External IDs, defaults, lookups  
-✅ **Chunking**: 500 records/task sweet spot  
-✅ **Parallel execution**: Dynamic TaskGroups
+**Dual connections**: OdooRPC + PostgreSQL  
+**Caching**: External IDs, defaults, lookups  
+**Chunking**: 500 records/task sweet spot  
+**Parallel execution**: Dynamic TaskGroups
 
 ### Monitoring
-✅ **XCom progress tracking**: Records processed per task  
-✅ **Execution time per chunk**: Identify slow tasks  
-✅ **Error rate dashboards**: BigQuery + Data Studio  
-✅ **External task sensors**: DAG dependency chains
+**XCom progress tracking**: Records processed per task  
+**Execution time per chunk**: Identify slow tasks  
+**Error rate dashboards**: BigQuery + Data Studio  
+**External task sensors**: DAG dependency chains
 
 ---
 
@@ -386,13 +386,13 @@ From 3 years of production data:
 
 ## Success Metrics
 
-- ✅ **10M+ records migrated** (accounts, leads, opportunities, subscriptions, invoices, payments)
-- ✅ **Zero downtime** during cutover
-- ✅ **116 production DAGs** deployed
-- ✅ **500K+ daily records** synced
-- ✅ **99.7% success rate** across all DAGs
-- ✅ **9 countries** supported
-- ✅ **40% faster month-end close** process
+- **10M+ records migrated** (accounts, leads, opportunities, subscriptions, invoices, payments)
+- **Zero downtime** during cutover
+- **116 production DAGs** deployed
+- **500K+ daily records** synced
+- **99.7% success rate** across all DAGs
+- **9 countries** supported
+- **40% faster month-end close** process
 
 ---
 
@@ -405,5 +405,5 @@ From 3 years of production data:
 ---
 
 <p align="center">
-  <i>Battle-tested patterns from 116 production DAGs | 10M+ records | 3 years operation</i> 🚀
+  <i>Battle-tested patterns from 116 production DAGs | 10M+ records | 3 years operation</i> 
 </p>

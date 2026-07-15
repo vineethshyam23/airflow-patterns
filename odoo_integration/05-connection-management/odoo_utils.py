@@ -74,13 +74,13 @@ class Connection:
             
             # Verify connection
             user_obj = odoo_client.env.user
-            logger.info(f"✅ Connected to Odoo as {user_obj.name}")
+            logger.info(f"Connected to Odoo as {user_obj.name}")
             logger.info(f"   Company: {user_obj.company_id.name}")
             
             return odoo_client
             
         except Exception as e:
-            logger.error(f"❌ Failed to connect to Odoo: {e}")
+            logger.error(f"Failed to connect to Odoo: {e}")
             raise e
     
     @staticmethod
@@ -126,12 +126,12 @@ class Connection:
                 connect_timeout=30000  # 30 second timeout
             )
             
-            logger.info(f"✅ Connected to PostgreSQL: {odoo_creds.get('hostname')}")
+            logger.info(f"Connected to PostgreSQL: {odoo_creds.get('hostname')}")
             
             return connection
             
         except (Exception, Error) as error:
-            logger.error(f"❌ Error connecting to PostgreSQL: {error}")
+            logger.error(f"Error connecting to PostgreSQL: {error}")
             raise error
     
     @staticmethod
@@ -169,26 +169,26 @@ class Connection:
             try:
                 result = func(*args, **kwargs)
                 if i > 1:
-                    logger.info(f"✅ Retry {i-1} succeeded")
+                    logger.info(f"Retry {i-1} succeeded")
                 return result
                 
             except (odoorpc.error.RPCError, psycopg2.DatabaseError,
                     urllib.error.URLError, TimeoutError) as e:
-                logger.warning(f"⚠️ Attempt {i}/{_MAX_RETRIES} failed: {str(e)}")
+                logger.warning(f"Attempt {i}/{_MAX_RETRIES} failed: {str(e)}")
                 
                 if i < _MAX_RETRIES:
-                    logger.info(f"⏳ Waiting {_WAIT_TIME}s before retry...")
+                    logger.info(f"Waiting {_WAIT_TIME}s before retry...")
                     time.sleep(_WAIT_TIME)
                     i += 1
                     continue
                 else:
                     raise RuntimeError(
-                        f"❌ All {_MAX_RETRIES} retries failed for {func.__name__}"
+                        f"All {_MAX_RETRIES} retries failed for {func.__name__}"
                     )
                     
             except Exception as e:
                 # Non-retryable error, raise immediately
-                logger.error(f"❌ Non-retryable error: {str(e)}")
+                logger.error(f"Non-retryable error: {str(e)}")
                 raise e
         
-        raise RuntimeError(f"❌ Unexpected: exited retry loop for {func.__name__}")
+        raise RuntimeError(f"Unexpected: exited retry loop for {func.__name__}")

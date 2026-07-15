@@ -215,11 +215,11 @@ class Odoo:
                     'noupdate': True
                 })
                 
-                logger.info(f"✅ Created invoice {row['move_name']} with ID {invoice_id}")
+                logger.info(f"Created invoice {row['move_name']} with ID {invoice_id}")
                 success_count += 1
                 
             except Exception as e:
-                logger.error(f"❌ Failed to create invoice {row.get('move_name')}: {str(e)}")
+                logger.error(f"Failed to create invoice {row.get('move_name')}: {str(e)}")
                 error_list.append({
                     'move_name': row.get('move_name'),
                     'error': str(e),
@@ -301,7 +301,7 @@ class Odoo:
                 writer.writerows(error_list)
             
             blob.upload_from_string(output.getvalue())
-            logger.info(f"✅ Error list written to gs://{bucket_name}/{blob_prefix}{file_name}")
+            logger.info(f"Error list written to gs://{bucket_name}/{blob_prefix}{file_name}")
             
         except Exception as e:
             logger.error(f"Failed to write error list to GCS: {str(e)}")

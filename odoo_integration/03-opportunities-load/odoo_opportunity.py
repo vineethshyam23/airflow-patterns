@@ -214,11 +214,11 @@ class Data:
                 # Create opportunity
                 opp_id = self.odoo.env['crm.lead'].create(opp_data)
                 
-                logger.info(f"✅ Created opportunity {acc['opportunity_name']} with ID {opp_id}")
+                logger.info(f"Created opportunity {acc['opportunity_name']} with ID {opp_id}")
                 success_count += 1
                 
             except Exception as e:
-                logger.error(f"❌ Failed: {acc.get('opportunity_id')}: {e}")
+                logger.error(f"Failed: {acc.get('opportunity_id')}: {e}")
                 error_count += 1
                 continue
         

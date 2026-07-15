@@ -6,7 +6,7 @@
 
 ## Quick Stats
 
-- **Complexity**: ⭐⭐⭐ Advanced
+- **Complexity**:  Advanced
 - **Production Usage**: Daily, 10K+ leads/month
 - **Avg Execution Time**: 15 minutes
 - **Success Rate**: 99.5%
@@ -303,7 +303,7 @@ country_id = country_ids.get(row['country_code'].upper())
 
 ## Production Lessons
 
-### ✅ What Worked
+### What Worked
 
 1. **Ref-based ID Resolution**
    - `odoo.env.ref('base.de')` faster than search queries
@@ -317,7 +317,7 @@ country_id = country_ids.get(row['country_code'].upper())
    - Remove None values before create (cleaner, faster)
    - Odoo handles defaults for missing fields
 
-### ❌ What Didn't Work
+### What Didn't Work
 
 1. **No Chunking Initially**
    - First version: all leads in one create call

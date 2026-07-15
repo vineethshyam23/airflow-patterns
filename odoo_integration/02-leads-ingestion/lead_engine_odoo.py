@@ -228,4 +228,4 @@ class Odoo:
                 continue
         
         odoo.logout()
-        logger.info(f"✅ Successfully inserted {len(chunked)} leads")
+        logger.info(f"Successfully inserted {len(chunked)} leads")

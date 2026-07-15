@@ -63,7 +63,7 @@ with DAG(
     # Get total records at DAG parse time
     total_records = get_total_records()
     
-    print(f"📊 Total records to process: {total_records}")
+    print(f"Total records to process: {total_records}")
     
     # Dynamic TaskGroup
     with TaskGroup(group_id='process_records') as task_group:
@@ -94,15 +94,15 @@ with DAG(
 DAG: dynamic_taskgroup_example
 │
 ├─ process_records (TaskGroup)
-│  ├─ process_rank_1 (records 1-500) ✅
-│  ├─ process_rank_501 (records 501-1000) ✅
-│  ├─ process_rank_1001 (records 1001-1500) ⏳ running
-│  ├─ process_rank_1501 (records 1501-2000) ⏳ running
-│  ├─ process_rank_2001 (records 2001-2500) ⏳ running
-│  ├─ process_rank_2501 (records 2501-3000) ⏳ running
-│  ├─ process_rank_3001 (records 3001-3500) ⏳ running
-│  ├─ process_rank_3501 (records 3501-4000) ⏸️ queued
-│  ├─ process_rank_4001 (records 4001-4500) ⏸️ queued
+│  ├─ process_rank_1 (records 1-500) [success]
+│  ├─ process_rank_501 (records 501-1000) [success]
+│  ├─ process_rank_1001 (records 1001-1500) [running]
+│  ├─ process_rank_1501 (records 1501-2000) [running]
+│  ├─ process_rank_2001 (records 2001-2500) [running]
+│  ├─ process_rank_2501 (records 2501-3000) [running]
+│  ├─ process_rank_3001 (records 3001-3500) [running]
+│  ├─ process_rank_3501 (records 3501-4000) [queued]
+│  ├─ process_rank_4001 (records 4001-4500) [queued]
 │  └─ ... (more tasks)
 ```
 
@@ -127,7 +127,7 @@ def get_total_invoices():
 def echo_total_invoices(**context):
     """Log total for visibility."""
     total = context['ti'].xcom_pull(task_ids='get_total_invoices')
-    print(f"📊 Total invoices to process: {total}")
+    print(f"Total invoices to process: {total}")
     return total
 
 with DAG('etl_odoo_accounts_ingestion', ...) as dag:
@@ -177,10 +177,10 @@ Tested chunk sizes over 3 years:
 
 | Chunk Size | Tasks (10K records) | Pros | Cons | Verdict |
 |------------|---------------------|------|------|----------|
-| 100 | 100 | Fine-grained control | Too much overhead | ❌ Too small |
-| 500 | 20 | Good balance | - | ✅ **Optimal** |
-| 1000 | 10 | Fewer tasks | Higher memory | ✅ Good |
-| 5000 | 2 | Minimal overhead | Timeout risk, low parallelization | ❌ Too large |
+| 100 | 100 | Fine-grained control | Too much overhead | Too small |
+| 500 | 20 | Good balance | - | **Optimal** |
+| 1000 | 10 | Fewer tasks | Higher memory | Good |
+| 5000 | 2 | Minimal overhead | Timeout risk, low parallelization | Too large |
 
 **Recommendation**: **500 records per task**
 
@@ -287,7 +287,7 @@ def summarize_results(**context):
         total_processed += processed
         total_errors += errors
     
-    print(f"📊 Summary: {total_processed} processed, {total_errors} errors")
+    print(f"Summary: {total_processed} processed, {total_errors} errors")
     
     # Alert if error rate >5%
     if total_errors / total_processed > 0.05:
@@ -316,7 +316,7 @@ def on_failure_callback(context):
     exception = context.get('exception')
     
     send_slack_alert(
-        f"❌ Task {task_id} failed: {exception}"
+        f"Task {task_id} failed: {exception}"
     )
 
 # Apply to all tasks in DAG
@@ -342,14 +342,14 @@ From 116 Odoo DAGs using this pattern:
 
 ## Best Practices
 
-✅ **DO**:
+**DO**:
 - Calculate total at DAG parse time
 - Use ROW_NUMBER() for deterministic chunking
 - Set execution_timeout per task
 - Use XCom for progress tracking
 - Log chunk boundaries clearly
 
-❌ **DON'T**:
+**DON'T**:
 - Query total inside TaskGroup loop (performance)
 - Use LIMIT/OFFSET (non-deterministic with concurrent updates)
 - Make chunks too large (>2000 records)

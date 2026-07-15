@@ -6,7 +6,7 @@
 
 ## Quick Stats
 
-- **Complexity**: ⭐⭐⭐⭐ Advanced  
+- **Complexity**:  Advanced  
 - **Production Usage**: 100K+ opportunities migrated
 - **Supports**: Full load (ntiles) + Daily incremental
 - **Success Rate**: 99.5%
@@ -372,7 +372,7 @@ WHERE NTILE(10) OVER (ORDER BY id) = 1  -- First 10%
 
 ## Production Lessons
 
-### ✅ What Worked
+### What Worked
 
 1. **Dataclasses**
    - Type safety caught bugs early
@@ -386,7 +386,7 @@ WHERE NTILE(10) OVER (ORDER BY id) = 1  -- First 10%
    - Parallelized full loads effectively
    - Even distribution of work
 
-### ❌ What Didn't Work
+### What Didn't Work
 
 1. **Loading Defaults Per Record**
    - Initial version: query Odoo for each opportunity

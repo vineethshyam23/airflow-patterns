@@ -157,15 +157,17 @@ For business context, architecture diagrams, and impact metrics of these impleme
 
 ## Pattern Count
 
-**Current Status**: Repository setup in progress
+Shipped so far (sanitized portfolio samples):
 
-**Target Patterns**:
-- 50+ unique DAG patterns categorized by domain
-- 10+ reusable custom operators
-- 20+ utility functions
-- 15+ complex SQL pattern implementations
+| # | Pattern | Folder |
+|---|---------|--------|
+| 01 | Matching Engine SCD Type 2 | `sql_patterns/01-matching-engine-scd-type2/` |
+| 02 | POS product category prediction | `ml_pipelines/02-product-category-prediction/` |
+| — | Odoo integration set (5) | `odoo_integration/01`–`05` |
 
-**Sources**: Extracted from 450+ production Airflow DAGs across multiple business domains
+Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).
+
+Target over time: more domain DAGs, operators, utilities, and SQL patterns drawn from production Composer work — not a vanity count.
 
 ---
 

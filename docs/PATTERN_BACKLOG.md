@@ -8,6 +8,7 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 | # | Pattern | Category | Source (airflow2) | Notes |
 |---|---------|----------|-------------------|-------|
 | 01 | Matching Engine SCD Type 2 | `sql_patterns/01-matching-engine-scd-type2/` | (shipped before backlog) | In repo |
+| 02 | POS product category prediction | `ml_pipelines/02-product-category-prediction/` | `dags/horeca_digital/posms_predict_product_category.py` (+ archived DAG overview) | Shipped 2026-07-16 |
 
 ## Also already in repo (not from daily automation priority queue)
 
@@ -21,12 +22,12 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 
 ## Next (priority order)
 
-1. **ML pipeline** — `dags/horeca_digital/.../posms_predict_product_category.py` → `ml_pipelines/02-product-category-prediction/`
-2. **Payment API** — `adyen_payment_terminal_integration.py` → `payment_processing/`
-3. **Customer scoring** — `dana_scoring_query.py` → `scoring_analytics/`
-4. **Salesforce** — one strong SFDC DAG → `salesforce_integration/`
-5. **Odoo daily/incremental sync** — not a full migration dump (prefer something not already covered under `odoo_integration/`)
-6. Other unique API/DAG patterns not yet covered
+1. **Payment API** — `adyen_payment_terminal_integration.py` → `payment_processing/03-adyen-payment-terminal/`
+2. **Customer scoring** — `dana_scoring_query.py` → `scoring_analytics/`
+3. **Salesforce** — one strong SFDC DAG (e.g. `dana_sfdc_asset_query.py` / export pair) → `salesforce_integration/`
+4. **Odoo daily/incremental sync** — not a full migration dump (prefer something not already covered under `odoo_integration/`)
+5. Other unique API/DAG patterns not yet covered
+6. Phase 1 fallback: Cloud Function + Swagger pairs under `cloud_functions/` when DAG unique value thins out
 
 ## Skipped
 
@@ -34,9 +35,7 @@ _None yet._
 
 ## Blockers
 
-### 2026-07-16 — Source access failed
+### 2026-07-16 (earlier runs) — Source access failed — RESOLVED
 
-- Preferred local path `/Users/vineethshyam/Documents/Work/airflow2/` is **not available** in this cloud environment (macOS host path).
-- No readable private clone/URL of `airflow2` found via `gh` / `git ls-remote` for known orgs (`vineethshyam23`, `vineethshyam`, `dish-digital`).
-- Per automation rules: **do not invent patterns**. Run stopped without shipping a new pattern.
-- **Unblock**: mount or clone a read-only copy of `airflow2` into the automation environment (or grant access to a private remote), focusing on `dags/horeca_digital/` and `dags/horeca_digital/archived/`.
+- GitLab clone via `GITLAB_TOKEN` now works (oauth2 HTTPS sparse checkout).
+- Pattern 02 shipped after unblock.

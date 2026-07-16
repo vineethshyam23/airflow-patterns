@@ -42,6 +42,7 @@ _None yet._
 - Preferred path missing; no `/Users`, `/Volumes`, or host bind mounts present.
 - No private `airflow2` remote found under `vineethshyam23` (or known dish orgs via token).
 - Per rules: **do not invent patterns**. No pattern shipped.
+- Continuity PR: [PR #2](https://github.com/vineethshyam23/airflow-patterns/pull/2)
 - Prior same-day run: [PR #1](https://github.com/vineethshyam23/airflow-patterns/pull/1) (merged) recorded the first blocker.
 
 ### Unblock (required before next successful ship)

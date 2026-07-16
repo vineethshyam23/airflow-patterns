@@ -27,6 +27,7 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 4. **Salesforce** — one strong SFDC DAG → `salesforce_integration/`
 5. **Odoo daily/incremental sync** — not a full migration dump (prefer something not already covered under `odoo_integration/`)
 6. Other unique API/DAG patterns not yet covered
+7. **Phase 1 fallback** — Cloud Function + Swagger pair under `cloud_functions/` → `api_integrations/`
 
 ## Skipped
 
@@ -34,9 +35,24 @@ _None yet._
 
 ## Blockers
 
-### 2026-07-16 — Source access failed
+### 2026-07-16 (run 2) — Source still unavailable (cloud, not local)
 
-- Preferred local path `/Users/vineethshyam/Documents/Work/airflow2/` is **not available** in this cloud environment (macOS host path).
-- No readable private clone/URL of `airflow2` found via `gh` / `git ls-remote` for known orgs (`vineethshyam23`, `vineethshyam`, `dish-digital`).
-- Per automation rules: **do not invent patterns**. Run stopped without shipping a new pattern.
-- **Unblock**: mount or clone a read-only copy of `airflow2` into the automation environment (or grant access to a private remote), focusing on `dags/horeca_digital/` and `dags/horeca_digital/archived/`.
+- Automation prompt expects a **LOCAL** Mac Agents Window with `/Users/vineethshyam/Documents/Work/airflow2/` readable.
+- This run executed as a **cloud** agent (`bc-561e577d-…`) with **no private worker / no host mount**.
+- Preferred path missing; no `/Users`, `/Volumes`, or host bind mounts present.
+- No private `airflow2` remote found under `vineethshyam23` (or known dish orgs via token).
+- Per rules: **do not invent patterns**. No pattern shipped.
+- Prior same-day run: [PR #1](https://github.com/vineethshyam23/airflow-patterns/pull/1) (merged) recorded the first blocker.
+
+### Unblock (required before next successful ship)
+
+Pick one:
+
+1. **Preferred**: Reconfigure automation [Daily Airflow Pattern Ship](https://cursor.com/automations/6cf8ca3f-8132-11f1-ba66-0e7d0216e441) to run on a **local / self-hosted private worker** on the Mac where `Documents/Work/airflow2` exists.
+2. Mount or sync a **read-only** copy of `airflow2` into the cloud environment (at least `dags/horeca_digital/` and `archived/` + `cloud_functions/`).
+3. Grant the automation GitHub token access to a **private read-only remote** of `airflow2`.
+
+### Next candidate once source is readable
+
+`posms_predict_product_category.py` → `ml_pipelines/02-product-category-prediction/`  
+(Phase 1 DAG; if missing, fall back to one Cloud Function + Swagger pair.)

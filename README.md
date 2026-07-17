@@ -24,7 +24,6 @@ This repository contains **sanitized, anonymized implementations** of production
 
 ```
 airflow-patterns/
-├── api_integrations/           # REST API integration patterns
 ├── odoo_integration/            # ERP (Odoo) integration patterns
 ├── salesforce_integration/      # CRM (Salesforce) integration patterns
 ├── ml_pipelines/                # ML model deployment and scoring
@@ -37,16 +36,11 @@ airflow-patterns/
 └── docs/                        # Documentation and guides
 ```
 
+GCP API platform work (Cloud Run, API Gateway, Apigee, API keys) lives in a separate repo: **[api-integrations](https://github.com/vineethshyam23/api-integrations)**.
+
 ---
 
 ## Pattern Categories
-
-### API Integrations
-Production patterns for integrating external APIs with robust error handling:
-- REST API pagination and rate limiting
-- Retry logic with exponential backoff
-- OAuth 2.0 authentication flows
-- Webhook processing patterns
 
 ### ERP Integration (Odoo)
 Patterns from a 3-year, 116-DAG ERP migration project:

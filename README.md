@@ -163,6 +163,7 @@ Shipped so far (sanitized portfolio samples):
 |---|---------|--------|
 | 01 | Matching Engine SCD Type 2 | `sql_patterns/01-matching-engine-scd-type2/` |
 | 02 | POS product category prediction | `ml_pipelines/02-product-category-prediction/` |
+| 03 | Adyen payment terminal integration | `payment_processing/03-adyen-payment-terminal/` |
 | — | Odoo integration set (5) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

@@ -159,6 +159,7 @@ Shipped so far (sanitized portfolio samples):
 | 02 | POS product category prediction | `ml_pipelines/02-product-category-prediction/` |
 | 03 | Adyen payment terminal integration | `payment_processing/03-adyen-payment-terminal/` |
 | 04 | Multi-country FBO/NBO scoring export | `scoring_analytics/04-dana-scoring/` |
+| 05 | Salesforce asset history delta export | `salesforce_integration/05-sfdc-asset-history-export/` |
 | — | Odoo integration set (5) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

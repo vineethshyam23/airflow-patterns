@@ -11,6 +11,7 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 | 02 | POS product category prediction | `ml_pipelines/02-product-category-prediction/` | `dags/horeca_digital/posms_predict_product_category.py` (+ archived DAG overview) | Shipped 2026-07-16 |
 | 03 | Adyen payment terminal integration | `payment_processing/03-adyen-payment-terminal/` | `dags/etl_adyen_payment_terminal.py` + `dags/horeca_digital/adyen_payment_terminal_integration.py` | Shipped 2026-07-17 |
 | 04 | Multi-country FBO/NBO scoring export | `scoring_analytics/04-dana-scoring/` | `dags/horeca_digital/dana_scoring_query.py` + `dana_scoring_export.py` + `dags/etl_dana_scoring_data_export.py` | Shipped 2026-07-18 |
+| 05 | Salesforce asset history delta export | `salesforce_integration/05-sfdc-asset-history-export/` | `dags/horeca_digital/dana_sfdc_asset_query.py` + `dana_sfdc_asset_export.py` + `archived/etl_dana_SFDC_asset_history_export.py` | Shipped 2026-07-19 |
 
 ## Also already in repo (not from daily automation priority queue)
 
@@ -24,9 +25,9 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 
 ## Next (priority order)
 
-1. **Salesforce** — one strong SFDC DAG (e.g. `dana_sfdc_asset_query.py` / export pair) → `salesforce_integration/05-sfdc-asset-export/` (or next free number)
-2. **Odoo daily/incremental sync** — not a full migration dump (prefer something not already covered under `odoo_integration/`)
-3. Other unique unused DAG under `horeca_digital/` / `archived/` (e.g. matching export, dishpay KYC, helpdesk)
+1. **Odoo daily/incremental sync** — not already covered under `odoo_integration/` (e.g. helpdesk tickets, list price, WSL invoices, assets/leads lifecycle)
+2. Other unique unused DAG under `horeca_digital/` / `archived/` (e.g. matching export, dishpay KYC, REX menu gaps)
+3. Additional Salesforce DAG only if clearly distinct from asset history (e.g. Marketing Cloud / activities)
 
 ## Skipped
 

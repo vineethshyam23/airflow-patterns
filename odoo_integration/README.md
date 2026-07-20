@@ -182,6 +182,23 @@ Every Odoo pattern follows this architecture:
 
 ---
 
+### 06 - Helpdesk Tickets Daily Event Export
+**Use Case**: dbt refresh of refined Odoo Level-1 helpdesk tickets, then yesterday's creates as Avro events to an external ingest API
+
+**Key Features**:
+- dbt Cloud job before ingest (no stale refined snapshot)
+- create_date date-delta (not hash-delta / hist table)
+- Avro bulk POST in chunks of 500 with OAuth 401 refresh
+- Single-market scope (`de`) matching production when this shipped
+
+**Notes**:
+- Companion to the warehouse→event-bus family (scoring, SFDC assets), but Odoo helpdesk domain
+- Not the Postgres pull extractor (`helpdesk_odoo_import.py`) — that is a separate candidate
+
+[View Pattern →](./06-helpdesk-tickets-export/)
+
+---
+
 ## Technology Stack
 
 **ERP System**: Odoo 13/14/15/16  

@@ -160,7 +160,8 @@ Shipped so far (sanitized portfolio samples):
 | 03 | Adyen payment terminal integration | `payment_processing/03-adyen-payment-terminal/` |
 | 04 | Multi-country FBO/NBO scoring export | `scoring_analytics/04-dana-scoring/` |
 | 05 | Salesforce asset history delta export | `salesforce_integration/05-sfdc-asset-history-export/` |
-| — | Odoo integration set (5) | `odoo_integration/01`–`05` |
+| 06 | Odoo helpdesk tickets daily event export | `odoo_integration/06-helpdesk-tickets-export/` |
+| — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).
 

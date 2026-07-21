@@ -199,6 +199,24 @@ Every Odoo pattern follows this architecture:
 
 ---
 
+### 07 - List-Price / Commission Monthly Delta Export
+**Use Case**: Monthly WSL invoice × list-price snapshot, hash-delta vs hist, Avro bulk ingest for finance / partner commission consumers
+
+**Key Features**:
+- Monthly schedule (`55 2 1 * *`) after month-end billing close
+- Hash-delta with today/hist (same ordering as SFDC asset / scoring)
+- Keyhash on parent_bill + establishment; rowhash on commission payload
+- Avro bulk POST in chunks of 500 with OAuth 401 refresh
+- Single-market scope (`FR`) matching production when this shipped
+
+**Notes**:
+- Companion to the warehouse→event-bus family; Odoo finance domain rather than CRM assets or helpdesk creates
+- Production insert SQL was a large multi-CTE finance calculation — sanitized builder keeps the join skeleton + hashes
+
+[View Pattern →](./07-list-price-export/)
+
+---
+
 ## Technology Stack
 
 **ERP System**: Odoo 13/14/15/16  

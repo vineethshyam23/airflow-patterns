@@ -161,6 +161,7 @@ Shipped so far (sanitized portfolio samples):
 | 04 | Multi-country FBO/NBO scoring export | `scoring_analytics/04-dana-scoring/` |
 | 05 | Salesforce asset history delta export | `salesforce_integration/05-sfdc-asset-history-export/` |
 | 06 | Odoo helpdesk tickets daily event export | `odoo_integration/06-helpdesk-tickets-export/` |
+| 07 | Odoo list-price / commission monthly delta export | `odoo_integration/07-list-price-export/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

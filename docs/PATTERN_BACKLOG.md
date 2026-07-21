@@ -13,6 +13,7 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 | 04 | Multi-country FBO/NBO scoring export | `scoring_analytics/04-dana-scoring/` | `dags/horeca_digital/dana_scoring_query.py` + `dana_scoring_export.py` + `dags/etl_dana_scoring_data_export.py` | Shipped 2026-07-18 |
 | 05 | Salesforce asset history delta export | `salesforce_integration/05-sfdc-asset-history-export/` | `dags/horeca_digital/dana_sfdc_asset_query.py` + `dana_sfdc_asset_export.py` + `archived/etl_dana_SFDC_asset_history_export.py` | Shipped 2026-07-19 |
 | 06 | Odoo helpdesk tickets daily event export | `odoo_integration/06-helpdesk-tickets-export/` | `dags/etl_dana_odoo_helpdesk_tickets.py` + `dags/horeca_digital/dana_odoo_helpdesk_ticket.py` | Shipped 2026-07-20 |
+| 07 | Odoo list-price / commission monthly delta export | `odoo_integration/07-list-price-export/` | `dags/horeca_digital/dana_odoo_list_price_query.py` + `dana_odoo_list_price_export.py` + `archived/etl_dana_Odoo_list_price_export.py` | Shipped 2026-07-21 |
 
 ## Also already in repo (not from daily automation priority queue)
 
@@ -26,10 +27,10 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 
 ## Next (priority order)
 
-1. **Odoo list-price / WSL invoices / assets-leads lifecycle** — not already under `odoo_integration/` (e.g. `dana_odoo_list_price_*`, `dana_odoo_wsl_invoices`, `dana_odoo_assets_leads_lifecycle_export`)
+1. **Odoo WSL invoices or assets-leads lifecycle** — not already under `odoo_integration/` (e.g. `dana_odoo_wsl_invoices` / `etl_dana_odoo_wsl_invoices_export.py`, or `dana_odoo_assets_leads_lifecycle_export` / `etl_dana_odoo_assets_leads_export.py`)
 2. Other unique unused DAG under `horeca_digital/` / `archived/` (e.g. matching export, dishpay KYC, REX menu gaps)
 3. Additional Salesforce DAG only if clearly distinct from asset history (e.g. Marketing Cloud / activities)
-4. Odoo helpdesk *pull* (`helpdesk_odoo_import.py`) only if we want the Postgres incremental extractor as a separate pattern from this event export
+4. Odoo helpdesk *pull* (`helpdesk_odoo_import.py`) only if we want the Postgres incremental extractor as a separate pattern from the event export
 
 ## Skipped
 

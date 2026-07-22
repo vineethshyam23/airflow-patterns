@@ -217,6 +217,25 @@ Every Odoo pattern follows this architecture:
 
 ---
 
+### 08 - WSL Invoices Dual Export (Event + Recommender)
+**Use Case**: Daily dbt refresh of trusted Odoo wholesale (WSL) invoice lines, APPEND into an ML recommender history table, then full-snapshot Avro bulk ingest for a pilot market
+
+**Key Features**:
+- One DAG owns both sinks so event bus and recommender stay on the same SELECT
+- dbt Cloud job before readers (no stale trusted intermediate)
+- `WRITE_APPEND` recommender history + full-table event send (`uni_key IS NOT NULL`)
+- Avro bulk POST in chunks of 500 with OAuth 401 refresh
+- Single-market scope (`de`) matching production when this shipped
+
+**Notes**:
+- Distinct from pattern 07 (monthly commission hash-delta) — this ships the invoice fact table itself
+- Sanitized DAG keeps `catchup=False`; production `catchup=True` + APPEND created duplicate daily snapshots on scheduler gaps
+- Fixed source bug mapping `theo_total_rec_revenue` from the onetime column
+
+[View Pattern →](./08-wsl-invoices-export/)
+
+---
+
 ## Technology Stack
 
 **ERP System**: Odoo 13/14/15/16  

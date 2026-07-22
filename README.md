@@ -162,6 +162,7 @@ Shipped so far (sanitized portfolio samples):
 | 05 | Salesforce asset history delta export | `salesforce_integration/05-sfdc-asset-history-export/` |
 | 06 | Odoo helpdesk tickets daily event export | `odoo_integration/06-helpdesk-tickets-export/` |
 | 07 | Odoo list-price / commission monthly delta export | `odoo_integration/07-list-price-export/` |
+| 08 | Odoo WSL invoices dual export (event + recommender) | `odoo_integration/08-wsl-invoices-export/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

@@ -163,6 +163,7 @@ Shipped so far (sanitized portfolio samples):
 | 06 | Odoo helpdesk tickets daily event export | `odoo_integration/06-helpdesk-tickets-export/` |
 | 07 | Odoo list-price / commission monthly delta export | `odoo_integration/07-list-price-export/` |
 | 08 | Odoo WSL invoices dual export (event + recommender) | `odoo_integration/08-wsl-invoices-export/` |
+| 09 | Odoo / CRM assets + leads lifecycle export | `odoo_integration/09-assets-leads-lifecycle-export/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

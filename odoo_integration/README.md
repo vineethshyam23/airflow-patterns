@@ -236,6 +236,25 @@ Every Odoo pattern follows this architecture:
 
 ---
 
+### 09 - Assets + Leads Lifecycle Export
+**Use Case**: Twice-daily dbt refresh of refined Odoo/CRM lead and asset lifecycle models, then three parallel Avro bulk ingest tasks (leads, assets, vouchers) for a partner market
+
+**Key Features**:
+- One dbt job, three parallel ingest failure domains
+- SCD Type 2 delta via `_valid_flag` + `_valid_from >= today` (leads/assets)
+- Voucher codes on a created-date window (yesterday+)
+- Avro bulk POST in chunks of 500 with OAuth 401 refresh
+- Single-market scope (`fr`) matching production when this shipped
+
+**Notes**:
+- Distinct from pattern 05 (SFDC asset history hash-delta) and pattern 08 (WSL dual sink)
+- Sibling weekly active-asset-IDs snapshot left as a separate backlog candidate
+- Sanitized: schema ids externalized, Avro parse once, HTTP errors raise
+
+[View Pattern →](./09-assets-leads-lifecycle-export/)
+
+---
+
 ## Technology Stack
 
 **ERP System**: Odoo 13/14/15/16  

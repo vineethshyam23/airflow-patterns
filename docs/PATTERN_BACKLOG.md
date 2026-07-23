@@ -15,6 +15,7 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 | 06 | Odoo helpdesk tickets daily event export | `odoo_integration/06-helpdesk-tickets-export/` | `dags/etl_dana_odoo_helpdesk_tickets.py` + `dags/horeca_digital/dana_odoo_helpdesk_ticket.py` | Shipped 2026-07-20 |
 | 07 | Odoo list-price / commission monthly delta export | `odoo_integration/07-list-price-export/` | `dags/horeca_digital/dana_odoo_list_price_query.py` + `dana_odoo_list_price_export.py` + `archived/etl_dana_Odoo_list_price_export.py` | Shipped 2026-07-21 |
 | 08 | Odoo WSL invoices dual export (event + recommender) | `odoo_integration/08-wsl-invoices-export/` | `dags/etl_dana_odoo_wsl_invoices_export.py` + `dags/horeca_digital/dana_odoo_wsl_invoices.py` | Shipped 2026-07-22 |
+| 09 | Odoo / CRM assets + leads lifecycle export | `odoo_integration/09-assets-leads-lifecycle-export/` | `dags/etl_dana_odoo_assets_leads_export.py` + `dags/horeca_digital/dana_odoo_assets_leads_lifecycle_export.py` | Shipped 2026-07-23 |
 
 ## Also already in repo (not from daily automation priority queue)
 
@@ -28,10 +29,12 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 
 ## Next (priority order)
 
-1. **Odoo assets-leads lifecycle export** — `dana_odoo_assets_leads_lifecycle_export.py` + `etl_dana_odoo_assets_leads_export.py` (not already under `odoo_integration/`)
-2. Other unique unused DAG under `horeca_digital/` / `archived/` (e.g. matching export, dishpay KYC, REX menu gaps)
-3. Additional Salesforce DAG only if clearly distinct from asset history (e.g. Marketing Cloud / activities)
-4. Odoo helpdesk *pull* (`helpdesk_odoo_import.py`) only if we want the Postgres incremental extractor as a separate pattern from the event export
+1. **Matching engine export to event bus** — `dana_matching_engine_export.py` / `matching_export_to_DANA.py` (distinct from SCD Type 2 pattern 01)
+2. **DishPay KYC export** — `dana_dishpay_kyc_export.py` + `etl_dana_dishpay_kyc_export.py`
+3. **REX menu gaps export** — `dana_rex_menu_gaps_export.py` (+ non-metro variant if distinct enough)
+4. **Odoo active asset IDs weekly snapshot** — `etl_dana_odoo_active_asset_ids_export.py` (sibling of pattern 09)
+5. Odoo helpdesk *pull* (`helpdesk_odoo_import.py`) only if we want the Postgres incremental extractor as a separate pattern from the event export
+6. Additional Salesforce DAG only if clearly distinct from asset history
 
 ## Skipped
 

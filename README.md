@@ -165,6 +165,7 @@ Shipped so far (sanitized portfolio samples):
 | 08 | Odoo WSL invoices dual export (event + recommender) | `odoo_integration/08-wsl-invoices-export/` |
 | 09 | Odoo / CRM assets + leads lifecycle export | `odoo_integration/09-assets-leads-lifecycle-export/` |
 | 10 | Matching engine export to partner event bus | `sql_patterns/10-matching-engine-event-export/` |
+| 11 | Payment KYC export to partner event bus | `payment_processing/11-dishpay-kyc-export/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

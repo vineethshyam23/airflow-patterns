@@ -18,6 +18,7 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 | 09 | Odoo / CRM assets + leads lifecycle export | `odoo_integration/09-assets-leads-lifecycle-export/` | `dags/etl_dana_odoo_assets_leads_export.py` + `dags/horeca_digital/dana_odoo_assets_leads_lifecycle_export.py` | Shipped 2026-07-23 |
 | 10 | Matching engine export to partner event bus | `sql_patterns/10-matching-engine-event-export/` | `dags/horeca_digital/matching_export_to_DANA.py` + `dana_matching_engine_export.py` + `archived/etl_dana_matching_engine_export.py` | Shipped 2026-07-24 |
 | 11 | Payment KYC export to partner event bus | `payment_processing/11-dishpay-kyc-export/` | `dags/etl_dana_dishpay_kyc_export.py` + `dags/horeca_digital/dana_dishpay_kyc_export.py` + `dana_dishpay_kyc_query.py` | Shipped 2026-07-25 |
+| 12 | Ranked menu-gaps export (FARM_FINGERPRINT batches) | `scoring_analytics/12-rex-menu-gaps-export/` | `dags/etl_dana_rex_menu_gaps_export.py` + `dags/horeca_digital/dana_rex_menu_gaps_export.py` + `dana_rex_menu_gaps_query.py` | Shipped 2026-07-26 |
 
 ## Also already in repo (not from daily automation priority queue)
 
@@ -31,8 +32,8 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 
 ## Next (priority order)
 
-1. **REX menu gaps export** — `dana_rex_menu_gaps_export.py` (+ non-metro variant if distinct enough)
-2. **Odoo active asset IDs weekly snapshot** — `etl_dana_odoo_active_asset_ids_export.py` (sibling of pattern 09)
+1. **Odoo active asset IDs weekly snapshot** — `etl_dana_odoo_active_asset_ids_export.py` (sibling of pattern 09)
+2. **REX menu gaps non-metro export** — `dana_rex_menu_gaps_non_metro_export.py` (distinct Avro/address schema from pattern 12)
 3. Odoo helpdesk *pull* (`helpdesk_odoo_import.py`) only if we want the Postgres incremental extractor as a separate pattern from the event export
 4. Additional Salesforce DAG only if clearly distinct from asset history
 5. Deepideas / benchmarking gaps export family if still unused

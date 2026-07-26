@@ -40,12 +40,12 @@ melting the sink.
 - Event ingest is additive. Re-runs re-post the same rows — coordinate
   with the consumer before a historical replay.
 - Avro schema marks `table_PII: no`. Account/person ids are present as
-  opaque keys; no contact PII in this feed (the non-metro sibling is a
-  different contract).
+  opaque keys; no contact PII in this feed (the independent-
+  establishment sibling is a different contract).
 
 ## What this is not
 
 Not the FBO/NBO scoring hash-delta (pattern 04). Not the matching-
-engine service export (pattern 10). Not the non-metro menu-gaps
-variant (address/geo/contact schema — leave that for a later pattern
-if it is still unused). Not the dbt models themselves.
+engine service export (pattern 10). Not the independent-establishment
+menu-gaps variant (address/geo/contact schema — leave that for a later
+pattern if it is still unused). Not the dbt models themselves.

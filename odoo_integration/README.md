@@ -248,10 +248,29 @@ Every Odoo pattern follows this architecture:
 
 **Notes**:
 - Distinct from pattern 05 (SFDC asset history hash-delta) and pattern 08 (WSL dual sink)
-- Sibling weekly active-asset-IDs snapshot left as a separate backlog candidate
+- Sibling weekly active-asset-IDs snapshot shipped as pattern 13
 - Sanitized: schema ids externalized, Avro parse once, HTTP errors raise
 
 [View Pattern →](./09-assets-leads-lifecycle-export/)
+
+---
+
+### 13 - Weekly Active Asset ID Snapshot
+**Use Case**: Sundays full snapshot of active Odoo `sale_order_line` IDs across 13 markets so the partner master-file can LEFT JOIN and treat missing IDs as deleted
+
+**Key Features**:
+- No dbt — reads refined sales after upstream weekly cleanup
+- 13 parallel country ingest tasks (`chain` fan-out)
+- Four-column Avro contract (line id, order id, establishment, `_ldts`)
+- `end` uses `ALL_DONE` so partial-country failures still close the run
+- Avro bulk POST in chunks of 500 with OAuth 401 refresh
+
+**Notes**:
+- Sibling of pattern 09 (lifecycle SCD deltas) — presence vs status change
+- Sanitized: schema ids externalized, Avro parse once, HTTP errors raise
+- Coordinate with cleanup DAG schedule; source had no ExternalTaskSensor
+
+[View Pattern →](./13-active-asset-ids-export/)
 
 ---
 

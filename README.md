@@ -168,6 +168,7 @@ Shipped so far (sanitized portfolio samples):
 | 11 | Payment KYC export to partner event bus | `payment_processing/11-dishpay-kyc-export/` |
 | 12 | Ranked menu-gaps export (hash-partition batches) | `scoring_analytics/12-rex-menu-gaps-export/` |
 | 13 | Weekly active Odoo asset ID snapshot | `odoo_integration/13-active-asset-ids-export/` |
+| 14 | Independent-establishment menu-gaps export | `scoring_analytics/14-menu-gaps-independent-export/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

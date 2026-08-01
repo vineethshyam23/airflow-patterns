@@ -29,6 +29,7 @@ airflow-patterns/
 ├── ml_pipelines/                # ML model deployment and scoring
 ├── scoring_analytics/           # Customer scoring and analytics
 ├── payment_processing/          # Payment system integrations
+├── marketing_integration/       # Email / campaign platform integrations
 ├── data_quality/                # Validation and reconciliation
 ├── custom_operators/            # Reusable Airflow operators
 ├── utilities/                   # Helper functions and decorators
@@ -76,6 +77,13 @@ Financial data processing patterns:
 - Payment reconciliation
 - Multi-currency handling
 - Compliance and audit trails
+
+### Marketing Integration
+Email and campaign platform patterns:
+- Mailchimp Marketing API extraction (6 report entities)
+- Paginated fetch with 90-day lookback window
+- JSONL → GCS → BigQuery staging → trusted snapshot
+- Audience merge field flattening for CRM joins
 
 ### Data Quality
 Production data quality frameworks:
@@ -169,6 +177,7 @@ Shipped so far (sanitized portfolio samples):
 | 12 | Ranked menu-gaps export (hash-partition batches) | `scoring_analytics/12-rex-menu-gaps-export/` |
 | 13 | Weekly active Odoo asset ID snapshot | `odoo_integration/13-active-asset-ids-export/` |
 | 14 | Independent-establishment menu-gaps export | `scoring_analytics/14-menu-gaps-independent-export/` |
+| 15 | Mailchimp campaign analytics ETL | `marketing_integration/04-mailchimp-campaign-analytics/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

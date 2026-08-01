@@ -1,0 +1,21 @@
+[
+  {"name": "email_id", "type": "STRING", "mode": "NULLABLE"},
+  {"name": "email_address", "type": "STRING", "mode": "NULLABLE"},
+  {"name": "first_name", "type": "STRING", "mode": "NULLABLE"},
+  {"name": "last_name", "type": "STRING", "mode": "NULLABLE"},
+  {"name": "address", "type": "STRING", "mode": "NULLABLE"},
+  {"name": "customer_id", "type": "STRING", "mode": "NULLABLE"},
+  {"name": "segment", "type": "STRING", "mode": "NULLABLE"},
+  {"name": "company_name", "type": "STRING", "mode": "NULLABLE"},
+  {"name": "account_manager", "type": "STRING", "mode": "NULLABLE"},
+  {"name": "postal_code", "type": "STRING", "mode": "NULLABLE"},
+  {"name": "device_id", "type": "STRING", "mode": "NULLABLE"},
+  {"name": "registration_id", "type": "STRING", "mode": "NULLABLE"},
+  {"name": "vip", "type": "BOOLEAN", "mode": "NULLABLE"},
+  {"name": "unsubscribe_ts", "type": "TIMESTAMP", "mode": "NULLABLE"},
+  {"name": "reason", "type": "STRING", "mode": "NULLABLE"},
+  {"name": "campaign_id", "type": "STRING", "mode": "NULLABLE"},
+  {"name": "list_id", "type": "STRING", "mode": "NULLABLE"},
+  {"name": "list_is_active", "type": "BOOLEAN", "mode": "NULLABLE"},
+  {"name": "load_date", "type": "DATE", "mode": "NULLABLE"}
+]

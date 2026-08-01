@@ -1,0 +1,18 @@
+[
+  {
+    "fields": [
+      {"mode": "NULLABLE", "name": "timestamp", "type": "TIMESTAMP"},
+      {"mode": "NULLABLE", "name": "url", "type": "STRING"},
+      {"mode": "NULLABLE", "name": "ip", "type": "STRING"},
+      {"mode": "NULLABLE", "name": "type", "type": "STRING"},
+      {"mode": "NULLABLE", "name": "action", "type": "STRING"}
+    ],
+    "mode": "REPEATED",
+    "name": "activity",
+    "type": "RECORD"
+  },
+  {"mode": "NULLABLE", "name": "email_address", "type": "STRING"},
+  {"mode": "NULLABLE", "name": "list_id", "type": "STRING"},
+  {"mode": "NULLABLE", "name": "campaign_id", "type": "STRING"},
+  {"mode": "NULLABLE", "name": "load_date", "type": "DATE"}
+]

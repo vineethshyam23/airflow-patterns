@@ -73,6 +73,7 @@ logs/
 *.parquet
 *.json
 !package.json
+!marketing_integration/**/schemas/*.json
 *.pickle
 *.pkl
 

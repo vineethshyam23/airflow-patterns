@@ -21,6 +21,7 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 | 12 | Ranked menu-gaps export (FARM_FINGERPRINT batches) | `scoring_analytics/12-rex-menu-gaps-export/` | `dags/etl_dana_rex_menu_gaps_export.py` + `dags/horeca_digital/dana_rex_menu_gaps_export.py` + `dana_rex_menu_gaps_query.py` | Shipped 2026-07-26 |
 | 13 | Weekly active Odoo asset ID snapshot | `odoo_integration/13-active-asset-ids-export/` | `dags/etl_dana_odoo_active_asset_ids_export.py` + `dags/horeca_digital/dana_odoo_assets_leads_lifecycle_export.py` (active-ID query/send) | Shipped 2026-07-27 |
 | 14 | Independent-establishment menu-gaps export | `scoring_analytics/14-menu-gaps-independent-export/` | `dags/etl_dana_rex_menu_gaps_non_metro_export.py` + `dags/horeca_digital/dana_rex_menu_gaps_non_metro_export.py` | Shipped 2026-07-29 |
+| 15 | Mailchimp campaign analytics ETL | `marketing_integration/04-mailchimp-campaign-analytics/` | `dags/etl_mailchimp.py` + `dags/horeca_digital/mailchimp.py` | Shipped 2026-08-01 |
 
 ## Also already in repo (not from daily automation priority queue)
 
@@ -34,7 +35,8 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 
 ## Next (priority order)
 
-1. **Odoo helpdesk pull** — `helpdesk_odoo_import.py` (Postgres incremental extractor; distinct from pattern 06 event export)
+1. **Maileon import** — `etl_maileon_import.py` (secondary email platform; distinct from Mailchimp pattern 15)
+2. **Odoo helpdesk pull** — `helpdesk_odoo_import.py` (Postgres incremental extractor; distinct from pattern 06 event export)
 2. Deepideas / benchmarking gaps export family (`dana_deepideas_*` / `etl_benchmarking_gaps.py`) if still unused
 3. Additional Salesforce DAG only if clearly distinct from asset history
 4. Dish market data export (`dana_dish_market_data_export.py`) if still unused

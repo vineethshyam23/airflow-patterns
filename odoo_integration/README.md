@@ -193,7 +193,7 @@ Every Odoo pattern follows this architecture:
 
 **Notes**:
 - Companion to the warehouse→event-bus family (scoring, SFDC assets), but Odoo helpdesk domain
-- Not the Postgres pull extractor (`helpdesk_odoo_import.py`) — that is a separate candidate
+- Warehouse ingest side is pattern 15 (`15-helpdesk-postgres-pull/`)
 
 [View Pattern →](./06-helpdesk-tickets-export/)
 

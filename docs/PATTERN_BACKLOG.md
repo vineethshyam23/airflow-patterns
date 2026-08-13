@@ -22,6 +22,7 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 | 13 | Weekly active Odoo asset ID snapshot | `odoo_integration/13-active-asset-ids-export/` | `dags/etl_dana_odoo_active_asset_ids_export.py` + `dags/horeca_digital/dana_odoo_assets_leads_lifecycle_export.py` (active-ID query/send) | Shipped 2026-07-27 |
 | 14 | Independent-establishment menu-gaps export | `scoring_analytics/14-menu-gaps-independent-export/` | `dags/etl_dana_rex_menu_gaps_non_metro_export.py` + `dags/horeca_digital/dana_rex_menu_gaps_non_metro_export.py` | Shipped 2026-07-29 |
 | 15 | Odoo helpdesk Postgres incremental pull | `odoo_integration/15-helpdesk-postgres-pull/` | `dags/horeca_digital/helpdesk_odoo_import.py` + `helpdesk_odoo.py` + `archived/odoo_migration/etl_odoo_helpdesk_import.py` | Shipped 2026-08-12 |
+| 16 | Peer benchmarking gaps (multi-country + Avro) | `scoring_analytics/16-benchmarking-gaps/` | `dags/etl_benchmarking_gaps.py` + `dags/horeca_digital/benchmarking_gaps_queries.py` + `dana_deepideas_benchmarking_gaps_export.py` + delta helpers in `dana_deepideas_query.py` | Shipped 2026-08-13 |
 
 ## Also already in repo (not from daily automation priority queue)
 
@@ -35,10 +36,10 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 
 ## Next (priority order)
 
-1. Deepideas / benchmarking gaps export family (`dana_deepideas_*` / `etl_benchmarking_gaps.py`) if still unused
-2. Dish market data export (`dana_dish_market_data_export.py`) if still unused
-3. Additional Salesforce DAG only if clearly distinct from asset history
-4. `dataforseo_menu_url_*` or `freshdesk_extract.py` if still unused and high value
+1. Dish market data export (`dana_dish_market_data_export.py`) if still unused
+2. Additional Salesforce DAG only if clearly distinct from asset history
+3. `dataforseo_menu_url_*` or `freshdesk_extract.py` if still unused and high value
+4. Deepideas establishment / gaps-category / gaps-ingredients sibling exports (only if distinct from pattern 16)
 
 ## Skipped
 

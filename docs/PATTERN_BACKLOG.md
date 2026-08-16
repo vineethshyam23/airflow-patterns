@@ -23,6 +23,7 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 | 14 | Independent-establishment menu-gaps export | `scoring_analytics/14-menu-gaps-independent-export/` | `dags/etl_dana_rex_menu_gaps_non_metro_export.py` + `dags/horeca_digital/dana_rex_menu_gaps_non_metro_export.py` | Shipped 2026-07-29 |
 | 15 | Odoo helpdesk Postgres incremental pull | `odoo_integration/15-helpdesk-postgres-pull/` | `dags/horeca_digital/helpdesk_odoo_import.py` + `helpdesk_odoo.py` + `archived/odoo_migration/etl_odoo_helpdesk_import.py` | Shipped 2026-08-12 |
 | 16 | Peer benchmarking gaps (multi-country + Avro) | `scoring_analytics/16-benchmarking-gaps/` | `dags/etl_benchmarking_gaps.py` + `dags/horeca_digital/benchmarking_gaps_queries.py` + `dana_deepideas_benchmarking_gaps_export.py` + delta helpers in `dana_deepideas_query.py` | Shipped 2026-08-13 |
+| 17 | Establishment market-data monthly Avro export | `scoring_analytics/17-dish-market-data-export/` | `dags/etl_dana_dish_market_data_export.py` + `dags/horeca_digital/dana_dish_market_data_export.py` + `foodgraph_queries.dish_market_data_active_isocode_list` | Shipped 2026-08-16 |
 
 ## Also already in repo (not from daily automation priority queue)
 
@@ -36,10 +37,10 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 
 ## Next (priority order)
 
-1. Dish market data export (`dana_dish_market_data_export.py`) if still unused
-2. Additional Salesforce DAG only if clearly distinct from asset history
-3. `dataforseo_menu_url_*` or `freshdesk_extract.py` if still unused and high value
-4. Deepideas establishment / gaps-category / gaps-ingredients sibling exports (only if distinct from pattern 16)
+1. Additional Salesforce DAG only if clearly distinct from asset history
+2. `dataforseo_menu_url_*` or `freshdesk_extract.py` if still unused and high value
+3. Deepideas establishment / gaps-category / gaps-ingredients sibling exports (only if distinct from pattern 16)
+4. `dana_DISH_customer_export` / MAG acquisition-penetration only if still unused and high value
 
 ## Skipped
 

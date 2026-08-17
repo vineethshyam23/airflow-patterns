@@ -92,10 +92,10 @@ Reusable Airflow operators I've built:
 - Generic API operators
 
 ### Utilities
-Helper functions and decorators:
+Helper modules and enrichment jobs:
+- Menu URL discovery from HTML (no LLM)
 - BigQuery utilities
-- Error handling decorators
-- Retry mechanisms
+- Error handling / retry helpers
 - Logging utilities
 
 ### SQL Patterns
@@ -172,6 +172,7 @@ Shipped so far (sanitized portfolio samples):
 | 15 | Odoo helpdesk Postgres incremental pull | `odoo_integration/15-helpdesk-postgres-pull/` |
 | 16 | Peer benchmarking gaps (multi-country + Avro) | `scoring_analytics/16-benchmarking-gaps/` |
 | 17 | Establishment market-data monthly Avro export | `scoring_analytics/17-dish-market-data-export/` |
+| 18 | SEO business-listing menu URL extraction | `utilities/18-dataforseo-menu-url-extraction/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

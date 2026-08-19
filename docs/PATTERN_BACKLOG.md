@@ -25,6 +25,7 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 | 16 | Peer benchmarking gaps (multi-country + Avro) | `scoring_analytics/16-benchmarking-gaps/` | `dags/etl_benchmarking_gaps.py` + `dags/horeca_digital/benchmarking_gaps_queries.py` + `dana_deepideas_benchmarking_gaps_export.py` + delta helpers in `dana_deepideas_query.py` | Shipped 2026-08-13 |
 | 17 | Establishment market-data monthly Avro export | `scoring_analytics/17-dish-market-data-export/` | `dags/etl_dana_dish_market_data_export.py` + `dags/horeca_digital/dana_dish_market_data_export.py` + `foodgraph_queries.dish_market_data_active_isocode_list` | Shipped 2026-08-16 |
 | 18 | SEO business-listing menu URL extraction | `utilities/18-dataforseo-menu-url-extraction/` | `dags/etl_dataforseo_menu_url_extractor.py` + `dataforseo_gbq_menu_url_extractor.py` + `dataforseo_menu_url_discovery.py` + `dataforseo_menu_url_utils.py` | Shipped 2026-08-17 |
+| 19 | Freshdesk REST API ingest (hourly + monthly branch) | `utilities/19-freshdesk-api-ingest/` | `dags/horeca_digital/freshdesk_extract.py` + `archived/etl_freshdesk_import.py` | Shipped 2026-08-19 |
 
 ## Also already in repo (not from daily automation priority queue)
 
@@ -38,11 +39,10 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 
 ## Next (priority order)
 
-1. Additional Salesforce DAG only if clearly distinct from asset history (Marketing Cloud / archived SFMC only if clearly valuable)
-2. `freshdesk_extract.py` if still unused and high value
-3. Deepideas establishment / gaps-category / gaps-ingredients sibling exports (only if distinct from pattern 16)
-4. `dana_DISH_customer_export` / MAG acquisition-penetration only if still unused and high value
-5. DataForSEO GCS ingest (`etl_dataforseo_ingestion` + `dataforseo_gcs_ingest.py`) only if distinct value from pattern 18
+1. Deepideas establishment / gaps-category / gaps-ingredients sibling exports (only if distinct from pattern 16)
+2. `dana_DISH_customer_export` / MAG acquisition-penetration only if still unused and high value
+3. DataForSEO GCS ingest (`etl_dataforseo_ingestion` + `dataforseo_gcs_ingest.py`) only if distinct value from pattern 18
+4. Additional Salesforce DAG only if clearly distinct from asset history (Marketing Cloud / archived SFMC only if clearly valuable)
 
 ## Skipped
 

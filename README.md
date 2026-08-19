@@ -94,6 +94,7 @@ Reusable Airflow operators I've built:
 ### Utilities
 Helper modules and enrichment jobs:
 - Menu URL discovery from HTML (no LLM)
+- Freshdesk REST API ingest (hourly tickets + monthly dims)
 - BigQuery utilities
 - Error handling / retry helpers
 - Logging utilities
@@ -173,6 +174,7 @@ Shipped so far (sanitized portfolio samples):
 | 16 | Peer benchmarking gaps (multi-country + Avro) | `scoring_analytics/16-benchmarking-gaps/` |
 | 17 | Establishment market-data monthly Avro export | `scoring_analytics/17-dish-market-data-export/` |
 | 18 | SEO business-listing menu URL extraction | `utilities/18-dataforseo-menu-url-extraction/` |
+| 19 | Freshdesk REST API ingest (hourly + monthly branch) | `utilities/19-freshdesk-api-ingest/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

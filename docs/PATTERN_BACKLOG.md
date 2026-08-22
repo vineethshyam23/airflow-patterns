@@ -28,6 +28,7 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 | 19 | Freshdesk REST API ingest (hourly + monthly branch) | `utilities/19-freshdesk-api-ingest/` | `dags/horeca_digital/freshdesk_extract.py` + `archived/etl_freshdesk_import.py` | Shipped 2026-08-19 |
 | 20 | Deepideas establishment attribute weekly Avro export | `scoring_analytics/20-deepideas-establishment-export/` | `dags/etl_dana_deep_ideas_export.py` + `dags/horeca_digital/dana_deepideas_establishment_export.py` + `dana_deepideas_query.py` (Establishment) | Shipped 2026-08-20 |
 | 21 | Deepideas main-category gaps weekly Avro export | `scoring_analytics/21-deepideas-gaps-category-export/` | `dags/etl_dana_deep_ideas_export.py` + `dags/horeca_digital/dana_deepideas_gaps_category_export.py` + `dana_deepideas_query.py` (GapsCategory) | Shipped 2026-08-21 |
+| 22 | Deepideas gap-ingredients weekly Avro export | `scoring_analytics/22-deepideas-gaps-ingredients-export/` | `dags/etl_dana_deep_ideas_export.py` + `dags/horeca_digital/dana_deepideas_gaps_ingredients_export.py` + `dana_deepideas_query.py` (GapIngredients) | Shipped 2026-08-22 |
 
 ## Also already in repo (not from daily automation priority queue)
 
@@ -41,10 +42,10 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 
 ## Next (priority order)
 
-1. Deepideas gaps-ingredients export (sibling of patterns 20/21; distinct Avro contract)
-2. `dana_DISH_customer_export` / MAG acquisition-penetration only if still unused and high value
-3. DataForSEO GCS ingest (`etl_dataforseo_ingestion` + `dataforseo_gcs_ingest.py`) only if distinct value from pattern 18
-4. Additional Salesforce DAG only if clearly distinct from asset history (Marketing Cloud / archived SFMC only if clearly valuable)
+1. `dana_DISH_customer_export` / MAG acquisition-penetration (`dana_mag_acquisition` / `dana_mag_penetration`) if still unused and high value
+2. DataForSEO GCS ingest (`etl_dataforseo_ingestion` + `dataforseo_gcs_ingest.py`) only if distinct value from pattern 18
+3. Additional Salesforce DAG only if clearly distinct from asset history (Marketing Cloud / archived SFMC only if clearly valuable)
+4. Other unique high-value DAG under `horeca_digital/` or `archived/` not already Done
 
 ## Skipped
 

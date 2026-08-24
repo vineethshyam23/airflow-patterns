@@ -69,6 +69,7 @@ Customer and establishment scoring algorithms:
 - Country-specific business rules
 - Peer gaps and establishment enrichment exports
 - Multi-country product-footprint customer exports
+- Monthly acquisition + penetration management reporting
 - Performance optimization for scale
 - BigQuery advanced analytics
 
@@ -181,6 +182,7 @@ Shipped so far (sanitized portfolio samples):
 | 21 | Deepideas main-category gaps weekly Avro export | `scoring_analytics/21-deepideas-gaps-category-export/` |
 | 22 | Deepideas gap-ingredients weekly Avro export | `scoring_analytics/22-deepideas-gaps-ingredients-export/` |
 | 23 | Multi-country platform-customer footprint export | `scoring_analytics/23-dish-customer-export/` |
+| 24 | MAG acquisition + penetration monthly export | `scoring_analytics/24-mag-acquisition-penetration/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

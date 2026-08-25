@@ -1,0 +1,207 @@
+[
+  {
+    "name": "title",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "original_title",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "description",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "category",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "category_ids",
+    "type": "STRING",
+    "mode": "REPEATED"
+  },
+  {
+    "name": "additional_categories",
+    "type": "STRING",
+    "mode": "REPEATED"
+  },
+  {
+    "name": "cid",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "feature_id",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "address",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "address_info",
+    "type": "RECORD",
+    "mode": "NULLABLE",
+    "fields": [
+      { "name": "borough", "type": "STRING", "mode": "NULLABLE" },
+      { "name": "address", "type": "STRING", "mode": "NULLABLE" },
+      { "name": "city", "type": "STRING", "mode": "NULLABLE" },
+      { "name": "zip", "type": "STRING", "mode": "NULLABLE" },
+      { "name": "region", "type": "STRING", "mode": "NULLABLE" },
+      { "name": "country_code", "type": "STRING", "mode": "NULLABLE" }
+    ]
+  },
+  {
+    "name": "place_id",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "phone",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "url",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "domain",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "logo",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "main_image",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "total_photos",
+    "type": "INTEGER",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "snippet",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "latitude",
+    "type": "FLOAT",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "longitude",
+    "type": "FLOAT",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "is_claimed",
+    "type": "BOOLEAN",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "attributes",
+    "type": "JSON",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "place_topics",
+    "type": "JSON",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "rating",
+    "type": "RECORD",
+    "mode": "NULLABLE",
+    "fields": [
+      { "name": "rating_type", "type": "STRING", "mode": "NULLABLE" },
+      { "name": "value", "type": "FLOAT", "mode": "NULLABLE" },
+      { "name": "votes_count", "type": "INTEGER", "mode": "NULLABLE" },
+      { "name": "rating_max", "type": "FLOAT", "mode": "NULLABLE" }
+    ]
+  },
+  {
+    "name": "rating_distribution",
+    "type": "JSON",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "people_also_search",
+    "type": "RECORD",
+    "mode": "REPEATED",
+    "fields": [
+      { "name": "cid", "type": "STRING", "mode": "NULLABLE" },
+      { "name": "feature_id", "type": "STRING", "mode": "NULLABLE" },
+      { "name": "title", "type": "STRING", "mode": "NULLABLE" },
+      {
+        "name": "rating",
+        "type": "RECORD",
+        "mode": "NULLABLE",
+        "fields": [
+          { "name": "rating_type", "type": "STRING", "mode": "NULLABLE" },
+          { "name": "value", "type": "FLOAT", "mode": "NULLABLE" },
+          { "name": "votes_count", "type": "INTEGER", "mode": "NULLABLE" },
+          { "name": "rating_max", "type": "FLOAT", "mode": "NULLABLE" }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "work_time",
+    "type": "JSON",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "popular_times",
+    "type": "JSON",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "local_business_links",
+    "type": "JSON",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "contacts",
+    "type": "JSON",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "time_update",
+    "type": "TIMESTAMP",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "check_url",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "price_level",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "hotel_rating",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "first_seen",
+    "type": "TIMESTAMP",
+    "mode": "NULLABLE"
+  }
+]

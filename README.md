@@ -98,6 +98,7 @@ Reusable Airflow operators I've built:
 Helper modules and enrichment jobs:
 - Menu URL discovery from HTML (no LLM)
 - Freshdesk REST API ingest (hourly tickets + monthly dims)
+- SEO listing GCS ingest (vendor NDJSON → staging → archive)
 - BigQuery utilities
 - Error handling / retry helpers
 - Logging utilities
@@ -183,6 +184,7 @@ Shipped so far (sanitized portfolio samples):
 | 22 | Deepideas gap-ingredients weekly Avro export | `scoring_analytics/22-deepideas-gaps-ingredients-export/` |
 | 23 | Multi-country platform-customer footprint export | `scoring_analytics/23-dish-customer-export/` |
 | 24 | MAG acquisition + penetration monthly export | `scoring_analytics/24-mag-acquisition-penetration/` |
+| 25 | SEO listing GCS ingest (vendor NDJSON → BQ) | `utilities/25-dataforseo-gcs-ingest/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

@@ -70,6 +70,7 @@ Customer and establishment scoring algorithms:
 - Peer gaps and establishment enrichment exports
 - Multi-country product-footprint customer exports
 - Monthly acquisition + penetration management reporting
+- Single-market Order + Reservation lifetime partner exports
 - Performance optimization for scale
 - BigQuery advanced analytics
 
@@ -185,6 +186,7 @@ Shipped so far (sanitized portfolio samples):
 | 23 | Multi-country platform-customer footprint export | `scoring_analytics/23-dish-customer-export/` |
 | 24 | MAG acquisition + penetration monthly export | `scoring_analytics/24-mag-acquisition-penetration/` |
 | 25 | SEO listing GCS ingest (vendor NDJSON → BQ) | `utilities/25-dataforseo-gcs-ingest/` |
+| 26 | Single-market Order + Reservation monthly export | `scoring_analytics/26-pl-dish-orders-reservations/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

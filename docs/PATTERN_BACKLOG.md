@@ -32,6 +32,7 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 | 23 | Multi-country platform-customer footprint export | `scoring_analytics/23-dish-customer-export/` | `dags/etl_dana_DISH_customer_data_export.py` + `dags/horeca_digital/dana_DISH_customer_export.py` + `dana_DISH_customer_query.py` | Shipped 2026-08-23 |
 | 24 | MAG acquisition + penetration monthly export | `scoring_analytics/24-mag-acquisition-penetration/` | `dags/etl_dana_mag_export.py` + `dags/horeca_digital/dana_mag_acquisition.py` + `dana_mag_penetration.py` | Shipped 2026-08-24 |
 | 25 | SEO listing GCS ingest (vendor NDJSON → BQ) | `utilities/25-dataforseo-gcs-ingest/` | `dags/etl_dataforseo_ingestion.py` + `dags/horeca_digital/dataforseo_gcs_ingest.py` | Shipped 2026-08-26 |
+| 26 | Single-market Order + Reservation monthly export | `scoring_analytics/26-pl-dish-orders-reservations/` | `dags/etl_dana_pl_dish_orders_reservations_export.py` + `dags/horeca_digital/dana_pl_dish_orders_export.py` + `dana_pl_dish_orders_query.py` | Shipped 2026-08-27 |
 
 ## Also already in repo (not from daily automation priority queue)
 
@@ -45,11 +46,10 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 
 ## Next (priority order)
 
-1. PL DISH orders / reservations export (`etl_dana_pl_dish_orders_reservations_export` + `dana_pl_dish_orders_*`) if unused
-2. Customized offering (`etl_customized_offering` + queries) if high unique value
-3. Additional Salesforce DAG only if clearly distinct from asset history (Marketing Cloud / archived SFMC only if clearly valuable)
+1. Customized offering (`etl_customized_offering` + queries) if high unique value
+2. Additional Salesforce DAG only if clearly distinct from asset history (Marketing Cloud / archived SFMC only if clearly valuable)
+3. AppFigures / Vonage / tourism ingest utilities if distinct engineering value remains
 4. Other unique high-value DAG under `horeca_digital/` or `archived/` not already Done
-5. AppFigures / Vonage / tourism ingest utilities if distinct engineering value remains
 
 ## Skipped
 

@@ -107,6 +107,7 @@ Helper modules and enrichment jobs:
 ### SQL Patterns
 Complex SQL implementations:
 - SCD Type 2 queries
+- Multi-table Cloud SQL → BigQuery SCD ingest (Offer Tool)
 - Fuzzy matching algorithms
 - Window functions for analytics
 - Performance-optimized CTEs
@@ -187,6 +188,7 @@ Shipped so far (sanitized portfolio samples):
 | 24 | MAG acquisition + penetration monthly export | `scoring_analytics/24-mag-acquisition-penetration/` |
 | 25 | SEO listing GCS ingest (vendor NDJSON → BQ) | `utilities/25-dataforseo-gcs-ingest/` |
 | 26 | Single-market Order + Reservation monthly export | `scoring_analytics/26-pl-dish-orders-reservations/` |
+| 27 | Offer Tool multi-table Cloud SQL SCD Type 2 ingest | `sql_patterns/27-customized-offering-scd-ingest/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

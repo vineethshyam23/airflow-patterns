@@ -34,6 +34,7 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 | 25 | SEO listing GCS ingest (vendor NDJSON → BQ) | `utilities/25-dataforseo-gcs-ingest/` | `dags/etl_dataforseo_ingestion.py` + `dags/horeca_digital/dataforseo_gcs_ingest.py` | Shipped 2026-08-26 |
 | 26 | Single-market Order + Reservation monthly export | `scoring_analytics/26-pl-dish-orders-reservations/` | `dags/etl_dana_pl_dish_orders_reservations_export.py` + `dags/horeca_digital/dana_pl_dish_orders_export.py` + `dana_pl_dish_orders_query.py` | Shipped 2026-08-27 |
 | 27 | Offer Tool multi-table Cloud SQL SCD Type 2 ingest | `sql_patterns/27-customized-offering-scd-ingest/` | `dags/etl_customized_offering.py` + `dags/horeca_digital/customized_offering_queries.py` (export queries) | Shipped 2026-08-28 |
+| 28 | AppFigures weekly mobile analytics ingest | `utilities/28-appfigures-pipeline/` | `dags/etl_appfigures_pipeline.py` + `dags/horeca_digital/get_appfigures_data.py` | Shipped 2026-08-29 |
 
 ## Also already in repo (not from daily automation priority queue)
 
@@ -47,10 +48,9 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 
 ## Next (priority order)
 
-1. AppFigures pipeline (`etl_appfigures_pipeline` + `get_appfigures_data` / `appfigures.py`) if distinct engineering value
-2. Vonage / tourism ingest (`etl_vonage_dbt`, `etl_tourismnrw`) if distinct from other utilities
-3. Additional Salesforce DAG only if clearly distinct from asset history (Marketing Cloud / archived SFMC only if clearly valuable)
-4. Other unique high-value DAG under `horeca_digital/` or `archived/` not already Done
+1. Vonage / tourism ingest (`etl_vonage_dbt`, `etl_tourismnrw`) if distinct from other utilities
+2. Additional Salesforce DAG only if clearly distinct from asset history (Marketing Cloud / archived SFMC only if clearly valuable)
+3. Other unique high-value DAG under `horeca_digital/` or `archived/` not already Done (e.g. exchangerates, medallia, invoice AI)
 
 ## Skipped
 

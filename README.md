@@ -100,6 +100,7 @@ Helper modules and enrichment jobs:
 - Menu URL discovery from HTML (no LLM)
 - Freshdesk REST API ingest (hourly tickets + monthly dims)
 - SEO listing GCS ingest (vendor NDJSON → staging → archive)
+- AppFigures weekly mobile analytics API ingest
 - BigQuery utilities
 - Error handling / retry helpers
 - Logging utilities
@@ -189,6 +190,7 @@ Shipped so far (sanitized portfolio samples):
 | 25 | SEO listing GCS ingest (vendor NDJSON → BQ) | `utilities/25-dataforseo-gcs-ingest/` |
 | 26 | Single-market Order + Reservation monthly export | `scoring_analytics/26-pl-dish-orders-reservations/` |
 | 27 | Offer Tool multi-table Cloud SQL SCD Type 2 ingest | `sql_patterns/27-customized-offering-scd-ingest/` |
+| 28 | AppFigures weekly mobile analytics ingest | `utilities/28-appfigures-pipeline/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

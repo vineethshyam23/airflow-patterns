@@ -49,9 +49,10 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 
 ## Next (priority order)
 
-1. Tourism NRW (`etl_tourismnrw` + `get_tourismnrw_data`) only if clearly more than a thin dbt trigger
-2. Additional Salesforce DAG only if clearly distinct from asset history (Marketing Cloud / archived SFMC only if clearly valuable)
-3. Other unique high-value DAG under `horeca_digital/` or `archived/` not already Done (e.g. exchangerates, medallia, invoice AI)
+1. Medallia survey/experience ingest (`etl_medallia` + `medallia.py`) — prefer over Tourism NRW
+2. Tourism NRW only if clearly more than a thin dbt trigger (current DAG is mostly `DbtCloudRunJobOperator`; HasData extract removed)
+3. Additional Salesforce DAG only if clearly distinct from asset history (Marketing Cloud / archived SFMC only if clearly valuable)
+4. Other unique high-value DAG under `horeca_digital/` or `archived/` not already Done (e.g. invoice AI, exchangerates if non-trivial)
 
 ## Skipped
 

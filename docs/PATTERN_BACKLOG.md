@@ -36,6 +36,7 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 | 27 | Offer Tool multi-table Cloud SQL SCD Type 2 ingest | `sql_patterns/27-customized-offering-scd-ingest/` | `dags/etl_customized_offering.py` + `dags/horeca_digital/customized_offering_queries.py` (export queries) | Shipped 2026-08-28 |
 | 28 | AppFigures weekly mobile analytics ingest | `utilities/28-appfigures-pipeline/` | `dags/etl_appfigures_pipeline.py` + `dags/horeca_digital/get_appfigures_data.py` | Shipped 2026-08-29 |
 | 29 | Vonage Contact Center daily stats ingest | `utilities/29-vonage-contact-center-ingest/` | `dags/etl_vonage_dbt.py` + `dags/horeca_digital/get_vonage_data.py` | Shipped 2026-08-30 |
+| 30 | Medallia survey feedback SCD Type 2 ingest | `utilities/30-medallia-feedback-ingest/` | `dags/etl_medallia.py` + `dags/horeca_digital/medallia.py` | Shipped 2026-08-31 |
 
 ## Also already in repo (not from daily automation priority queue)
 
@@ -49,10 +50,10 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 
 ## Next (priority order)
 
-1. Medallia survey/experience ingest (`etl_medallia` + `medallia.py`) — prefer over Tourism NRW
+1. Maileon email marketing import (`etl_maileon_import` + `maileon.py` / `get_maileon_names.py`) — 8 parallel report branches + empty-file BranchPython + dbt
 2. Tourism NRW only if clearly more than a thin dbt trigger (current DAG is mostly `DbtCloudRunJobOperator`; HasData extract removed)
 3. Additional Salesforce DAG only if clearly distinct from asset history (Marketing Cloud / archived SFMC only if clearly valuable)
-4. Other unique high-value DAG under `horeca_digital/` or `archived/` not already Done (e.g. invoice AI, exchangerates if non-trivial)
+4. Other unique high-value DAG under `horeca_digital/` or `archived/` not already Done (e.g. invoice radar, exchangerates if non-trivial)
 
 ## Skipped
 

@@ -103,6 +103,7 @@ Helper modules and enrichment jobs:
 - AppFigures weekly mobile analytics API ingest
 - Vonage Contact Center daily stats ingest (OAuth + NDJSON + dbt)
 - Medallia survey feedback SCD Type 2 ingest (GraphQL + CSV + inline SCD2)
+- Maileon email marketing import (8 report branches + empty-file gate + dbt)
 - BigQuery utilities
 - Error handling / retry helpers
 - Logging utilities
@@ -195,6 +196,7 @@ Shipped so far (sanitized portfolio samples):
 | 28 | AppFigures weekly mobile analytics ingest | `utilities/28-appfigures-pipeline/` |
 | 29 | Vonage Contact Center daily stats ingest | `utilities/29-vonage-contact-center-ingest/` |
 | 30 | Medallia survey feedback SCD Type 2 ingest | `utilities/30-medallia-feedback-ingest/` |
+| 31 | Maileon email marketing import (8 reports + metadata) | `utilities/31-maileon-email-import/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

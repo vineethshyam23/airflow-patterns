@@ -38,6 +38,7 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 | 29 | Vonage Contact Center daily stats ingest | `utilities/29-vonage-contact-center-ingest/` | `dags/etl_vonage_dbt.py` + `dags/horeca_digital/get_vonage_data.py` | Shipped 2026-08-30 |
 | 30 | Medallia survey feedback SCD Type 2 ingest | `utilities/30-medallia-feedback-ingest/` | `dags/etl_medallia.py` + `dags/horeca_digital/medallia.py` | Shipped 2026-08-31 |
 | 31 | Maileon email marketing import (8 reports + metadata + dbt) | `utilities/31-maileon-email-import/` | `dags/etl_maileon_import.py` + `dags/horeca_digital/maileon.py` + `get_maileon_names.py` | Shipped 2026-09-01 |
+| 32 | Invoice Radar LPV vs invoice reconciliation + email report | `data_quality/32-invoice-radar/` | `dags/etl_invoice_radar.py` + `invoice_radar/` + `invoice_radar_airflow/` + `email_delivery/` | Shipped 2026-09-02 |
 
 ## Also already in repo (not from daily automation priority queue)
 
@@ -51,11 +52,11 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 
 ## Next (priority order)
 
-1. Invoice radar (`etl_invoice_radar` + `invoice_radar` / `invoice_radar_airflow` / `invoice_ai_data_import.py`) — if clearly more than a thin wrapper
-2. Exchange rates (`exchangerates.py`) — only if non-trivial engineering value
-3. Tourism NRW only if clearly more than a thin dbt trigger (current DAG is mostly `DbtCloudRunJobOperator`; HasData extract removed)
-4. Additional Salesforce DAG only if clearly distinct from asset history (Marketing Cloud / archived SFMC only if clearly valuable)
-5. Other unique high-value DAG under `horeca_digital/` or `archived/` not already Done
+1. Exchange rates (`exchangerates.py`) — only if non-trivial engineering value
+2. Tourism NRW only if clearly more than a thin dbt trigger (current DAG is mostly `DbtCloudRunJobOperator`; HasData extract removed)
+3. Additional Salesforce DAG only if clearly distinct from asset history (Marketing Cloud / archived SFMC only if clearly valuable)
+4. Other unique high-value DAG under `horeca_digital/` or `archived/` not already Done
+5. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets (AlloyDB OCR extract; separate from Invoice Radar)
 
 ## Skipped
 

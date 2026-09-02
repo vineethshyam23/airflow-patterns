@@ -85,6 +85,7 @@ Financial data processing patterns:
 Production data quality frameworks:
 - Multi-layer validation strategies
 - Automated reconciliation
+- Invoice Radar — LPV vs invoice discrepancy report (Excel + email)
 - Anomaly detection
 - SLA monitoring and alerting
 
@@ -197,6 +198,7 @@ Shipped so far (sanitized portfolio samples):
 | 29 | Vonage Contact Center daily stats ingest | `utilities/29-vonage-contact-center-ingest/` |
 | 30 | Medallia survey feedback SCD Type 2 ingest | `utilities/30-medallia-feedback-ingest/` |
 | 31 | Maileon email marketing import (8 reports + metadata) | `utilities/31-maileon-email-import/` |
+| 32 | Invoice Radar LPV vs invoice reconciliation + email | `data_quality/32-invoice-radar/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

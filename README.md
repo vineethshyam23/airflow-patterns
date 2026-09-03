@@ -105,6 +105,7 @@ Helper modules and enrichment jobs:
 - Vonage Contact Center daily stats ingest (OAuth + NDJSON + dbt)
 - Medallia survey feedback SCD Type 2 ingest (GraphQL + CSV + inline SCD2)
 - Maileon email marketing import (8 report branches + empty-file gate + dbt)
+- Jira Service Desk ingest (ADF flatten + incremental / monthly full-load TaskGroups + dbt)
 - BigQuery utilities
 - Error handling / retry helpers
 - Logging utilities
@@ -199,6 +200,7 @@ Shipped so far (sanitized portfolio samples):
 | 30 | Medallia survey feedback SCD Type 2 ingest | `utilities/30-medallia-feedback-ingest/` |
 | 31 | Maileon email marketing import (8 reports + metadata) | `utilities/31-maileon-email-import/` |
 | 32 | Invoice Radar LPV vs invoice reconciliation + email | `data_quality/32-invoice-radar/` |
+| 33 | Jira Service Desk ingest (incremental + monthly full-load) | `utilities/33-jira-service-desk-ingest/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

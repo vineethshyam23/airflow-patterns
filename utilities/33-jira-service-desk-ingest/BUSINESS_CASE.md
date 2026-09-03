@@ -1,9 +1,9 @@
 # Business case: Jira Service Desk ingest
 
 Support ticket history is the closest thing we have to a continuous
-signal on product friction. HDSD / POSAPP-style projects hold SLA
-breaches, escalation chains, and the free-text that never makes it into
-CRM fields. Finance and CX leadership wanted that history in the
+signal on product friction. Support-desk and POS-app Jira projects hold
+SLA breaches, escalation chains, and the free-text that never makes it
+into CRM fields. Finance and CX leadership wanted that history in the
 warehouse next to subscription and POS facts — not trapped in Jira
 filters that expire when someone leaves.
 

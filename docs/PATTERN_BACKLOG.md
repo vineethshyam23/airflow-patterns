@@ -39,6 +39,7 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 | 30 | Medallia survey feedback SCD Type 2 ingest | `utilities/30-medallia-feedback-ingest/` | `dags/etl_medallia.py` + `dags/horeca_digital/medallia.py` | Shipped 2026-08-31 |
 | 31 | Maileon email marketing import (8 reports + metadata + dbt) | `utilities/31-maileon-email-import/` | `dags/etl_maileon_import.py` + `dags/horeca_digital/maileon.py` + `get_maileon_names.py` | Shipped 2026-09-01 |
 | 32 | Invoice Radar LPV vs invoice reconciliation + email report | `data_quality/32-invoice-radar/` | `dags/etl_invoice_radar.py` + `invoice_radar/` + `invoice_radar_airflow/` + `email_delivery/` | Shipped 2026-09-02 |
+| 33 | Jira Service Desk ingest (incremental + monthly full-load) | `utilities/33-jira-service-desk-ingest/` | `dags/etl_jira_HDSD.py` + `dags/horeca_digital/jira_hdsd.py` | Shipped 2026-09-03 |
 
 ## Also already in repo (not from daily automation priority queue)
 
@@ -52,11 +53,12 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 
 ## Next (priority order)
 
-1. Exchange rates (`exchangerates.py`) — only if non-trivial engineering value
-2. Tourism NRW only if clearly more than a thin dbt trigger (current DAG is mostly `DbtCloudRunJobOperator`; HasData extract removed)
-3. Additional Salesforce DAG only if clearly distinct from asset history (Marketing Cloud / archived SFMC only if clearly valuable)
-4. Other unique high-value DAG under `horeca_digital/` or `archived/` not already Done
-5. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets (AlloyDB OCR extract; separate from Invoice Radar)
+1. Mailchimp email analytics (`etl_mailchimp.py` + `mailchimp.py`) — sibling to Maileon, distinct ESP
+2. Booq storedetails HMAC CSV ingest (`etl_booq_storedetails.py` + `booq_storedetails.py`)
+3. Mach2 Odoo Excel email report (`etl_mach2_report.py` + `mach2_report/`) — if clearly distinct from Invoice Radar email pattern
+4. DishPay transactions API pull (`etl_dishpay_dbt.py` + `get_dish_pay_data.py`) — distinct from KYC export (11)
+5. Exchange rates / Tourism NRW — skip unless engineering depth returns (both thin today)
+6. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets
 
 ## Skipped
 

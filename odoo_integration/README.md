@@ -274,6 +274,25 @@ Every Odoo pattern follows this architecture:
 
 ---
 
+
+### 36 - Mach2 Sales Excel Email Report
+
+Daily operational pack: five BigQuery-backed Excel workbooks (sales channels,
+activation add-ons, cancellation add-ons, POS activation, POS cancellation)
+emailed to partner/sales audiences via SendGrid or SMTP.
+
+**Key Features**:
+- Generate→XCom→send split so mail retries do not re-query BigQuery
+- Airflow Variable JSON config with DEV recipient override
+- Partner CRM matching join + fiscal UUID defaults for POS activation
+- Shared email delivery helper (SendGrid / SMTP + attachment)
+
+**Why This Pattern**:
+Ops needs yesterday's POS/add-on lifecycle changes as Excel before standup —
+distinct from Invoice Radar (pattern 32) revenue reconciliation.
+
+[View Pattern →](./36-mach2-sales-email-report/)
+
 ## Technology Stack
 
 **ERP System**: Odoo 13/14/15/16  

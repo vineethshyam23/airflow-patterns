@@ -42,6 +42,7 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 | 33 | Jira Service Desk ingest (incremental + monthly full-load) | `utilities/33-jira-service-desk-ingest/` | `dags/etl_jira_HDSD.py` + `dags/horeca_digital/jira_hdsd.py` | Shipped 2026-09-03 |
 | 34 | Mailchimp email analytics ingest (6 grains + campaign fan-out) | `utilities/34-mailchimp-email-analytics/` | `dags/etl_mailchimp.py` + `dags/horeca_digital/mailchimp.py` | Shipped 2026-09-04 |
 | 35 | POS vendor store-details HMAC CSV ingest | `utilities/35-booq-storedetails-hmac-ingest/` | `dags/etl_booq_storedetails.py` + `dags/horeca_digital/booq_storedetails.py` | Shipped 2026-09-05 |
+| 36 | Mach2 Odoo sales Excel email report | `odoo_integration/36-mach2-sales-email-report/` | `dags/etl_mach2_report.py` + `dags/horeca_digital/mach2_report/` + `mach2_report_airflow/` + `email_delivery/` | Shipped 2026-09-06 |
 
 ## Also already in repo (not from daily automation priority queue)
 
@@ -55,11 +56,11 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 
 ## Next (priority order)
 
-1. Mach2 Odoo Excel email report (`etl_mach2_report.py` + `mach2_report/`) — if clearly distinct from Invoice Radar email pattern
-2. DishPay transactions API pull (`etl_dishpay_dbt.py` + `get_dish_pay_data.py`) — distinct from KYC export (11)
+1. DishPay transactions API pull (`etl_dishpay_dbt.py` + `get_dish_pay_data.py`) — distinct from KYC export (11)
+2. Booq Google Analytics (`etl_booq_google_analytics.py`) — only if distinct from storedetails (35)
 3. Exchange rates / Tourism NRW — skip unless engineering depth returns (both thin today)
 4. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets
-5. Booq Google Analytics (`etl_booq_google_analytics.py`) — only if distinct from storedetails (35)
+
 
 ## Skipped
 

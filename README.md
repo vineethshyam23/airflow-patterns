@@ -47,6 +47,7 @@ Patterns from a 3-year, 116-DAG ERP migration project:
 - Batch data migration strategies
 - Incremental sync patterns
 - Dual-write for zero-downtime cutover
+- Mach2 daily sales Excel email packs (activations / cancellations / channels)
 - Data reconciliation frameworks
 
 ### CRM Integration (Salesforce)
@@ -205,6 +206,7 @@ Shipped so far (sanitized portfolio samples):
 | 33 | Jira Service Desk ingest (incremental + monthly full-load) | `utilities/33-jira-service-desk-ingest/` |
 | 34 | Mailchimp email analytics ingest (6 grains + campaign fan-out) | `utilities/34-mailchimp-email-analytics/` |
 | 35 | POS vendor store-details HMAC CSV ingest | `utilities/35-booq-storedetails-hmac-ingest/` |
+| 36 | Mach2 Odoo sales Excel email report | `odoo_integration/36-mach2-sales-email-report/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

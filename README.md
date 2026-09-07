@@ -78,6 +78,7 @@ Customer and establishment scoring algorithms:
 ### Payment Processing
 Financial data processing patterns:
 - Transaction ingestion and validation
+- Payment wallet DWH API ingest (KYC + transactions + VOP → staging → dbt)
 - Payment reconciliation
 - Multi-currency handling
 - Compliance and audit trails
@@ -207,6 +208,7 @@ Shipped so far (sanitized portfolio samples):
 | 34 | Mailchimp email analytics ingest (6 grains + campaign fan-out) | `utilities/34-mailchimp-email-analytics/` |
 | 35 | POS vendor store-details HMAC CSV ingest | `utilities/35-booq-storedetails-hmac-ingest/` |
 | 36 | Mach2 Odoo sales Excel email report | `odoo_integration/36-mach2-sales-email-report/` |
+| 37 | Payment wallet API ingest (KYC + txn + VOP) | `payment_processing/37-dishpay-api-ingest/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

@@ -110,6 +110,7 @@ Helper modules and enrichment jobs:
 - Jira Service Desk ingest (ADF flatten + incremental / monthly full-load TaskGroups + dbt)
 - Mailchimp email analytics ingest (campaign fan-out + staging APPEND → trusted TRUNCATE)
 - POS vendor store-details HMAC CSV ingest (daily HMAC auth + dual CSV repair + dbt)
+- POS vendor GA4 rolling event ingest (7-day DELETE+INSERT + Data Transfer + dbt)
 - BigQuery utilities
 - Error handling / retry helpers
 - Logging utilities
@@ -209,6 +210,7 @@ Shipped so far (sanitized portfolio samples):
 | 35 | POS vendor store-details HMAC CSV ingest | `utilities/35-booq-storedetails-hmac-ingest/` |
 | 36 | Mach2 Odoo sales Excel email report | `odoo_integration/36-mach2-sales-email-report/` |
 | 37 | Payment wallet API ingest (KYC + txn + VOP) | `payment_processing/37-dishpay-api-ingest/` |
+| 38 | POS vendor GA4 rolling event ingest | `utilities/38-booq-ga4-rolling-ingest/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

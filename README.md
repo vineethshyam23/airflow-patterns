@@ -95,7 +95,7 @@ Production data quality frameworks:
 Reusable Airflow operators I've built:
 - Database retry operators
 - dbt integration operators
-- Cloud SQL operators
+- Cloud SQL operators (schedule-aware export + Hydra weekly full dump)
 - Generic API operators
 
 ### Utilities
@@ -211,6 +211,7 @@ Shipped so far (sanitized portfolio samples):
 | 36 | Mach2 Odoo sales Excel email report | `odoo_integration/36-mach2-sales-email-report/` |
 | 37 | Payment wallet API ingest (KYC + txn + VOP) | `payment_processing/37-dishpay-api-ingest/` |
 | 38 | POS vendor GA4 rolling event ingest | `utilities/38-booq-ga4-rolling-ingest/` |
+| 39 | Hydra Cloud SQL weekly full export (v2) | `custom_operators/39-hydra-cloudsql-weekly-export/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

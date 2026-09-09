@@ -45,6 +45,7 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 | 36 | Mach2 Odoo sales Excel email report | `odoo_integration/36-mach2-sales-email-report/` | `dags/etl_mach2_report.py` + `dags/horeca_digital/mach2_report/` + `mach2_report_airflow/` + `email_delivery/` | Shipped 2026-09-06 |
 | 37 | Payment wallet API ingest (KYC + txn + VOP) | `payment_processing/37-dishpay-api-ingest/` | `dags/etl_dishpay_dbt.py` + `dags/horeca_digital/get_dish_pay_data.py` | Shipped 2026-09-07 |
 | 38 | POS vendor GA4 rolling event ingest | `utilities/38-booq-ga4-rolling-ingest/` | `dags/etl_booq_google_analytics.py` | Shipped 2026-09-08 |
+| 39 | Hydra Cloud SQL weekly full export (v2) | `custom_operators/39-hydra-cloudsql-weekly-export/` | `dags/etl_hydra_job_v2.py` + `horeca_digital/hydra_raw_export_queries.py` + `operators/cloudsql_retry_operator.py` | Shipped 2026-09-09 |
 
 ## Also already in repo (not from daily automation priority queue)
 
@@ -58,16 +59,20 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 
 ## Next (priority order)
 
-1. Eijsink Google Analytics (`etl_eijsink_google_analytics.py`) — sibling GA4 pattern without Data Transfer; ship only if delta vs 38 is worth a folder
-2. Food Graph / Hydra / POS afternoon / lead engine — prefer next if Eijsink GA is thin duplicate
-3. Exchange rates / Tourism NRW — skip unless engineering depth returns (both thin today)
-4. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets
-5. Scan remaining `horeca_digital/` / `archived/` for unused high-value DAGs
+1. Food Graph (`etl_foodgraph.py`) — multi-project ML propagation + monthly REX gaps ShortCircuit
+2. PAIR Finance multi-market case ingest (`etl_pair_finance_cases_daily.py` + `pair_finance_*`)
+3. Lead engine Odoo (`lead_engine_odoo.py`) / POS afternoon Booq refresh — if still unused
+4. Skip Eijsink GA (`etl_eijsink_google_analytics.py`) — thin duplicate of pattern 38 (no Data Transfer only)
+5. Exchange rates / Tourism NRW — skip unless engineering depth returns
+6. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets
+7. Scan remaining `horeca_digital/` / `archived/` for unused high-value DAGs
 
 
 ## Skipped
 
-_None yet._
+| Pattern | Source | Reason | Date |
+|---------|--------|--------|------|
+| Eijsink GA4 rolling ingest | `dags/etl_eijsink_google_analytics.py` | Same 7-day DELETE+INSERT + dbt pattern as #38; only delta is missing Data Transfer + different property/staging | 2026-09-09 |
 
 ## Blockers
 

@@ -46,6 +46,7 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 | 37 | Payment wallet API ingest (KYC + txn + VOP) | `payment_processing/37-dishpay-api-ingest/` | `dags/etl_dishpay_dbt.py` + `dags/horeca_digital/get_dish_pay_data.py` | Shipped 2026-09-07 |
 | 38 | POS vendor GA4 rolling event ingest | `utilities/38-booq-ga4-rolling-ingest/` | `dags/etl_booq_google_analytics.py` | Shipped 2026-09-08 |
 | 39 | Hydra Cloud SQL weekly full export (v2) | `custom_operators/39-hydra-cloudsql-weekly-export/` | `dags/etl_hydra_job_v2.py` + `horeca_digital/hydra_raw_export_queries.py` + `operators/cloudsql_retry_operator.py` | Shipped 2026-09-09 |
+| 40 | Food Graph ML multi-project propagation | `ml_pipelines/40-foodgraph-ml-propagation/` | `dags/etl_foodgraph.py` + `dags/horeca_digital/foodgraph_queries.py` | Shipped 2026-09-10 |
 
 ## Also already in repo (not from daily automation priority queue)
 
@@ -59,13 +60,12 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 
 ## Next (priority order)
 
-1. Food Graph (`etl_foodgraph.py`) — multi-project ML propagation + monthly REX gaps ShortCircuit
-2. PAIR Finance multi-market case ingest (`etl_pair_finance_cases_daily.py` + `pair_finance_*`)
-3. Lead engine Odoo (`lead_engine_odoo.py`) / POS afternoon Booq refresh — if still unused
-4. Skip Eijsink GA (`etl_eijsink_google_analytics.py`) — thin duplicate of pattern 38 (no Data Transfer only)
-5. Exchange rates / Tourism NRW — skip unless engineering depth returns
-6. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets
-7. Scan remaining `horeca_digital/` / `archived/` for unused high-value DAGs
+1. PAIR Finance multi-market case ingest (`etl_pair_finance_cases_daily.py` + `pair_finance_*`)
+2. Lead engine Odoo (`lead_engine_odoo.py`) / POS afternoon Booq refresh — if still unused
+3. Skip Eijsink GA (`etl_eijsink_google_analytics.py`) — thin duplicate of pattern 38 (no Data Transfer only)
+4. Exchange rates / Tourism NRW — skip unless engineering depth returns
+5. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets
+6. Scan remaining `horeca_digital/` / `archived/` for unused high-value DAGs (refined Food Graph zone, Vertex utils — only if distinct from #40)
 
 
 ## Skipped

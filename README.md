@@ -63,6 +63,7 @@ End-to-end ML pipeline patterns:
 - Feature engineering pipelines
 - Batch scoring workflows
 - Model monitoring and versioning
+- Food Graph multi-project ML propagation (gold + stage copy + month-end ranked gaps)
 
 ### Scoring & Analytics
 Customer and establishment scoring algorithms:
@@ -212,6 +213,7 @@ Shipped so far (sanitized portfolio samples):
 | 37 | Payment wallet API ingest (KYC + txn + VOP) | `payment_processing/37-dishpay-api-ingest/` |
 | 38 | POS vendor GA4 rolling event ingest | `utilities/38-booq-ga4-rolling-ingest/` |
 | 39 | Hydra Cloud SQL weekly full export (v2) | `custom_operators/39-hydra-cloudsql-weekly-export/` |
+| 40 | Food Graph ML multi-project propagation | `ml_pipelines/40-foodgraph-ml-propagation/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

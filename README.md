@@ -80,6 +80,7 @@ Customer and establishment scoring algorithms:
 Financial data processing patterns:
 - Transaction ingestion and validation
 - Payment wallet DWH API ingest (KYC + transactions + VOP → staging → dbt)
+- Collections partner multi-market case ingest (API → GCS → staging → dbt)
 - Payment reconciliation
 - Multi-currency handling
 - Compliance and audit trails
@@ -214,6 +215,7 @@ Shipped so far (sanitized portfolio samples):
 | 38 | POS vendor GA4 rolling event ingest | `utilities/38-booq-ga4-rolling-ingest/` |
 | 39 | Hydra Cloud SQL weekly full export (v2) | `custom_operators/39-hydra-cloudsql-weekly-export/` |
 | 40 | Food Graph ML multi-project propagation | `ml_pipelines/40-foodgraph-ml-propagation/` |
+| 41 | PAIR Finance multi-market case ingest | `payment_processing/41-pair-finance-cases-ingest/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

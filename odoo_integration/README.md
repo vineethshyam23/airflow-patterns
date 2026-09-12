@@ -293,6 +293,23 @@ distinct from Invoice Radar (pattern 32) revenue reconciliation.
 
 [View Pattern →](./36-mach2-sales-email-report/)
 
+
+### 42 - Field-sales Activities → Odoo CRM
+
+Daily multi-country field-sales (SAM) activities API ingest into BigQuery,
+dbt lead model, then Odoo `crm.lead` create — with same-day branch skip
+so accidental re-queues do not double-pull the API.
+
+**Key Features**:
+- OAuth2 password grant + paginated country fan-out (8 markets)
+- NDJSON land → GCS copy → BigQuery APPEND staging
+- Same-calendar-day BranchPython skip
+- dbt Cloud job gate + thin Odoo adapter (pattern 02 engine)
+- Count monitor + Slack
+
+[View Pattern →](./42-sales-manager-activities-odoo/)
+
+
 ## Technology Stack
 
 **ERP System**: Odoo 13/14/15/16  

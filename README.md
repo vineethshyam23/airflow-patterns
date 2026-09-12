@@ -216,6 +216,7 @@ Shipped so far (sanitized portfolio samples):
 | 39 | Hydra Cloud SQL weekly full export (v2) | `custom_operators/39-hydra-cloudsql-weekly-export/` |
 | 40 | Food Graph ML multi-project propagation | `ml_pipelines/40-foodgraph-ml-propagation/` |
 | 41 | PAIR Finance multi-market case ingest | `payment_processing/41-pair-finance-cases-ingest/` |
+| 42 | Field-sales activities → Odoo CRM | `odoo_integration/42-sales-manager-activities-odoo/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

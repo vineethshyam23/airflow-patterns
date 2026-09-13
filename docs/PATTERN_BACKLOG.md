@@ -49,6 +49,7 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 | 40 | Food Graph ML multi-project propagation | `ml_pipelines/40-foodgraph-ml-propagation/` | `dags/etl_foodgraph.py` + `dags/horeca_digital/foodgraph_queries.py` | Shipped 2026-09-10 |
 | 41 | PAIR Finance multi-market case ingest | `payment_processing/41-pair-finance-cases-ingest/` | `dags/etl_pair_finance_cases_daily.py` + `dags/horeca_digital/pair_finance_api.py` + `pair_finance_pipeline.py` | Shipped 2026-09-11 |
 | 42 | Field-sales activities → Odoo CRM | `odoo_integration/42-sales-manager-activities-odoo/` | `dags/etl_sales_manager_activities.py` + `dags/horeca_digital/sales_manager_activities.py` | Shipped 2026-09-12 |
+| 43 | Midday POS customer-master refresh | `utilities/43-pos-afternoon-customer-refresh/` | `dags/etl_dish_pos_afternoon.py` | Shipped 2026-09-13 |
 
 ## Also already in repo (not from daily automation priority queue)
 
@@ -62,12 +63,11 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 
 ## Next (priority order)
 
-1. POS afternoon Booq refresh (`etl_dish_pos_afternoon.py`) — timezone-aware midday customer-master SCD refresh
-2. Lead enrichment + Cloud Run scoring (`etl_leads_enrichment.py`) — if distinct from #02 / #42
-3. Refined Food Graph zone / Vertex utils — only if distinct from #40
-4. Exchange rates / Tourism NRW — skip unless engineering depth returns
-5. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets
-6. Scan remaining `horeca_digital/` / `archived/` for unused high-value DAGs
+1. Lead enrichment + Cloud Run scoring (`etl_leads_enrichment.py`) — if distinct from #02 / #42
+2. Refined Food Graph zone / Vertex utils — only if distinct from #40
+3. Exchange rates / Tourism NRW — skip unless engineering depth returns
+4. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets
+5. Scan remaining `horeca_digital/` / `archived/` for unused high-value DAGs
 
 
 ## Skipped

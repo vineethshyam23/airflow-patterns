@@ -113,6 +113,7 @@ Helper modules and enrichment jobs:
 - Mailchimp email analytics ingest (campaign fan-out + staging APPEND → trusted TRUNCATE)
 - POS vendor store-details HMAC CSV ingest (daily HMAC auth + dual CSV repair + dbt)
 - POS vendor GA4 rolling event ingest (7-day DELETE+INSERT + Data Transfer + dbt)
+- Midday POS customer-master refresh (DST-safe 13:00 local + selective debtor/location land)
 - BigQuery utilities
 - Error handling / retry helpers
 - Logging utilities
@@ -217,6 +218,7 @@ Shipped so far (sanitized portfolio samples):
 | 40 | Food Graph ML multi-project propagation | `ml_pipelines/40-foodgraph-ml-propagation/` |
 | 41 | PAIR Finance multi-market case ingest | `payment_processing/41-pair-finance-cases-ingest/` |
 | 42 | Field-sales activities → Odoo CRM | `odoo_integration/42-sales-manager-activities-odoo/` |
+| 43 | Midday POS customer-master refresh | `utilities/43-pos-afternoon-customer-refresh/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

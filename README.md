@@ -64,6 +64,7 @@ End-to-end ML pipeline patterns:
 - Batch scoring workflows
 - Model monitoring and versioning
 - Food Graph multi-project ML propagation (gold + stage copy + month-end ranked gaps)
+- Lead enrichment + Cloud Run batch scoring (matching-engine gate → dbt → score → Odoo)
 
 ### Scoring & Analytics
 Customer and establishment scoring algorithms:
@@ -219,6 +220,7 @@ Shipped so far (sanitized portfolio samples):
 | 41 | PAIR Finance multi-market case ingest | `payment_processing/41-pair-finance-cases-ingest/` |
 | 42 | Field-sales activities → Odoo CRM | `odoo_integration/42-sales-manager-activities-odoo/` |
 | 43 | Midday POS customer-master refresh | `utilities/43-pos-afternoon-customer-refresh/` |
+| 44 | Lead enrichment + Cloud Run scoring | `ml_pipelines/44-lead-enrichment-cloud-run-scoring/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

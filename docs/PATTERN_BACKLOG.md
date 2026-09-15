@@ -51,6 +51,7 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 | 42 | Field-sales activities → Odoo CRM | `odoo_integration/42-sales-manager-activities-odoo/` | `dags/etl_sales_manager_activities.py` + `dags/horeca_digital/sales_manager_activities.py` | Shipped 2026-09-12 |
 | 43 | Midday POS customer-master refresh | `utilities/43-pos-afternoon-customer-refresh/` | `dags/etl_dish_pos_afternoon.py` | Shipped 2026-09-13 |
 | 44 | Lead enrichment + Cloud Run scoring | `ml_pipelines/44-lead-enrichment-cloud-run-scoring/` | `dags/etl_leads_enrichment.py` (+ pattern 02 Odoo push) | Shipped 2026-09-14 |
+| 45 | Food Graph Vertex PipelineJob submit | `ml_pipelines/45-foodgraph-vertex-pipeline-job/` | `dags/horeca_digital/archived/etl_food_graph_vertex.py` + `food_graph_vertex.py` + `food_graph_vertex_utils.py` | Shipped 2026-09-15 |
 
 ## Also already in repo (not from daily automation priority queue)
 
@@ -64,10 +65,12 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 
 ## Next (priority order)
 
-1. Refined Food Graph zone / Vertex utils (`food_graph_vertex.py` / `food_graph_vertex_utils.py`) — only if distinct from #40
-2. Exchange rates / Tourism NRW — skip unless engineering depth returns
-3. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets
-4. Scan remaining `horeca_digital/` / `archived/` for unused high-value DAGs (Adobe rawfeed, activity scores, matching engine core, dish POS overnight, etc.)
+1. Refined Food Graph zone (`etl_refined_foodgraph_zone.py`) — multi-country BQ fan-out/fan-in; distinct from #40/#45
+2. Absolute activity scores (`absolute_activityscores.py`) — large monthly BQ analytics DAG
+3. Customized offerings zone (`etl_customized_offering_zone.py`) — weekday-aware multi-project stage fan-out
+4. Exchange rates / Tourism NRW — skip unless engineering depth returns
+5. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets
+6. Scan remaining `horeca_digital/` / `archived/` (Adobe rawfeed, matching engine core, dish POS overnight, etc.)
 
 
 ## Skipped

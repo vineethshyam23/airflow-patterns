@@ -124,6 +124,7 @@ Helper modules and enrichment jobs:
 Complex SQL implementations:
 - SCD Type 2 queries
 - Multi-table Cloud SQL → BigQuery SCD ingest (Offer Tool)
+- Food Graph refined multi-country fan-out / fan-in + partitioned history
 - Fuzzy matching algorithms
 - Window functions for analytics
 - Performance-optimized CTEs
@@ -223,6 +224,7 @@ Shipped so far (sanitized portfolio samples):
 | 43 | Midday POS customer-master refresh | `utilities/43-pos-afternoon-customer-refresh/` |
 | 44 | Lead enrichment + Cloud Run scoring | `ml_pipelines/44-lead-enrichment-cloud-run-scoring/` |
 | 45 | Food Graph Vertex PipelineJob submit | `ml_pipelines/45-foodgraph-vertex-pipeline-job/` |
+| 46 | Food Graph refined multi-country zone | `sql_patterns/46-refined-foodgraph-zone/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

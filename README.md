@@ -75,6 +75,7 @@ Customer and establishment scoring algorithms:
 - Multi-country product-footprint customer exports
 - Monthly acquisition + penetration management reporting
 - Single-market Order + Reservation lifetime partner exports
+- Absolute multi-channel activity scores (0–3) with MoM transitions
 - Performance optimization for scale
 - BigQuery advanced analytics
 
@@ -225,6 +226,7 @@ Shipped so far (sanitized portfolio samples):
 | 44 | Lead enrichment + Cloud Run scoring | `ml_pipelines/44-lead-enrichment-cloud-run-scoring/` |
 | 45 | Food Graph Vertex PipelineJob submit | `ml_pipelines/45-foodgraph-vertex-pipeline-job/` |
 | 46 | Food Graph refined multi-country zone | `sql_patterns/46-refined-foodgraph-zone/` |
+| 47 | Absolute multi-channel activity scores | `scoring_analytics/47-absolute-activity-scores/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

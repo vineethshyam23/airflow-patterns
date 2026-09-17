@@ -53,6 +53,7 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 | 44 | Lead enrichment + Cloud Run scoring | `ml_pipelines/44-lead-enrichment-cloud-run-scoring/` | `dags/etl_leads_enrichment.py` (+ pattern 02 Odoo push) | Shipped 2026-09-14 |
 | 45 | Food Graph Vertex PipelineJob submit | `ml_pipelines/45-foodgraph-vertex-pipeline-job/` | `dags/horeca_digital/archived/etl_food_graph_vertex.py` + `food_graph_vertex.py` + `food_graph_vertex_utils.py` | Shipped 2026-09-15 |
 | 46 | Food Graph refined multi-country zone | `sql_patterns/46-refined-foodgraph-zone/` | `dags/etl_refined_foodgraph_zone.py` + `dags/horeca_digital/foodgraph_queries.py` | Shipped 2026-09-16 |
+| 47 | Absolute multi-channel activity scores | `scoring_analytics/47-absolute-activity-scores/` | `dags/absolute_activityscores.py` | Shipped 2026-09-17 |
 
 ## Also already in repo (not from daily automation priority queue)
 
@@ -66,11 +67,11 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 
 ## Next (priority order)
 
-1. Absolute activity scores (`absolute_activityscores.py`) — large monthly BQ analytics DAG
-2. Customized offerings zone (`etl_customized_offering_zone.py`) — weekday-aware multi-project stage fan-out
-3. Exchange rates / Tourism NRW — skip unless engineering depth returns
-4. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets
-5. Scan remaining `horeca_digital/` / `archived/` (Adobe rawfeed, matching engine core, dish POS overnight, etc.)
+1. Customized offerings zone (`etl_customized_offering_zone.py`) — weekday-aware multi-project stage fan-out
+2. Exchange rates / Tourism NRW — skip unless engineering depth returns
+3. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets
+4. Scan remaining `horeca_digital/` / `archived/` (Adobe rawfeed, matching engine core, dish POS overnight, etc.)
+5. Do not ship `etl_activity_score_job.py` as a separate pattern — thin dbt wrapper over #47
 
 
 ## Skipped

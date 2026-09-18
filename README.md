@@ -126,6 +126,7 @@ Complex SQL implementations:
 - SCD Type 2 queries
 - Multi-table Cloud SQL → BigQuery SCD ingest (Offer Tool)
 - Food Graph refined multi-country fan-out / fan-in + partitioned history
+- Offer Tool weekday-aware multi-project zone fan-out (Wed acc+stg+prod)
 - Fuzzy matching algorithms
 - Window functions for analytics
 - Performance-optimized CTEs
@@ -227,6 +228,7 @@ Shipped so far (sanitized portfolio samples):
 | 45 | Food Graph Vertex PipelineJob submit | `ml_pipelines/45-foodgraph-vertex-pipeline-job/` |
 | 46 | Food Graph refined multi-country zone | `sql_patterns/46-refined-foodgraph-zone/` |
 | 47 | Absolute multi-channel activity scores | `scoring_analytics/47-absolute-activity-scores/` |
+| 48 | Offer Tool weekday-aware multi-project zone | `sql_patterns/48-customized-offerings-zone/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

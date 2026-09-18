@@ -54,6 +54,7 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 | 45 | Food Graph Vertex PipelineJob submit | `ml_pipelines/45-foodgraph-vertex-pipeline-job/` | `dags/horeca_digital/archived/etl_food_graph_vertex.py` + `food_graph_vertex.py` + `food_graph_vertex_utils.py` | Shipped 2026-09-15 |
 | 46 | Food Graph refined multi-country zone | `sql_patterns/46-refined-foodgraph-zone/` | `dags/etl_refined_foodgraph_zone.py` + `dags/horeca_digital/foodgraph_queries.py` | Shipped 2026-09-16 |
 | 47 | Absolute multi-channel activity scores | `scoring_analytics/47-absolute-activity-scores/` | `dags/absolute_activityscores.py` | Shipped 2026-09-17 |
+| 48 | Offer Tool weekday-aware multi-project zone | `sql_patterns/48-customized-offerings-zone/` | `dags/etl_customized_offering_zone.py` + `dags/horeca_digital/customized_offering_queries.py` | Shipped 2026-09-18 |
 
 ## Also already in repo (not from daily automation priority queue)
 
@@ -67,11 +68,13 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 
 ## Next (priority order)
 
-1. Customized offerings zone (`etl_customized_offering_zone.py`) — weekday-aware multi-project stage fan-out
-2. Exchange rates / Tourism NRW — skip unless engineering depth returns
-3. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets
-4. Scan remaining `horeca_digital/` / `archived/` (Adobe rawfeed, matching engine core, dish POS overnight, etc.)
-5. Do not ship `etl_activity_score_job.py` as a separate pattern — thin dbt wrapper over #47
+1. Adobe Analytics hourly rawfeed (`etl_aa_adobe_rawfeed_hourly.py`) — GCS tar/gzip unpack → BQ load
+2. DISH POS overnight / daily+backfill (`etl_dish_pos.py`) — large multi-country POS land (if not redundant with #43)
+3. Exchange rates / Tourism NRW — skip unless engineering depth returns
+4. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets
+5. Skip `etl_matching_engine.py` / `matching_engine_prod_job` — thin dbt Cloud wrapper (SCD already #01, export #10)
+6. Do not ship `etl_activity_score_job.py` as a separate pattern — thin dbt wrapper over #47
+7. Sibling Offer Tool on-demand zone (`etl_customized_offerings_zone_on_demand.py`) — optional follow-up to #48
 
 
 ## Skipped
@@ -79,6 +82,7 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 | Pattern | Source | Reason | Date |
 |---------|--------|--------|------|
 | Eijsink GA4 rolling ingest | `dags/etl_eijsink_google_analytics.py` | Same 7-day DELETE+INSERT + dbt pattern as #38; only delta is missing Data Transfer + different property/staging | 2026-09-09 |
+| Matching Engine dbt Cloud wrapper | `dags/etl_matching_engine.py` / `matching_engine_prod_job` | Thin dbt Cloud job trigger; SCD already #01, partner export #10 | 2026-09-18 |
 
 ## Blockers
 

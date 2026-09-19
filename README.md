@@ -117,6 +117,7 @@ Helper modules and enrichment jobs:
 - POS vendor store-details HMAC CSV ingest (daily HMAC auth + dual CSV repair + dbt)
 - POS vendor GA4 rolling event ingest (7-day DELETE+INSERT + Data Transfer + dbt)
 - Midday POS customer-master refresh (DST-safe 13:00 local + selective debtor/location land)
+- Adobe Analytics hourly Data Feed land (tar/tsv unpack + lookup fan-out + refined enrich)
 - BigQuery utilities
 - Error handling / retry helpers
 - Logging utilities
@@ -229,6 +230,7 @@ Shipped so far (sanitized portfolio samples):
 | 46 | Food Graph refined multi-country zone | `sql_patterns/46-refined-foodgraph-zone/` |
 | 47 | Absolute multi-channel activity scores | `scoring_analytics/47-absolute-activity-scores/` |
 | 48 | Offer Tool weekday-aware multi-project zone | `sql_patterns/48-customized-offerings-zone/` |
+| 49 | Adobe Analytics hourly Data Feed land | `utilities/49-adobe-analytics-hourly-rawfeed/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

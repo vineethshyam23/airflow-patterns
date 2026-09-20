@@ -56,6 +56,7 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 | 47 | Absolute multi-channel activity scores | `scoring_analytics/47-absolute-activity-scores/` | `dags/absolute_activityscores.py` | Shipped 2026-09-17 |
 | 48 | Offer Tool weekday-aware multi-project zone | `sql_patterns/48-customized-offerings-zone/` | `dags/etl_customized_offering_zone.py` + `dags/horeca_digital/customized_offering_queries.py` | Shipped 2026-09-18 |
 | 49 | Adobe Analytics hourly Data Feed land | `utilities/49-adobe-analytics-hourly-rawfeed/` | `dags/etl_aa_adobe_rawfeed_hourly.py` | Shipped 2026-09-19 |
+| 50 | Overnight multi-country POS land + backfill | `utilities/50-pos-overnight-multi-country/` | `dags/etl_dish_pos.py` | Shipped 2026-09-20 |
 
 ## Also already in repo (not from daily automation priority queue)
 
@@ -69,14 +70,13 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 
 ## Next (priority order)
 
-1. DISH POS overnight / daily+backfill (`etl_dish_pos.py`) — large multi-country POS land (if not redundant with #43)
-2. Adobe Analytics app rawfeed (`etl_aa_adobe_rawfeed_app.py`) — if delta vs #49 is still material (app prefix + suite)
-3. Offer Tool on-demand zone (`etl_customized_offerings_zone_on_demand.py`) — optional follow-up to #48
-4. Exchange rates / Tourism NRW — skip unless engineering depth returns
-5. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets
-6. Skip `etl_matching_engine.py` / `matching_engine_prod_job` — thin dbt Cloud wrapper (SCD already #01, export #10)
-7. Do not ship `etl_activity_score_job.py` as a separate pattern — thin dbt wrapper over #47
-8. Skip app rawfeed dbt job (`etl_aa_adobe_rawfeed_app_job.py`) unless it shows non-thin orchestration beyond a dbt trigger
+1. Adobe Analytics app rawfeed (`etl_aa_adobe_rawfeed_app.py`) — if delta vs #49 is still material (app prefix + suite)
+2. Offer Tool on-demand zone (`etl_customized_offerings_zone_on_demand.py`) — optional follow-up to #48
+3. Exchange rates / Tourism NRW — skip unless engineering depth returns
+4. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets
+5. Skip `etl_matching_engine.py` / `matching_engine_prod_job` — thin dbt Cloud wrapper (SCD already #01, export #10)
+6. Do not ship `etl_activity_score_job.py` as a separate pattern — thin dbt wrapper over #47
+7. Skip app rawfeed dbt job (`etl_aa_adobe_rawfeed_app_job.py`) unless it shows non-thin orchestration beyond a dbt trigger
 
 
 ## Skipped

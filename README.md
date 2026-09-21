@@ -119,6 +119,7 @@ Helper modules and enrichment jobs:
 - Midday POS customer-master refresh (DST-safe 13:00 local + selective debtor/location land)
 - Overnight multi-country POS land + date-range backfill (master + tickets + mapping + dbt)
 - Adobe Analytics hourly Data Feed land (tar/tsv unpack + lookup fan-out + refined enrich)
+- Adobe Analytics app Data Feed land (mobile suite + lean lookups + app refined projection)
 - BigQuery utilities
 - Error handling / retry helpers
 - Logging utilities
@@ -233,6 +234,7 @@ Shipped so far (sanitized portfolio samples):
 | 48 | Offer Tool weekday-aware multi-project zone | `sql_patterns/48-customized-offerings-zone/` |
 | 49 | Adobe Analytics hourly Data Feed land | `utilities/49-adobe-analytics-hourly-rawfeed/` |
 | 50 | Overnight multi-country POS land + backfill | `utilities/50-pos-overnight-multi-country/` |
+| 51 | Adobe Analytics app Data Feed land | `utilities/51-adobe-analytics-app-rawfeed/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

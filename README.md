@@ -130,6 +130,7 @@ Complex SQL implementations:
 - Multi-table Cloud SQL → BigQuery SCD ingest (Offer Tool)
 - Food Graph refined multi-country fan-out / fan-in + partitioned history
 - Offer Tool weekday-aware multi-project zone fan-out (Wed acc+stg+prod)
+- Offer Tool on-demand lean zone (establishments / ES / catalog, schedule=None)
 - Fuzzy matching algorithms
 - Window functions for analytics
 - Performance-optimized CTEs
@@ -235,6 +236,7 @@ Shipped so far (sanitized portfolio samples):
 | 49 | Adobe Analytics hourly Data Feed land | `utilities/49-adobe-analytics-hourly-rawfeed/` |
 | 50 | Overnight multi-country POS land + backfill | `utilities/50-pos-overnight-multi-country/` |
 | 51 | Adobe Analytics app Data Feed land | `utilities/51-adobe-analytics-app-rawfeed/` |
+| 52 | Offer Tool on-demand multi-project zone | `sql_patterns/52-customized-offerings-zone-on-demand/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

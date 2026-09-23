@@ -76,6 +76,7 @@ Customer and establishment scoring algorithms:
 - Monthly acquisition + penetration management reporting
 - Single-market Order + Reservation lifetime partner exports
 - Absolute multi-channel activity scores (0–3) with MoM transitions
+- POS Intelligence wholesale article recommendations (Vertex → Avro event bus)
 - Performance optimization for scale
 - BigQuery advanced analytics
 
@@ -237,6 +238,7 @@ Shipped so far (sanitized portfolio samples):
 | 50 | Overnight multi-country POS land + backfill | `utilities/50-pos-overnight-multi-country/` |
 | 51 | Adobe Analytics app Data Feed land | `utilities/51-adobe-analytics-app-rawfeed/` |
 | 52 | Offer Tool on-demand multi-project zone | `sql_patterns/52-customized-offerings-zone-on-demand/` |
+| 53 | POS Intelligence recommendations → partner event bus | `scoring_analytics/53-pos-intelligence-recommendations-export/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

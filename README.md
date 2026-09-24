@@ -102,6 +102,7 @@ Reusable Airflow operators I've built:
 - Database retry operators
 - dbt integration operators
 - Cloud SQL operators (schedule-aware export + Hydra weekly full dump)
+- Reservation Tool incremental Cloud SQL export (id-watermark + Sunday full sync)
 - Generic API operators
 
 ### Utilities
@@ -239,6 +240,7 @@ Shipped so far (sanitized portfolio samples):
 | 51 | Adobe Analytics app Data Feed land | `utilities/51-adobe-analytics-app-rawfeed/` |
 | 52 | Offer Tool on-demand multi-project zone | `sql_patterns/52-customized-offerings-zone-on-demand/` |
 | 53 | POS Intelligence recommendations → partner event bus | `scoring_analytics/53-pos-intelligence-recommendations-export/` |
+| 54 | Reservation Tool incremental Cloud SQL export | `custom_operators/54-reservation-tool-incremental-export/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

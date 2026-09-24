@@ -60,6 +60,7 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 | 51 | Adobe Analytics app Data Feed land | `utilities/51-adobe-analytics-app-rawfeed/` | `dags/etl_aa_adobe_rawfeed_app.py` | Shipped 2026-09-21 |
 | 52 | Offer Tool on-demand multi-project zone | `sql_patterns/52-customized-offerings-zone-on-demand/` | `dags/etl_customized_offerings_zone_on_demand.py` + `dags/horeca_digital/customized_offering_queries.py` | Shipped 2026-09-22 |
 | 53 | POS Intelligence recommendations → partner event bus | `scoring_analytics/53-pos-intelligence-recommendations-export/` | `dags/etl_dana_pos_intelligence_recommendations_export.py` + `dags/horeca_digital/dana_pos_intelligence_export.py` | Shipped 2026-09-23 |
+| 54 | Reservation Tool incremental Cloud SQL export (id-watermark + Sunday full sync) | `custom_operators/54-reservation-tool-incremental-export/` | `dags/etl_reservationtool_v2.py` + `dags/horeca_digital/rt_table_config.py` + `operators/cloudsql_retry_operator.py` | Shipped 2026-09-24 |
 
 ## Also already in repo (not from daily automation priority queue)
 
@@ -73,14 +74,14 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 
 ## Next (priority order)
 
-1. Reservation Tool v2 incremental Cloud SQL export (`etl_reservationtool_v2.py`) — id-watermark + Sunday full sync; strong operator pattern
-2. DeepIdeas VM → GCS → BQ land (`etl_deepideas_to_DWH.py`) — SSH export + dual-bucket transfer
-3. Exchange rates / Tourism NRW — skip unless engineering depth returns
-4. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets
-5. Skip `etl_matching_engine.py` / `matching_engine_prod_job` — thin dbt Cloud wrapper (SCD already #01, export #10)
-6. Do not ship `etl_activity_score_job.py` as a separate pattern — thin dbt wrapper over #47
-7. Skip app rawfeed dbt job (`etl_aa_adobe_rawfeed_app_job.py`) — thin dbt Cloud trigger over #51
-8. Skip `etl_master_id_job.py` — thin dbt Cloud + Slack monitor wrapper
+1. DeepIdeas VM → GCS → BQ land (`etl_deepideas_to_DWH.py`) — SSH export + dual-bucket transfer
+2. Exchange rates / Tourism NRW — skip unless engineering depth returns
+3. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets
+4. Skip `etl_matching_engine.py` / `matching_engine_prod_job` — thin dbt Cloud wrapper (SCD already #01, export #10)
+5. Do not ship `etl_activity_score_job.py` as a separate pattern — thin dbt wrapper over #47
+6. Skip app rawfeed dbt job (`etl_aa_adobe_rawfeed_app_job.py`) — thin dbt Cloud trigger over #51
+7. Skip `etl_master_id_job.py` — thin dbt Cloud + Slack monitor wrapper
+8. Do not confuse `bq_reservation.py` (BigQuery slot reservation helper) with Reservation Tool product (#54)
 
 
 ## Skipped

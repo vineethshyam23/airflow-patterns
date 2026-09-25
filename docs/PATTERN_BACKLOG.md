@@ -61,6 +61,7 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 | 52 | Offer Tool on-demand multi-project zone | `sql_patterns/52-customized-offerings-zone-on-demand/` | `dags/etl_customized_offerings_zone_on_demand.py` + `dags/horeca_digital/customized_offering_queries.py` | Shipped 2026-09-22 |
 | 53 | POS Intelligence recommendations → partner event bus | `scoring_analytics/53-pos-intelligence-recommendations-export/` | `dags/etl_dana_pos_intelligence_recommendations_export.py` + `dags/horeca_digital/dana_pos_intelligence_export.py` | Shipped 2026-09-23 |
 | 54 | Reservation Tool incremental Cloud SQL export (id-watermark + Sunday full sync) | `custom_operators/54-reservation-tool-incremental-export/` | `dags/etl_reservationtool_v2.py` + `dags/horeca_digital/rt_table_config.py` + `operators/cloudsql_retry_operator.py` | Shipped 2026-09-24 |
+| 55 | Menu Engineering VM Postgres land (SSH COPY + dual-bucket) | `utilities/55-menu-engineering-vm-land/` | `dags/etl_deepideas_to_DWH.py` | Shipped 2026-09-25 |
 
 ## Also already in repo (not from daily automation priority queue)
 
@@ -74,7 +75,7 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 
 ## Next (priority order)
 
-1. DeepIdeas VM → GCS → BQ land (`etl_deepideas_to_DWH.py`) — SSH export + dual-bucket transfer
+1. Refined zone monthly / value-creation zone (`etl_refined_zone_monthly.py` or `etl_value_creation_zone_*`) — if engineering depth is distinct from #46 / #48
 2. Exchange rates / Tourism NRW — skip unless engineering depth returns
 3. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets
 4. Skip `etl_matching_engine.py` / `matching_engine_prod_job` — thin dbt Cloud wrapper (SCD already #01, export #10)
@@ -82,6 +83,7 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 6. Skip app rawfeed dbt job (`etl_aa_adobe_rawfeed_app_job.py`) — thin dbt Cloud trigger over #51
 7. Skip `etl_master_id_job.py` — thin dbt Cloud + Slack monitor wrapper
 8. Do not confuse `bq_reservation.py` (BigQuery slot reservation helper) with Reservation Tool product (#54)
+9. Do not ship Deepideas Avro enrichment (#20–#22) or VM land (#55) again
 
 
 ## Skipped

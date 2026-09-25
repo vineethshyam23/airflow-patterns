@@ -122,6 +122,7 @@ Helper modules and enrichment jobs:
 - Overnight multi-country POS land + date-range backfill (master + tickets + mapping + dbt)
 - Adobe Analytics hourly Data Feed land (tar/tsv unpack + lookup fan-out + refined enrich)
 - Adobe Analytics app Data Feed land (mobile suite + lean lookups + app refined projection)
+- Menu Engineering VM Postgres land (SSH COPY + dual-bucket product→rawzone + VM cleanup)
 - BigQuery utilities
 - Error handling / retry helpers
 - Logging utilities
@@ -241,6 +242,7 @@ Shipped so far (sanitized portfolio samples):
 | 52 | Offer Tool on-demand multi-project zone | `sql_patterns/52-customized-offerings-zone-on-demand/` |
 | 53 | POS Intelligence recommendations → partner event bus | `scoring_analytics/53-pos-intelligence-recommendations-export/` |
 | 54 | Reservation Tool incremental Cloud SQL export | `custom_operators/54-reservation-tool-incremental-export/` |
+| 55 | Menu Engineering VM Postgres land (SSH + dual-bucket) | `utilities/55-menu-engineering-vm-land/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

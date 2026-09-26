@@ -134,6 +134,7 @@ Complex SQL implementations:
 - Food Graph refined multi-country fan-out / fan-in + partitioned history
 - Offer Tool weekday-aware multi-project zone fan-out (Wed acc+stg+prod)
 - Offer Tool on-demand lean zone (establishments / ES / catalog, schedule=None)
+- Food-ordering multi-shard Cloud SQL SCD Type 2 (master + shard fan-out + CSV merge)
 - Fuzzy matching algorithms
 - Window functions for analytics
 - Performance-optimized CTEs
@@ -243,6 +244,7 @@ Shipped so far (sanitized portfolio samples):
 | 53 | POS Intelligence recommendations → partner event bus | `scoring_analytics/53-pos-intelligence-recommendations-export/` |
 | 54 | Reservation Tool incremental Cloud SQL export | `custom_operators/54-reservation-tool-incremental-export/` |
 | 55 | Menu Engineering VM Postgres land (SSH + dual-bucket) | `utilities/55-menu-engineering-vm-land/` |
+| 56 | Food-ordering multi-shard Cloud SQL SCD Type 2 ingest | `sql_patterns/56-dish-order-sharded-scd-ingest/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

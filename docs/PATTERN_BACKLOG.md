@@ -63,6 +63,7 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 | 54 | Reservation Tool incremental Cloud SQL export (id-watermark + Sunday full sync) | `custom_operators/54-reservation-tool-incremental-export/` | `dags/etl_reservationtool_v2.py` + `dags/horeca_digital/rt_table_config.py` + `operators/cloudsql_retry_operator.py` | Shipped 2026-09-24 |
 | 55 | Menu Engineering VM Postgres land (SSH COPY + dual-bucket) | `utilities/55-menu-engineering-vm-land/` | `dags/etl_deepideas_to_DWH.py` | Shipped 2026-09-25 |
 | 56 | Food-ordering multi-shard Cloud SQL SCD Type 2 ingest | `sql_patterns/56-dish-order-sharded-scd-ingest/` | `dags/etl_dishorder.py` (+ Composer-mounted bash scripts) | Shipped 2026-09-26 |
+| 57 | Keycloak SSO events land (tar.gz → rawzone → append-only trusted) | `utilities/57-keycloak-sso-events-land/` | `dags/etl_sso.py` | Shipped 2026-09-27 |
 
 ## Also already in repo (not from daily automation priority queue)
 
@@ -76,15 +77,16 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 
 ## Next (priority order)
 
-1. Keycloak SSO events (`etl_sso.py`) — tar.gz land + append-only trusted
-2. Alternate: Delivery Order land (`etl_delivery_order.py`) — only if engineering depth is distinct from #56
-3. Refined zone monthly / value-creation zone — only if engineering depth is distinct from #46 / #48
-4. Exchange rates / Tourism NRW — skip unless engineering depth returns
-5. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets
-6. Skip thin dbt wrappers: matching-engine, activity-score, app rawfeed job, master_id, owg_v2
-7. Do not confuse `bq_reservation.py` (BigQuery slot reservation helper) with Reservation Tool product (#54)
-8. Do not ship Deepideas Avro enrichment (#20–#22), VM land (#55), or food-order sharded SCD (#56) again
+1. Delivery Order land (`etl_delivery_order.py`) — only if engineering depth is distinct from #56 (sharded SCD) and #57 (SSO land); looks like Salesforce/Odoo product-installation sync
+2. Refined zone monthly / value-creation zone — only if engineering depth is distinct from #46 / #48
+3. Exchange rates / Tourism NRW — skip unless engineering depth returns
+4. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets
+5. Skip thin dbt wrappers: matching-engine, activity-score, app rawfeed job, master_id, owg_v2
+6. Do not confuse `bq_reservation.py` (BigQuery slot reservation helper) with Reservation Tool product (#54)
+7. Do not ship Deepideas Avro enrichment (#20–#22), VM land (#55), food-order sharded SCD (#56), or Keycloak SSO (#57) again
+8. Pattern 57 = Keycloak backup tar.gz → Composer FUSE unpack → rawzone → staging TRUNCATE → trusted APPEND (no dedupe); distinct from Adobe unpack (#49/#51) and Medallia SCD2 (#30)
 9. Pattern 56 = multi-shard master+fan-out+merge+SCD2; distinct from single-instance Offer Tool SCD (#27), Hydra full dump (#39), Reservation watermark (#54)
+10. Shim-manager access-log parser (`sso_manager_events.py`) is a separate utility from #57 — only ship if depth warrants
 
 
 ## Skipped

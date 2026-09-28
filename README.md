@@ -124,6 +124,7 @@ Helper modules and enrichment jobs:
 - Adobe Analytics app Data Feed land (mobile suite + lean lookups + app refined projection)
 - Menu Engineering VM Postgres land (SSH COPY + dual-bucket product→rawzone + VM cleanup)
 - Keycloak SSO events land (backup tar.gz → Composer FUSE unpack → append-only trusted)
+- BigQuery product API refined zone + AlloyDB incremental dual-store sync
 - BigQuery utilities
 - Error handling / retry helpers
 - Logging utilities
@@ -247,6 +248,7 @@ Shipped so far (sanitized portfolio samples):
 | 55 | Menu Engineering VM Postgres land (SSH + dual-bucket) | `utilities/55-menu-engineering-vm-land/` |
 | 56 | Food-ordering multi-shard Cloud SQL SCD Type 2 ingest | `sql_patterns/56-dish-order-sharded-scd-ingest/` |
 | 57 | Keycloak SSO events land (tar.gz → append-only trusted) | `utilities/57-keycloak-sso-events-land/` |
+| 58 | BigQuery product API refined zone + AlloyDB sync | `utilities/58-bq-alloydb-api-sync/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

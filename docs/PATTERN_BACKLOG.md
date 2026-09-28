@@ -64,6 +64,7 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 | 55 | Menu Engineering VM Postgres land (SSH COPY + dual-bucket) | `utilities/55-menu-engineering-vm-land/` | `dags/etl_deepideas_to_DWH.py` | Shipped 2026-09-25 |
 | 56 | Food-ordering multi-shard Cloud SQL SCD Type 2 ingest | `sql_patterns/56-dish-order-sharded-scd-ingest/` | `dags/etl_dishorder.py` (+ Composer-mounted bash scripts) | Shipped 2026-09-26 |
 | 57 | Keycloak SSO events land (tar.gz → rawzone → append-only trusted) | `utilities/57-keycloak-sso-events-land/` | `dags/etl_sso.py` | Shipped 2026-09-27 |
+| 58 | BigQuery product API refined zone + AlloyDB incremental sync | `utilities/58-bq-alloydb-api-sync/` | `dags/etl_api_alloydb.py` + `dags/horeca_digital/DISH_api_query.py` | Shipped 2026-09-28 |
 
 ## Also already in repo (not from daily automation priority queue)
 
@@ -77,16 +78,17 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 
 ## Next (priority order)
 
-1. Delivery Order land (`etl_delivery_order.py`) — only if engineering depth is distinct from #56 (sharded SCD) and #57 (SSO land); looks like Salesforce/Odoo product-installation sync
-2. Refined zone monthly / value-creation zone — only if engineering depth is distinct from #46 / #48
-3. Exchange rates / Tourism NRW — skip unless engineering depth returns
-4. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets
-5. Skip thin dbt wrappers: matching-engine, activity-score, app rawfeed job, master_id, owg_v2
-6. Do not confuse `bq_reservation.py` (BigQuery slot reservation helper) with Reservation Tool product (#54)
-7. Do not ship Deepideas Avro enrichment (#20–#22), VM land (#55), food-order sharded SCD (#56), or Keycloak SSO (#57) again
-8. Pattern 57 = Keycloak backup tar.gz → Composer FUSE unpack → rawzone → staging TRUNCATE → trusted APPEND (no dedupe); distinct from Adobe unpack (#49/#51) and Medallia SCD2 (#30)
-9. Pattern 56 = multi-shard master+fan-out+merge+SCD2; distinct from single-instance Offer Tool SCD (#27), Hydra full dump (#39), Reservation watermark (#54)
-10. Shim-manager access-log parser (`sso_manager_events.py`) is a separate utility from #57 — only ship if depth warrants
+1. Delivery Order reverse-ETL (`etl_delivery_order.py` + archived `product_installation_odoo.py`) — live `horeca_digital/product_installation_odoo.py` missing from tree; extract insert/update stock.picking path from archived module if depth warrants (distinct from inbound Odoo #06–#15 / #42)
+2. Refined Salesforce daily aggregates (`etl_refined_salesforce.py`) — SFDC-facing multi-table fan-out; distinct from asset-history export (#05)
+3. Derived events change-detection (`etl_derived_events.py`) — SCD LAG → `derived_events` append across Hydra/Adobe/ResTool; large monolith, ship representative subset
+4. Refined zone monthly / value-creation zone — only if engineering depth is distinct from #46 / #48
+5. Exchange rates / Tourism NRW — skip unless engineering depth returns
+6. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets
+7. Skip thin dbt wrappers: matching-engine, activity-score, app rawfeed job, master_id, owg_v2
+8. Do not confuse `bq_reservation.py` (BigQuery slot reservation helper) with Reservation Tool product (#54)
+9. Do not re-ship #56 / #57 / #58
+10. Pattern 58 = parallel BQ API truncate-reload + AlloyDB incremental `ON CONFLICT`; dual-store for product API serving (not Gateway/Apigee)
+11. Shim-manager access-log parser (`sso_manager_events.py`) — only if depth warrants
 
 
 ## Skipped

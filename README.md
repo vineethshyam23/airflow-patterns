@@ -56,6 +56,7 @@ Salesforce API integration patterns:
 - Change data capture patterns
 - Bi-directional sync strategies
 - Asset and opportunity tracking
+- Refined daily aggregates for CRM-facing warehouse snapshots (orders, reservations, Odoo revenue, POS)
 
 ### ML Pipelines
 End-to-end ML pipeline patterns:
@@ -249,6 +250,7 @@ Shipped so far (sanitized portfolio samples):
 | 56 | Food-ordering multi-shard Cloud SQL SCD Type 2 ingest | `sql_patterns/56-dish-order-sharded-scd-ingest/` |
 | 57 | Keycloak SSO events land (tar.gz → append-only trusted) | `utilities/57-keycloak-sso-events-land/` |
 | 58 | BigQuery product API refined zone + AlloyDB sync | `utilities/58-bq-alloydb-api-sync/` |
+| 59 | Salesforce refined daily aggregates (8-table fan-out) | `salesforce_integration/59-sfdc-refined-daily-aggregates/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

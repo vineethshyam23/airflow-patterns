@@ -310,6 +310,22 @@ so accidental re-queues do not double-pull the API.
 [View Pattern →](./42-sales-manager-activities-odoo/)
 
 
+### 60 - Delivery Order Reverse ETL (BQ → stock.picking)
+
+On-demand reverse ETL from a curated BigQuery delivery table into Odoo
+`stock.picking` — insert vs update via `ir.model.data`, product catalog
+resolution, serial lots, machine codes, and fulfilment validation.
+
+**Key Features**:
+- Dual connection (OdooRPC writes + Postgres ID lookups)
+- External-id idempotency for create vs update
+- Nested delivery line details → stock.move / move.line
+- Timeout retry for flaky Odoo HTTP; availability errors collected
+- Distinct from inbound Odoo exports (06–15) and CRM push (42)
+
+[View Pattern →](./60-delivery-order-reverse-etl/)
+
+
 ## Technology Stack
 
 **ERP System**: Odoo 13/14/15/16  

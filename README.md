@@ -48,6 +48,7 @@ Patterns from a 3-year, 116-DAG ERP migration project:
 - Incremental sync patterns
 - Dual-write for zero-downtime cutover
 - Mach2 daily sales Excel email packs (activations / cancellations / channels)
+- Delivery-order reverse ETL (BQ → Odoo stock.picking insert/update)
 - Data reconciliation frameworks
 
 ### CRM Integration (Salesforce)
@@ -251,6 +252,7 @@ Shipped so far (sanitized portfolio samples):
 | 57 | Keycloak SSO events land (tar.gz → append-only trusted) | `utilities/57-keycloak-sso-events-land/` |
 | 58 | BigQuery product API refined zone + AlloyDB sync | `utilities/58-bq-alloydb-api-sync/` |
 | 59 | Salesforce refined daily aggregates (8-table fan-out) | `salesforce_integration/59-sfdc-refined-daily-aggregates/` |
+| 60 | Delivery order reverse ETL (BQ → Odoo stock.picking) | `odoo_integration/60-delivery-order-reverse-etl/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

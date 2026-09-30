@@ -66,6 +66,7 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 | 57 | Keycloak SSO events land (tar.gz → rawzone → append-only trusted) | `utilities/57-keycloak-sso-events-land/` | `dags/etl_sso.py` | Shipped 2026-09-27 |
 | 58 | BigQuery product API refined zone + AlloyDB incremental sync | `utilities/58-bq-alloydb-api-sync/` | `dags/etl_api_alloydb.py` + `dags/horeca_digital/DISH_api_query.py` | Shipped 2026-09-28 |
 | 59 | Salesforce refined daily aggregates (8-table fan-out) | `salesforce_integration/59-sfdc-refined-daily-aggregates/` | `dags/etl_refined_salesforce.py` | Shipped 2026-09-29 |
+| 60 | Delivery order reverse ETL (BQ → Odoo stock.picking) | `odoo_integration/60-delivery-order-reverse-etl/` | `dags/horeca_digital/archived/etl_delivery_order.py` + `archived/odoo_migration/product_installation_odoo.py` (delivery path) | Shipped 2026-09-30 |
 
 ## Also already in repo (not from daily automation priority queue)
 
@@ -79,16 +80,16 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 
 ## Next (priority order)
 
-1. Delivery Order reverse-ETL (`etl_delivery_order.py` + archived `product_installation_odoo.py`) — live `horeca_digital/product_installation_odoo.py` missing from tree; extract insert/update stock.picking path from archived module if depth warrants (distinct from inbound Odoo #06–#15 / #42)
-2. Derived events change-detection (`etl_derived_events.py`) — SCD LAG → `derived_events` append across Hydra/Adobe/ResTool; large monolith, ship representative subset
-3. Refined zone monthly / value-creation zone — only if engineering depth is distinct from #46 / #48
-4. Exchange rates / Tourism NRW — skip unless engineering depth returns
-5. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets
-6. Skip thin dbt wrappers: matching-engine, activity-score, app rawfeed job, master_id, owg_v2
-7. Do not confuse `bq_reservation.py` (BigQuery slot reservation helper) with Reservation Tool product (#54)
-8. Do not re-ship #56 / #57 / #58 / #59
-9. Pattern 59 = SFDC-facing multi-table BQ truncate fan-out; distinct from asset-history export (#05)
-10. Shim-manager access-log parser (`sso_manager_events.py`) — only if depth warrants
+1. Derived events change-detection (`etl_derived_events.py`) — SCD LAG → `derived_events` append across Hydra/Adobe/ResTool; large monolith, ship representative subset
+2. Refined zone monthly / value-creation zone — only if engineering depth is distinct from #46 / #48
+3. Exchange rates / Tourism NRW — skip unless engineering depth returns
+4. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets
+5. Skip thin dbt wrappers: matching-engine, activity-score, app rawfeed job, master_id, owg_v2
+6. Do not confuse `bq_reservation.py` (BigQuery slot reservation helper) with Reservation Tool product (#54)
+7. Do not re-ship #56 / #57 / #58 / #59 / #60
+8. Pattern 60 = BQ → Odoo stock.picking reverse ETL; distinct from inbound Odoo #06–#15 / #42
+9. Shim-manager access-log parser (`sso_manager_events.py`) — only if depth warrants
+10. SalesforceProductInstallation land queries (companion to #60 upstream) — only if distinct depth remains after #60
 
 
 ## Skipped

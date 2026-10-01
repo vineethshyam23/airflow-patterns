@@ -139,6 +139,7 @@ Complex SQL implementations:
 - Offer Tool weekday-aware multi-project zone fan-out (Wed acc+stg+prod)
 - Offer Tool on-demand lean zone (establishments / ES / catalog, schedule=None)
 - Food-ordering multi-shard Cloud SQL SCD Type 2 (master + shard fan-out + CSV merge)
+- Derived events change-detection (SCD LAG / Adobe unnest → append-only event store)
 - Fuzzy matching algorithms
 - Window functions for analytics
 - Performance-optimized CTEs
@@ -253,6 +254,7 @@ Shipped so far (sanitized portfolio samples):
 | 58 | BigQuery product API refined zone + AlloyDB sync | `utilities/58-bq-alloydb-api-sync/` |
 | 59 | Salesforce refined daily aggregates (8-table fan-out) | `salesforce_integration/59-sfdc-refined-daily-aggregates/` |
 | 60 | Delivery order reverse ETL (BQ → Odoo stock.picking) | `odoo_integration/60-delivery-order-reverse-etl/` |
+| 61 | Derived events change-detection (SCD LAG → append subset) | `sql_patterns/61-derived-events-change-detection/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

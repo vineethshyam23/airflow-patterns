@@ -1,0 +1,21 @@
+name: check_export
+expectation_suite_name: my_expectation_suite
+batch_request:
+  datasource_name: bigquery_datasource
+  data_connector_name: default_runtime_data_connector
+  data_asset_name: stamm_e_export_gbq
+  runtime_parameters:
+    query: |
+      SELECT * 
+      FROM  `source_project.dwh_de_test.stamm_e_export_gbq`
+      where country = 'DE';
+  batch_identifiers:
+    default_identifier_name: default
+action_list:
+  - name: store_validation_result
+    action:
+      class_name: StoreValidationResultAction
+  - name: update_data_docs
+    action:
+      class_name: UpdateDataDocsAction
+

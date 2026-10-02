@@ -140,6 +140,7 @@ Complex SQL implementations:
 - Offer Tool on-demand lean zone (establishments / ES / catalog, schedule=None)
 - Food-ordering multi-shard Cloud SQL SCD Type 2 (master + shard fan-out + CSV merge)
 - Derived events change-detection (SCD LAG / Adobe unnest → append-only event store)
+- Value Creation Zone bi-monthly staging + PSM stored-proc barrier (3rd/8th)
 - Fuzzy matching algorithms
 - Window functions for analytics
 - Performance-optimized CTEs
@@ -255,6 +256,7 @@ Shipped so far (sanitized portfolio samples):
 | 59 | Salesforce refined daily aggregates (8-table fan-out) | `salesforce_integration/59-sfdc-refined-daily-aggregates/` |
 | 60 | Delivery order reverse ETL (BQ → Odoo stock.picking) | `odoo_integration/60-delivery-order-reverse-etl/` |
 | 61 | Derived events change-detection (SCD LAG → append subset) | `sql_patterns/61-derived-events-change-detection/` |
+| 62 | Value Creation Zone bi-monthly refresh (staging + PSM SP) | `sql_patterns/62-value-creation-zone-bimonthly/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

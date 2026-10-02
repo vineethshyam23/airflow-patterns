@@ -127,6 +127,7 @@ Helper modules and enrichment jobs:
 - Menu Engineering VM Postgres land (SSH COPY + dual-bucket product→rawzone + VM cleanup)
 - Keycloak SSO events land (backup tar.gz → Composer FUSE unpack → append-only trusted)
 - BigQuery product API refined zone + AlloyDB incremental dual-store sync
+- Composer dev DAG bucket snapshot (redacted export before environment deletion)
 - BigQuery utilities
 - Error handling / retry helpers
 - Logging utilities
@@ -257,6 +258,7 @@ Shipped so far (sanitized portfolio samples):
 | 60 | Delivery order reverse ETL (BQ → Odoo stock.picking) | `odoo_integration/60-delivery-order-reverse-etl/` |
 | 61 | Derived events change-detection (SCD LAG → append subset) | `sql_patterns/61-derived-events-change-detection/` |
 | 62 | Value Creation Zone bi-monthly refresh (staging + PSM SP) | `sql_patterns/62-value-creation-zone-bimonthly/` |
+| 63 | Composer dev DAG bucket snapshot | `utilities/63-composer-dev-dag-snapshot/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

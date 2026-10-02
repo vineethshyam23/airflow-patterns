@@ -68,6 +68,7 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 | 59 | Salesforce refined daily aggregates (8-table fan-out) | `salesforce_integration/59-sfdc-refined-daily-aggregates/` | `dags/etl_refined_salesforce.py` | Shipped 2026-09-29 |
 | 60 | Delivery order reverse ETL (BQ → Odoo stock.picking) | `odoo_integration/60-delivery-order-reverse-etl/` | `dags/horeca_digital/archived/etl_delivery_order.py` + `archived/odoo_migration/product_installation_odoo.py` (delivery path) | Shipped 2026-09-30 |
 | 61 | Derived events change-detection (SCD LAG → append subset) | `sql_patterns/61-derived-events-change-detection/` | `dags/etl_derived_events.py` | Shipped 2026-10-01; representative 6 of ~58 tasks |
+| 62 | Value Creation Zone bi-monthly refresh (staging + PSM SP barrier) | `sql_patterns/62-value-creation-zone-bimonthly/` | `dags/etl_value_creation_zone_3rd_and_8th_of_month_v2.py` | Shipped 2026-10-02; distinct from Food Graph #46 / Offer Tool #48 |
 
 ## Also already in repo (not from daily automation priority queue)
 
@@ -81,16 +82,18 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 
 ## Next (priority order)
 
-1. Refined zone monthly / value-creation zone (`etl_value_creation_zone_3rd_and_8th_of_month_v2.py`) — only if engineering depth is distinct from #46 / #48
+1. Refined zone monthly (`etl_refined_zone_monthly.py` / `etl_refined_zone_2nd_of_month.py`) — only if depth is distinct from #46 / #48 / #62
 2. Exchange rates / Tourism NRW — skip unless engineering depth returns
 3. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets
 4. Skip thin dbt wrappers: matching-engine, activity-score, app rawfeed job, master_id, owg_v2
 5. Do not confuse `bq_reservation.py` (BigQuery slot reservation helper) with Reservation Tool product (#54)
-6. Do not re-ship #56 / #57 / #58 / #59 / #60 / #61
+6. Do not re-ship #56 / #57 / #58 / #59 / #60 / #61 / #62
 7. Pattern 61 = derived_events SCD LAG / Adobe unnest subset; do not re-ship remaining hyd/rt arms as separate patterns unless a new detection style appears
 8. Shim-manager access-log parser (`sso_manager_events.py`) — only if depth warrants
 9. SalesforceProductInstallation land queries (companion to #60 upstream) — only if distinct depth remains after #60
-10. Pattern 60 = BQ → Odoo stock.picking reverse ETL; distinct from inbound Odoo #06–#15 / #42
+10. Sibling PSM CSV land (`etl_value_creation_zone_3rd_and_8th_of_month_psm.py`) — only if GCS→staging uplift depth warrants a separate pattern after #62
+11. Pattern 60 = BQ → Odoo stock.picking reverse ETL; distinct from inbound Odoo #06–#15 / #42
+12. Pattern 62 = VCD bi-monthly staging + PSM SP barrier; do not re-ship archived v1 external-project copy
 
 
 ## Skipped

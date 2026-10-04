@@ -143,6 +143,7 @@ Complex SQL implementations:
 - Derived events change-detection (SCD LAG / Adobe unnest → append-only event store)
 - Value Creation Zone bi-monthly staging + PSM stored-proc barrier (3rd/8th)
 - MAG penetration monthly historization (2nd-of-month WRITE_APPEND + corp delta)
+- MAG sales / acquisitions monthly historization (1st-of-month WRITE_APPEND + partner-ID clean)
 - Fuzzy matching algorithms
 - Window functions for analytics
 - Performance-optimized CTEs
@@ -261,6 +262,7 @@ Shipped so far (sanitized portfolio samples):
 | 62 | Value Creation Zone bi-monthly refresh (staging + PSM SP) | `sql_patterns/62-value-creation-zone-bimonthly/` |
 | 63 | Composer dev DAG bucket snapshot | `utilities/63-composer-dev-dag-snapshot/` |
 | 64 | MAG penetration monthly historization (2nd + corp delta) | `sql_patterns/64-mag-penetration-monthly-hist/` |
+| 65 | MAG sales / acquisitions monthly historization (1st + partner-ID clean) | `sql_patterns/65-mag-sales-acquisitions-monthly-hist/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

@@ -48,8 +48,9 @@ package.
 - Hospitality filter text anonymized (`horeca` → `hospitality`)
 - Emails / Slack channel / webhook → `dataops@example.com` + log stub
 - Author names removed; `max_active_runs=1` added
-- Sibling PSM CSV land DAG (`*_psm.py`) and archived v1 external-project
-  copy omitted on purpose
+- Sibling PSM CSV land DAG shipped separately as pattern 66
+  (`sql_patterns/66-vcd-psm-csv-land/`); archived v1 external-project
+  copy still omitted
 - Inline SQL extracted to `vcd_queries.py`
 
 ## Distinct from patterns 46 / 48

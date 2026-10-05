@@ -51,5 +51,5 @@ land — not buried in a notebook.
 - Pattern 48 / 52: Offer Tool product-project zone publish.
 - Pattern 24: MAG acquisition + penetration monthly *export* (partner
   bus). This pattern *consumes* MAG hist tables as VCD inputs.
-- Sibling PSM CSV land DAG (`*_psm.py`): GCS → staging of uplift CSVs
-  after the stored proc writes objects. Out of scope for this folder.
+- Sibling PSM CSV land DAG: GCS → staging of uplift CSVs after the
+  stored proc writes objects — shipped as pattern 66.

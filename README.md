@@ -143,6 +143,7 @@ Complex SQL implementations:
 - Derived events change-detection (SCD LAG / Adobe unnest → append-only event store)
 - Value Creation Zone bi-monthly staging + PSM stored-proc barrier (3rd/8th)
 - VCD PSM uplift CSV land (GCS file × country × env fan-out + dbt)
+- Daily refined-zone SCD spine (hash insert/expire + test quarantine + reservation pin)
 - MAG penetration monthly historization (2nd-of-month WRITE_APPEND + corp delta)
 - MAG sales / acquisitions monthly historization (1st-of-month WRITE_APPEND + partner-ID clean)
 - Fuzzy matching algorithms
@@ -265,6 +266,7 @@ Shipped so far (sanitized portfolio samples):
 | 64 | MAG penetration monthly historization (2nd + corp delta) | `sql_patterns/64-mag-penetration-monthly-hist/` |
 | 65 | MAG sales / acquisitions monthly historization (1st + partner-ID clean) | `sql_patterns/65-mag-sales-acquisitions-monthly-hist/` |
 | 66 | VCD PSM uplift CSV land (GCS fan-out + dbt) | `sql_patterns/66-vcd-psm-csv-land/` |
+| 67 | Daily refined-zone SCD spine (actuals + hash SCD2 + test quarantine) | `sql_patterns/67-daily-refined-zone-scd-spine/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

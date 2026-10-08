@@ -128,6 +128,7 @@ Helper modules and enrichment jobs:
 - Keycloak SSO events land (backup tar.gz → Composer FUSE unpack → append-only trusted)
 - BigQuery product API refined zone + AlloyDB incremental dual-store sync
 - Composer dev DAG bucket snapshot (redacted export before environment deletion)
+- Wholesale NL dual-source land (MCC OAuth mutation API + CHD CSV ShortCircuit clean → staging → dbt)
 - BigQuery utilities
 - Error handling / retry helpers
 - Logging utilities
@@ -269,6 +270,7 @@ Shipped so far (sanitized portfolio samples):
 | 66 | VCD PSM uplift CSV land (GCS fan-out + dbt) | `sql_patterns/66-vcd-psm-csv-land/` |
 | 67 | Daily refined-zone SCD spine (actuals + hash SCD2 + test quarantine) | `sql_patterns/67-daily-refined-zone-scd-spine/` |
 | 68 | Sales data mart two-phase copy (views InsertJob + tables BQ-to-BQ) | `sql_patterns/68-sales-datamart-two-phase-copy/` |
+| 69 | Wholesale NL dual-source land (MCC API + CHD CSV) | `utilities/69-makro-nl-dual-source-land/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

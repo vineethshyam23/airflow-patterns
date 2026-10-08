@@ -75,6 +75,7 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 | 66 | VCD PSM uplift CSV land (GCS fan-out + dbt) | `sql_patterns/66-vcd-psm-csv-land/` | `dags/etl_value_creation_zone_3rd_and_8th_of_month_psm.py` (+ `horeca_digital/sql/vcdb_psm.sql`) | Shipped 2026-10-05; sibling of #62 SP producer |
 | 67 | Daily refined-zone SCD spine (actuals + hash SCD2 + test quarantine) | `sql_patterns/67-daily-refined-zone-scd-spine/` | `dags/etl_refined_zone.py` (+ `horeca_digital/bq_reservation.py`) | Shipped 2026-10-06; focused subset of ~4.7k-line monolith |
 | 68 | Sales data mart two-phase copy (views InsertJob + tables BQ-to-BQ) | `sql_patterns/68-sales-datamart-two-phase-copy/` | `dags/etl_dwh_sales_export.py` | Shipped 2026-10-07; distinct from SFDC refined #59 / refined SCD spine #67 |
+| 69 | Wholesale NL dual-source land (MCC API + CHD CSV) | `utilities/69-makro-nl-dual-source-land/` | `dags/etl_makro_NL.py` + `dags/horeca_digital/makro_customers_api.py` (inbound) | Shipped 2026-10-08; distinct from SEO land #25 / POS HMAC CSV #35 |
 
 ## Also already in repo (not from daily automation priority queue)
 
@@ -88,24 +89,24 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 
 ## Next (priority order)
 
-1. `etl_makro_NL.py` (+ `makro_customers_api.py` inbound path) — dual MCC API + CHD CSV land if depth clears vs vendor lands #25/#35
-2. `etl_makro_hubspot_export.py` — reverse HubSpot push (prospects/matched/dedupe); only after or instead of #1 if outbound depth is stronger
-3. `etl_dish_reservation_centralization.py` — CE/CP denormalized RT extracts; only if distinct from Reservation land #54 / derived-events #61
-4. Remaining `etl_refined_zone` arms (MCC country fan-out / mapping unions / Order refined) — only if a new engineering contract appears beyond #67 spine
-5. Exchange rates / Tourism NRW — skip unless engineering depth returns
-6. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets
-7. Skip thin dbt wrappers: matching-engine, activity-score, app rawfeed job, master_id, owg_v2
-8. Do not confuse `bq_reservation.py` (BigQuery slot reservation helper, used in #67) with Reservation Tool product (#54)
-9. Do not re-ship #56 / #57 / #58 / #59 / #60 / #61 / #62 / #63 / #64 / #65 / #66 / #67 / #68
-10. Pattern 61 = derived_events SCD LAG / Adobe unnest subset; do not re-ship remaining hyd/rt arms as separate patterns unless a new detection style appears
-11. Shim-manager access-log parser (`sso_manager_events.py`) — only if depth warrants
-12. SalesforceProductInstallation land queries (companion to #60 upstream) — only if distinct depth remains after #60
-13. Pattern 60 = BQ → Odoo stock.picking reverse ETL; distinct from inbound Odoo #06–#15 / #42
-14. Pattern 64 = MAG penetration month-grain hist; do not re-ship as scoring export (that is #24)
-15. Pattern 65 = MAG sales/acquisitions hist + partner-ID clean; do not re-ship as penetration (#64) or export (#24)
-16. Pattern 66 = PSM CSV land sibling of #62; do not re-ship as SP producer (#62) or vendor SEO/POS land (#25/#35)
-17. Pattern 67 = daily refined SCD spine; do not re-ship full `etl_refined_zone` monolith or confuse with Matching SCD (#01) / derived events (#61) / MAG month hist (#64/#65)
-18. Pattern 68 = sales mart two-phase copy; do not re-ship as SFDC refined (#59) or confuse with analytical SCD spine (#67)
+1. `etl_makro_hubspot_export.py` (+ outbound helpers in `makro_customers_api.py`) — reverse HubSpot / MCC push (prospects/matched/dedupe); distinct from inbound dual-source #69
+2. `etl_dish_reservation_centralization.py` — CE/CP denormalized RT extracts; only if distinct from Reservation land #54 / derived-events #61
+3. Remaining `etl_refined_zone` arms (MCC country fan-out / mapping unions / Order refined) — only if a new engineering contract appears beyond #67 spine
+4. Exchange rates / Tourism NRW — skip unless engineering depth returns
+5. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets
+6. Skip thin dbt wrappers: matching-engine, activity-score, app rawfeed job, master_id, owg_v2
+7. Do not confuse `bq_reservation.py` (BigQuery slot reservation helper, used in #67) with Reservation Tool product (#54)
+8. Do not re-ship #56 / #57 / #58 / #59 / #60 / #61 / #62 / #63 / #64 / #65 / #66 / #67 / #68 / #69
+9. Pattern 61 = derived_events SCD LAG / Adobe unnest subset; do not re-ship remaining hyd/rt arms as separate patterns unless a new detection style appears
+10. Shim-manager access-log parser (`sso_manager_events.py`) — only if depth warrants
+11. SalesforceProductInstallation land queries (companion to #60 upstream) — only if distinct depth remains after #60
+12. Pattern 60 = BQ → Odoo stock.picking reverse ETL; distinct from inbound Odoo #06–#15 / #42
+13. Pattern 64 = MAG penetration month-grain hist; do not re-ship as scoring export (that is #24)
+14. Pattern 65 = MAG sales/acquisitions hist + partner-ID clean; do not re-ship as penetration (#64) or export (#24)
+15. Pattern 66 = PSM CSV land sibling of #62; do not re-ship as SP producer (#62) or vendor SEO/POS land (#25/#35)
+16. Pattern 67 = daily refined SCD spine; do not re-ship full `etl_refined_zone` monolith or confuse with Matching SCD (#01) / derived events (#61) / MAG month hist (#64/#65)
+17. Pattern 68 = sales mart two-phase copy; do not re-ship as SFDC refined (#59) or confuse with analytical SCD spine (#67)
+18. Pattern 69 = wholesale NL dual-source inbound; do not re-ship as HubSpot outbound (that is next) or confuse with SEO/HMAC lands (#25/#35)
 
 
 ## Skipped

@@ -96,6 +96,7 @@ Production data quality frameworks:
 - Multi-layer validation strategies
 - Automated reconciliation
 - Invoice Radar — LPV vs invoice discrepancy report (Excel + email)
+- Dining Guide DQ-gated multi-env publish (dbt + Blake3 dine_id + 15% proportion gate → app BQ projects)
 - Anomaly detection
 - SLA monitoring and alerting
 
@@ -273,6 +274,7 @@ Shipped so far (sanitized portfolio samples):
 | 68 | Sales data mart two-phase copy (views InsertJob + tables BQ-to-BQ) | `sql_patterns/68-sales-datamart-two-phase-copy/` |
 | 69 | Wholesale NL dual-source land (MCC API + CHD CSV) | `utilities/69-makro-nl-dual-source-land/` |
 | 70 | Wholesale NL HubSpot reverse export (prospects / matched / dedupe) | `utilities/70-wholesale-nl-hubspot-export/` |
+| 71 | Dining Guide DQ-gated multi-env publish (dbt + Blake3 + 15% gate) | `data_quality/71-dining-guide-dq-gated-publish/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

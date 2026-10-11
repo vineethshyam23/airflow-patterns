@@ -49,6 +49,7 @@ Patterns from a 3-year, 116-DAG ERP migration project:
 - Dual-write for zero-downtime cutover
 - Mach2 daily sales Excel email packs (activations / cancellations / channels)
 - Delivery-order reverse ETL (BQ → Odoo stock.picking insert/update)
+- Weekly sale_order_line dbt-snapshot soft-close (GCS ID land, avoid XCom)
 - Data reconciliation frameworks
 
 ### CRM Integration (Salesforce)
@@ -275,6 +276,7 @@ Shipped so far (sanitized portfolio samples):
 | 69 | Wholesale NL dual-source land (MCC API + CHD CSV) | `utilities/69-makro-nl-dual-source-land/` |
 | 70 | Wholesale NL HubSpot reverse export (prospects / matched / dedupe) | `utilities/70-wholesale-nl-hubspot-export/` |
 | 71 | Dining Guide DQ-gated multi-env publish (dbt + Blake3 + 15% gate) | `data_quality/71-dining-guide-dq-gated-publish/` |
+| 72 | Odoo sale_order_line snapshot soft-close (GCS ID land) | `odoo_integration/72-sale-order-line-snapshot-cleanup/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

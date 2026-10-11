@@ -326,6 +326,22 @@ resolution, serial lots, machine codes, and fulfilment validation.
 [View Pattern →](./60-delivery-order-reverse-etl/)
 
 
+### 72 - Sale Order Line Snapshot Soft-Close Cleanup
+
+Weekly reconcile of live Odoo `sale_order_line` IDs against the dbt
+snapshot: land IDs via GCS → BigQuery temp table, soft-close open
+orphans (`dbt_valid_to`), log sync bands. Avoids XCom payload limits.
+
+**Key Features**:
+- ID-only Postgres extract + GCSHook upload (no Composer FUSE)
+- Temp-table LEFT JOIN orphan detection before UPDATE
+- Soft-close preserves snapshot history (no hard DELETE)
+- Sync bands (<100 / 100–1000 / >1000) in post-run summary logs
+- Distinct from inbound exports (06–15), active-ID push (13), reverse ETL (60)
+
+[View Pattern →](./72-sale-order-line-snapshot-cleanup/)
+
+
 ## Technology Stack
 
 **ERP System**: Odoo 13/14/15/16  

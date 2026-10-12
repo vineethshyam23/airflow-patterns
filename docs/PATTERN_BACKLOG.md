@@ -79,6 +79,7 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 | 70 | Wholesale NL HubSpot reverse export (prospects / matched / dedupe) | `utilities/70-wholesale-nl-hubspot-export/` | `dags/etl_makro_hubspot_export.py` + `dags/horeca_digital/makro_customers_api.py` (export_*) | Shipped 2026-10-09; outbound sibling of inbound #69 |
 | 71 | Dining Guide DQ-gated multi-env publish (dbt + Blake3 + 15% gate) | `data_quality/71-dining-guide-dq-gated-publish/` | `dags/etl_refined_dish_dine.py` (+ ratings SQL stubbed) | Shipped 2026-10-10; distinct from Food Graph #40 / Invoice Radar #32 / refined SCD #67 |
 | 72 | Odoo sale_order_line snapshot soft-close (GCS ID land) | `odoo_integration/72-sale-order-line-snapshot-cleanup/` | `dags/etl_odoo_sale_order_line_cleanup_optimized.py` | Shipped 2026-10-11; distinct from inbound #06–#15 / active-ID #13 / reverse ETL #60 |
+| 73 | User Management Cloud SQL SCD Type 2 (serial export + bootstrap) | `sql_patterns/73-user-management-cloudsql-scd/` | `dags/etl_user_management.py` (+ `operators/cloudsql_retry_operator.py`) | Shipped 2026-10-12; distinct from Offer Tool #27 / Hydra #39 / Reservation #54 / food-order #56 |
 
 ## Also already in repo (not from daily automation priority queue)
 
@@ -92,15 +93,15 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 
 ## Next (priority order)
 
-1. `etl_user_management.py` — Cloud SQL MySQL 23-table CSV export + SCD Type 2 into `um_*` (distinct from Hydra #39 / Reservation #54)
-2. `etl_eijsink_adyen_reports_v2.py` — Adyen report land v2 (1-day window, schema JSON, per-file load) if distinct from #03
-3. `etl_dataforseo_menu_extraction.py` — menu HTML/MD extraction chain beyond URL discovery #18
-4. Remaining `etl_refined_zone` arms (MCC / mappings / Order) — only if new contract beyond #67
-5. Exchange rates / Tourism NRW — skip unless engineering depth returns
-6. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets
-7. Skip thin dbt wrappers: matching-engine, activity-score, app rawfeed job, master_id, owg_v2
-8. Do not confuse `bq_reservation.py` (BQ slot helper, #67) with Reservation Tool product (#54)
-9. Do not re-ship #56–#72
+1. `etl_eijsink_adyen_reports_v2.py` — Adyen report land v2 (1-day window, schema JSON, per-file load) if distinct from #03
+2. `etl_dataforseo_menu_extraction.py` — menu HTML/MD extraction chain beyond URL discovery #18
+3. Remaining `etl_refined_zone` arms (MCC / mappings / Order) — only if new contract beyond #67
+4. Exchange rates / Tourism NRW — skip unless engineering depth returns
+5. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets
+6. Skip thin dbt wrappers: matching-engine, activity-score, app rawfeed job, master_id, owg_v2
+7. Do not confuse `bq_reservation.py` (BQ slot helper, #67) with Reservation Tool product (#54)
+8. Do not re-ship #56–#73
+9. Pattern 73 = UM Cloud SQL SCD2; do not re-ship remaining oauth/session/invitation arms unless a new contract appears
 10. Pattern 72 = sale_order_line snapshot soft-close; do not re-ship as inbound land or active-ID export (#13)
 11. Pattern 71 = Dining Guide DQ-gated publish; do not re-ship full_load sibling unless depth warrants; do not confuse with Food Graph #40
 12. Pattern 70 = HubSpot reverse export; do not re-ship as inbound land (#69)

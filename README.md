@@ -144,6 +144,7 @@ Complex SQL implementations:
 - Offer Tool weekday-aware multi-project zone fan-out (Wed acc+stg+prod)
 - Offer Tool on-demand lean zone (establishments / ES / catalog, schedule=None)
 - Food-ordering multi-shard Cloud SQL SCD Type 2 (master + shard fan-out + CSV merge)
+- User Management identity Cloud SQL SCD Type 2 (serial export + semicolon CSV + first-run bootstrap)
 - Derived events change-detection (SCD LAG / Adobe unnest → append-only event store)
 - Value Creation Zone bi-monthly staging + PSM stored-proc barrier (3rd/8th)
 - VCD PSM uplift CSV land (GCS file × country × env fan-out + dbt)
@@ -277,6 +278,7 @@ Shipped so far (sanitized portfolio samples):
 | 70 | Wholesale NL HubSpot reverse export (prospects / matched / dedupe) | `utilities/70-wholesale-nl-hubspot-export/` |
 | 71 | Dining Guide DQ-gated multi-env publish (dbt + Blake3 + 15% gate) | `data_quality/71-dining-guide-dq-gated-publish/` |
 | 72 | Odoo sale_order_line snapshot soft-close (GCS ID land) | `odoo_integration/72-sale-order-line-snapshot-cleanup/` |
+| 73 | User Management Cloud SQL SCD Type 2 (serial + bootstrap) | `sql_patterns/73-user-management-cloudsql-scd/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

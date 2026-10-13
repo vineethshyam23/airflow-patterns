@@ -88,6 +88,7 @@ Financial data processing patterns:
 - Transaction ingestion and validation
 - Payment wallet DWH API ingest (KYC + transactions + VOP → staging → dbt)
 - Collections partner multi-market case ingest (API → GCS → staging → dbt)
+- Adyen report land v2 (1-day CA CSV + file_name lineage + ensure staging tables)
 - Payment reconciliation
 - Multi-currency handling
 - Compliance and audit trails
@@ -279,6 +280,7 @@ Shipped so far (sanitized portfolio samples):
 | 71 | Dining Guide DQ-gated multi-env publish (dbt + Blake3 + 15% gate) | `data_quality/71-dining-guide-dq-gated-publish/` |
 | 72 | Odoo sale_order_line snapshot soft-close (GCS ID land) | `odoo_integration/72-sale-order-line-snapshot-cleanup/` |
 | 73 | User Management Cloud SQL SCD Type 2 (serial + bootstrap) | `sql_patterns/73-user-management-cloudsql-scd/` |
+| 74 | Adyen report land v2 (1-day CA + file_name + ensure tables) | `payment_processing/74-adyen-report-land-v2/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

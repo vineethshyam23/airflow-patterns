@@ -73,6 +73,7 @@ logs/
 *.parquet
 *.json
 !package.json
+!**/schema_json/*.json
 *.pickle
 *.pkl
 

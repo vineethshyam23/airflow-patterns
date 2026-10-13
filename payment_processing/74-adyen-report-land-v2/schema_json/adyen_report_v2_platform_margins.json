@@ -1,0 +1,16 @@
+[
+  {"name": "Billing_Month", "type": "STRING", "mode": "NULLABLE"},
+  {"name": "BalancePlatform", "type": "STRING", "mode": "NULLABLE"},
+  {"name": "AccountHolder", "type": "STRING", "mode": "NULLABLE"},
+  {"name": "BalanceAccount", "type": "STRING", "mode": "NULLABLE"},
+  {"name": "Fee_Type", "type": "STRING", "mode": "NULLABLE"},
+  {"name": "Fee_Name", "type": "STRING", "mode": "NULLABLE"},
+  {"name": "Fee_Strategy", "type": "STRING", "mode": "NULLABLE"},
+  {"name": "Currency_Code", "type": "STRING", "mode": "NULLABLE"},
+  {"name": "Fee_Amount", "type": "NUMERIC", "mode": "NULLABLE"},
+  {"name": "AccountHolderDescription", "type": "STRING", "mode": "NULLABLE"},
+  {"name": "AccountHolderReference", "type": "STRING", "mode": "NULLABLE"},
+  {"name": "BalanceAccountDescription", "type": "STRING", "mode": "NULLABLE"},
+  {"name": "BalanceAccountReference", "type": "STRING", "mode": "NULLABLE"},
+  {"name": "file_name", "type": "STRING", "mode": "NULLABLE"}
+]

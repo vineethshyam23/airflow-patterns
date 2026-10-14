@@ -133,6 +133,7 @@ Helper modules and enrichment jobs:
 - Composer dev DAG bucket snapshot (redacted export before environment deletion)
 - Wholesale NL dual-source land (MCC OAuth mutation API + CHD CSV ShortCircuit clean → staging → dbt)
 - Wholesale NL HubSpot reverse export (manual full-table prospects / matched / dedupe → MCC OAuth POST)
+- SEO menu content extraction (control table + HTML→MD→BQML page grain; downstream of URL discovery)
 - BigQuery utilities
 - Error handling / retry helpers
 - Logging utilities
@@ -281,6 +282,7 @@ Shipped so far (sanitized portfolio samples):
 | 72 | Odoo sale_order_line snapshot soft-close (GCS ID land) | `odoo_integration/72-sale-order-line-snapshot-cleanup/` |
 | 73 | User Management Cloud SQL SCD Type 2 (serial + bootstrap) | `sql_patterns/73-user-management-cloudsql-scd/` |
 | 74 | Adyen report land v2 (1-day CA + file_name + ensure tables) | `payment_processing/74-adyen-report-land-v2/` |
+| 75 | SEO menu content extraction (HTML → MD → BQML page grain) | `utilities/75-dataforseo-menu-content-extraction/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

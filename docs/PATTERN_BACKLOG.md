@@ -81,6 +81,7 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 | 72 | Odoo sale_order_line snapshot soft-close (GCS ID land) | `odoo_integration/72-sale-order-line-snapshot-cleanup/` | `dags/etl_odoo_sale_order_line_cleanup_optimized.py` | Shipped 2026-10-11; distinct from inbound #06–#15 / active-ID #13 / reverse ETL #60 |
 | 73 | User Management Cloud SQL SCD Type 2 (serial export + bootstrap) | `sql_patterns/73-user-management-cloudsql-scd/` | `dags/etl_user_management.py` (+ `operators/cloudsql_retry_operator.py`) | Shipped 2026-10-12; distinct from Offer Tool #27 / Hydra #39 / Reservation #54 / food-order #56 |
 | 74 | Adyen report land v2 (1-day CA download + file_name + ensure tables) | `payment_processing/74-adyen-report-land-v2/` | `dags/etl_eijsink_adyen_reports_v2.py` + `dags/horeca_digital/eijsink_adyen_reports_v2.py` + `dags/schema_json/eijsink_adyen_v2_*.json` | Shipped 2026-10-13; distinct from Management API #03 |
+| 75 | SEO menu content extraction (HTML → MD → BQML page grain) | `utilities/75-dataforseo-menu-content-extraction/` | `dags/etl_dataforseo_menu_extraction.py` + `horeca_digital/dataforseo_{classify,fetch,convert,stage,extract}_*` | Shipped 2026-10-14; downstream of URL discovery #18 |
 
 ## Also already in repo (not from daily automation priority queue)
 
@@ -94,13 +95,13 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 
 ## Next (priority order)
 
-1. `etl_dataforseo_menu_extraction.py` — menu HTML/MD extraction chain beyond URL discovery #18
-2. Remaining `etl_refined_zone` arms (MCC / mappings / Order) — only if new contract beyond #67
-3. Exchange rates / Tourism NRW — skip unless engineering depth returns
-4. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets
-5. Skip thin dbt wrappers: matching-engine, activity-score, app rawfeed job, master_id, owg_v2
-6. Do not confuse `bq_reservation.py` (BQ slot helper, #67) with Reservation Tool product (#54)
-7. Do not re-ship #56–#74
+1. Remaining `etl_refined_zone` arms (MCC / mappings / Order) — only if new contract beyond #67
+2. Exchange rates / Tourism NRW — skip unless engineering depth returns
+3. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets
+4. Skip thin dbt wrappers: matching-engine, activity-score, app rawfeed job, master_id, owg_v2
+5. Do not confuse `bq_reservation.py` (BQ slot helper, #67) with Reservation Tool product (#54)
+6. Do not re-ship #56–#75
+7. Pattern 75 = menu content extract; do not re-ship URL discovery #18 or SEO land #25 as the same pattern
 8. Pattern 74 = Adyen report land v2; do not re-ship v1 merge path or Management API #03
 9. Pattern 73 = UM Cloud SQL SCD2; do not re-ship remaining oauth/session/invitation arms unless a new contract appears
 10. Pattern 72 = sale_order_line snapshot soft-close; do not re-ship as inbound land or active-ID export (#13)

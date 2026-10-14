@@ -95,18 +95,18 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 
 ## Next (priority order)
 
-1. Remaining `etl_refined_zone` arms (MCC / mappings / Order) — only if new contract beyond #67
-2. Exchange rates / Tourism NRW — skip unless engineering depth returns
-3. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets
-4. Skip thin dbt wrappers: matching-engine, activity-score, app rawfeed job, master_id, owg_v2
-5. Do not confuse `bq_reservation.py` (BQ slot helper, #67) with Reservation Tool product (#54)
-6. Do not re-ship #56–#75
-7. Pattern 75 = menu content extract; do not re-ship URL discovery #18 or SEO land #25 as the same pattern
-8. Pattern 74 = Adyen report land v2; do not re-ship v1 merge path or Management API #03
-9. Pattern 73 = UM Cloud SQL SCD2; do not re-ship remaining oauth/session/invitation arms unless a new contract appears
-10. Pattern 72 = sale_order_line snapshot soft-close; do not re-ship as inbound land or active-ID export (#13)
-11. Pattern 71 = Dining Guide DQ-gated publish; do not re-ship full_load sibling unless depth warrants; do not confuse with Food Graph #40
-12. Pattern 70 = HubSpot reverse export; do not re-ship as inbound land (#69)
+1. `etl_odoo_data_import_DWH.py` — daily ~105-table Odoo PG full extract → BQ staging → dbt fan-out (primary inbound; distinct from #06–#15 / #01–#05)
+2. Alternate: `etl_adobe_traffic_data.py` — Hydra Adobe traffic metrics CSV → downstream GCS (distinct from AA rawfeed #49/#51)
+3. Remaining `etl_refined_zone` arms (MCC / mappings / Order) — only if new contract beyond #67
+4. Exchange rates / Tourism NRW — skip unless engineering depth returns
+5. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets
+6. Skip thin dbt wrappers: matching-engine, activity-score, app rawfeed job / hourly_v2 test, master_id, owg_v2
+7. Skip `etl_leads_odoo_hist_load.py` (stub; logic commented out)
+8. Do not confuse `bq_reservation.py` (BQ slot helper, #67) with Reservation Tool product (#54)
+9. Do not re-ship #56–#75
+10. Pattern 75 = menu content extract; do not re-ship URL discovery #18 or SEO land #25 as the same pattern
+11. Pattern 74 = Adyen report land v2; do not re-ship v1 merge path or Management API #03
+12. Pattern 73 = UM Cloud SQL SCD2; do not re-ship remaining oauth/session/invitation arms unless a new contract appears
 
 
 ## Skipped

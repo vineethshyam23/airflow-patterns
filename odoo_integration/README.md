@@ -342,6 +342,23 @@ orphans (`dbt_valid_to`), log sync bands. Avoids XCom payload limits.
 [View Pattern →](./72-sale-order-line-snapshot-cleanup/)
 
 
+### 76 - Odoo DWH Full Extract (Postgres → staging → dbt)
+
+Daily primary inbound spine: multi-table Odoo Postgres extract to GCS /
+BigQuery staging (`WRITE_TRUNCATE`), then parallel dbt Cloud domain jobs
+and a datacore view refresh. Portfolio ships a representative subset of
+the ~105-table production DAG.
+
+**Key Features**:
+- One parse-time TaskGroup (avoids DagBag import timeout)
+- `max_active_tasks` throttle + `dagrun_timeout` against stuck dbt HTTP
+- Local-disk NDJSON + GCSHook upload (no Composer FUSE race)
+- Incremental create/write lookback for heavy tables; 50k chunks for tax/SOL rel
+- Distinct from helpdesk-only pull (15) and outbound / reverse family (06–14, 60, 72)
+
+[View Pattern →](./76-odoo-dwh-full-extract/)
+
+
 ## Technology Stack
 
 **ERP System**: Odoo 13/14/15/16  

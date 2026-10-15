@@ -50,6 +50,7 @@ Patterns from a 3-year, 116-DAG ERP migration project:
 - Mach2 daily sales Excel email packs (activations / cancellations / channels)
 - Delivery-order reverse ETL (BQ → Odoo stock.picking insert/update)
 - Weekly sale_order_line dbt-snapshot soft-close (GCS ID land, avoid XCom)
+- Daily Odoo DWH inbound spine (Postgres → staging → parallel dbt + datacore)
 - Data reconciliation frameworks
 
 ### CRM Integration (Salesforce)
@@ -283,6 +284,7 @@ Shipped so far (sanitized portfolio samples):
 | 73 | User Management Cloud SQL SCD Type 2 (serial + bootstrap) | `sql_patterns/73-user-management-cloudsql-scd/` |
 | 74 | Adyen report land v2 (1-day CA + file_name + ensure tables) | `payment_processing/74-adyen-report-land-v2/` |
 | 75 | SEO menu content extraction (HTML → MD → BQML page grain) | `utilities/75-dataforseo-menu-content-extraction/` |
+| 76 | Odoo DWH full extract (Postgres → staging → dbt fan-out) | `odoo_integration/76-odoo-dwh-full-extract/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

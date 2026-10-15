@@ -1,0 +1,4 @@
+flask
+gunicorn
+playwright==1.60.0
+playwright-stealth

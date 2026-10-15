@@ -285,6 +285,7 @@ Shipped so far (sanitized portfolio samples):
 | 74 | Adyen report land v2 (1-day CA + file_name + ensure tables) | `payment_processing/74-adyen-report-land-v2/` |
 | 75 | SEO menu content extraction (HTML → MD → BQML page grain) | `utilities/75-dataforseo-menu-content-extraction/` |
 | 76 | Odoo DWH full extract (Postgres → staging → dbt fan-out) | `odoo_integration/76-odoo-dwh-full-extract/` |
+| 77 | Menu extraction (Cloud Run renderer + ledger + page menu) | `utilities/77-menu-extraction-process/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

@@ -1,0 +1,15 @@
+[
+  {"name": "id", "type": "INTEGER", "mode": "REQUIRED"},
+  {"name": "parent_id", "type": "INTEGER", "mode": "NULLABLE"},
+  {"name": "res_id", "type": "INTEGER", "mode": "NULLABLE"},
+  {"name": "model", "type": "STRING", "mode": "NULLABLE"},
+  {"name": "message_type", "type": "STRING", "mode": "NULLABLE"},
+  {"name": "subject", "type": "STRING", "mode": "NULLABLE"},
+  {"name": "body", "type": "STRING", "mode": "NULLABLE"},
+  {"name": "author_id", "type": "INTEGER", "mode": "NULLABLE"},
+  {"name": "email_from", "type": "STRING", "mode": "NULLABLE"},
+  {"name": "date", "type": "TIMESTAMP", "mode": "NULLABLE"},
+  {"name": "create_date", "type": "TIMESTAMP", "mode": "NULLABLE"},
+  {"name": "write_date", "type": "TIMESTAMP", "mode": "NULLABLE"},
+  {"name": "load_date", "type": "DATE", "mode": "NULLABLE"}
+]

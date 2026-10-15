@@ -1,0 +1,1 @@
+call smartdatadb.kill_master_by_regex();

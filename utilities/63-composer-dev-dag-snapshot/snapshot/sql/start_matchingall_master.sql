@@ -1,0 +1,1 @@
+call smartdatastagdb.start_matchingall_master();

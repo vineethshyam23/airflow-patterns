@@ -48,6 +48,10 @@ Patterns from a 3-year, 116-DAG ERP migration project:
 - Batch data migration strategies
 - Incremental sync patterns
 - Dual-write for zero-downtime cutover
+- Mach2 daily sales Excel email packs (activations / cancellations / channels)
+- Delivery-order reverse ETL (BQ → Odoo stock.picking insert/update)
+- Weekly sale_order_line dbt-snapshot soft-close (GCS ID land, avoid XCom)
+- Daily Odoo DWH inbound spine (Postgres → staging → parallel dbt + datacore)
 - Data reconciliation frameworks
 
 ### CRM Integration (Salesforce)
@@ -56,6 +60,7 @@ Salesforce API integration patterns:
 - Change data capture patterns
 - Bi-directional sync strategies
 - Asset and opportunity tracking
+- Refined daily aggregates for CRM-facing warehouse snapshots (orders, reservations, Odoo revenue, POS)
 
 ### ML Pipelines
 End-to-end ML pipeline patterns:
@@ -63,17 +68,29 @@ End-to-end ML pipeline patterns:
 - Feature engineering pipelines
 - Batch scoring workflows
 - Model monitoring and versioning
+- Food Graph multi-project ML propagation (gold + stage copy + month-end ranked gaps)
+- Lead enrichment + Cloud Run batch scoring (matching-engine gate → dbt → score → Odoo)
+- Food Graph Vertex PipelineJob submit (GCS template + per-step enable flags)
 
 ### Scoring & Analytics
 Customer and establishment scoring algorithms:
 - Multi-dimensional scoring logic
 - Country-specific business rules
+- Peer gaps and establishment enrichment exports
+- Multi-country product-footprint customer exports
+- Monthly acquisition + penetration management reporting
+- Single-market Order + Reservation lifetime partner exports
+- Absolute multi-channel activity scores (0–3) with MoM transitions
+- POS Intelligence wholesale article recommendations (Vertex → Avro event bus)
 - Performance optimization for scale
 - BigQuery advanced analytics
 
 ### Payment Processing
 Financial data processing patterns:
 - Transaction ingestion and validation
+- Payment wallet DWH API ingest (KYC + transactions + VOP → staging → dbt)
+- Collections partner multi-market case ingest (API → GCS → staging → dbt)
+- Adyen report land v2 (1-day CA CSV + file_name lineage + ensure staging tables)
 - Payment reconciliation
 - Multi-currency handling
 - Compliance and audit trails
@@ -89,6 +106,8 @@ Email and campaign platform patterns:
 Production data quality frameworks:
 - Multi-layer validation strategies
 - Automated reconciliation
+- Invoice Radar — LPV vs invoice discrepancy report (Excel + email)
+- Dining Guide DQ-gated multi-env publish (dbt + Blake3 dine_id + 15% proportion gate → app BQ projects)
 - Anomaly detection
 - SLA monitoring and alerting
 
@@ -96,19 +115,54 @@ Production data quality frameworks:
 Reusable Airflow operators I've built:
 - Database retry operators
 - dbt integration operators
-- Cloud SQL operators
+- Cloud SQL operators (schedule-aware export + Hydra weekly full dump)
+- Reservation Tool incremental Cloud SQL export (id-watermark + Sunday full sync)
 - Generic API operators
 
 ### Utilities
-Helper functions and decorators:
+Helper modules and enrichment jobs:
+- Menu URL discovery from HTML (no LLM)
+- Freshdesk REST API ingest (hourly tickets + monthly dims)
+- SEO listing GCS ingest (vendor NDJSON → staging → archive)
+- AppFigures weekly mobile analytics API ingest
+- Vonage Contact Center daily stats ingest (OAuth + NDJSON + dbt)
+- Medallia survey feedback SCD Type 2 ingest (GraphQL + CSV + inline SCD2)
+- Maileon email marketing import (8 report branches + empty-file gate + dbt)
+- Jira Service Desk ingest (ADF flatten + incremental / monthly full-load TaskGroups + dbt)
+- Mailchimp email analytics ingest (campaign fan-out + staging APPEND → trusted TRUNCATE)
+- POS vendor store-details HMAC CSV ingest (daily HMAC auth + dual CSV repair + dbt)
+- POS vendor GA4 rolling event ingest (7-day DELETE+INSERT + Data Transfer + dbt)
+- Midday POS customer-master refresh (DST-safe 13:00 local + selective debtor/location land)
+- Overnight multi-country POS land + date-range backfill (master + tickets + mapping + dbt)
+- Adobe Analytics hourly Data Feed land (tar/tsv unpack + lookup fan-out + refined enrich)
+- Adobe Analytics app Data Feed land (mobile suite + lean lookups + app refined projection)
+- Menu Engineering VM Postgres land (SSH COPY + dual-bucket product→rawzone + VM cleanup)
+- Keycloak SSO events land (backup tar.gz → Composer FUSE unpack → append-only trusted)
+- BigQuery product API refined zone + AlloyDB incremental dual-store sync
+- Composer dev DAG bucket snapshot (redacted export before environment deletion)
+- Wholesale NL dual-source land (MCC OAuth mutation API + CHD CSV ShortCircuit clean → staging → dbt)
+- Wholesale NL HubSpot reverse export (manual full-table prospects / matched / dedupe → MCC OAuth POST)
+- SEO menu content extraction (control table + HTML→MD→BQML page grain; downstream of URL discovery)
 - BigQuery utilities
-- Error handling decorators
-- Retry mechanisms
+- Error handling / retry helpers
 - Logging utilities
 
 ### SQL Patterns
 Complex SQL implementations:
 - SCD Type 2 queries
+- Multi-table Cloud SQL → BigQuery SCD ingest (Offer Tool)
+- Food Graph refined multi-country fan-out / fan-in + partitioned history
+- Offer Tool weekday-aware multi-project zone fan-out (Wed acc+stg+prod)
+- Offer Tool on-demand lean zone (establishments / ES / catalog, schedule=None)
+- Food-ordering multi-shard Cloud SQL SCD Type 2 (master + shard fan-out + CSV merge)
+- User Management identity Cloud SQL SCD Type 2 (serial export + semicolon CSV + first-run bootstrap)
+- Derived events change-detection (SCD LAG / Adobe unnest → append-only event store)
+- Value Creation Zone bi-monthly staging + PSM stored-proc barrier (3rd/8th)
+- VCD PSM uplift CSV land (GCS file × country × env fan-out + dbt)
+- Daily refined-zone SCD spine (hash insert/expire + test quarantine + reservation pin)
+- Sales data mart two-phase copy (view InsertJob + table BQ-to-BQ + pause barrier)
+- MAG penetration monthly historization (2nd-of-month WRITE_APPEND + corp delta)
+- MAG sales / acquisitions monthly historization (1st-of-month WRITE_APPEND + partner-ID clean)
 - Fuzzy matching algorithms
 - Window functions for analytics
 - Performance-optimized CTEs
@@ -177,7 +231,68 @@ Shipped so far (sanitized portfolio samples):
 | 12 | Ranked menu-gaps export (hash-partition batches) | `scoring_analytics/12-rex-menu-gaps-export/` |
 | 13 | Weekly active Odoo asset ID snapshot | `odoo_integration/13-active-asset-ids-export/` |
 | 14 | Independent-establishment menu-gaps export | `scoring_analytics/14-menu-gaps-independent-export/` |
-| 15 | Mailchimp campaign analytics ETL | `marketing_integration/04-mailchimp-campaign-analytics/` |
+| 15 | Odoo helpdesk Postgres incremental pull | `odoo_integration/15-helpdesk-postgres-pull/` |
+| 16 | Peer benchmarking gaps (multi-country + Avro) | `scoring_analytics/16-benchmarking-gaps/` |
+| 17 | Establishment market-data monthly Avro export | `scoring_analytics/17-dish-market-data-export/` |
+| 18 | SEO business-listing menu URL extraction | `utilities/18-dataforseo-menu-url-extraction/` |
+| 19 | Freshdesk REST API ingest (hourly + monthly branch) | `utilities/19-freshdesk-api-ingest/` |
+| 20 | Deepideas establishment attribute weekly Avro export | `scoring_analytics/20-deepideas-establishment-export/` |
+| 21 | Deepideas main-category gaps weekly Avro export | `scoring_analytics/21-deepideas-gaps-category-export/` |
+| 22 | Deepideas gap-ingredients weekly Avro export | `scoring_analytics/22-deepideas-gaps-ingredients-export/` |
+| 23 | Multi-country platform-customer footprint export | `scoring_analytics/23-dish-customer-export/` |
+| 24 | MAG acquisition + penetration monthly export | `scoring_analytics/24-mag-acquisition-penetration/` |
+| 25 | SEO listing GCS ingest (vendor NDJSON → BQ) | `utilities/25-dataforseo-gcs-ingest/` |
+| 26 | Single-market Order + Reservation monthly export | `scoring_analytics/26-pl-dish-orders-reservations/` |
+| 27 | Offer Tool multi-table Cloud SQL SCD Type 2 ingest | `sql_patterns/27-customized-offering-scd-ingest/` |
+| 28 | AppFigures weekly mobile analytics ingest | `utilities/28-appfigures-pipeline/` |
+| 29 | Vonage Contact Center daily stats ingest | `utilities/29-vonage-contact-center-ingest/` |
+| 30 | Medallia survey feedback SCD Type 2 ingest | `utilities/30-medallia-feedback-ingest/` |
+| 31 | Maileon email marketing import (8 reports + metadata) | `utilities/31-maileon-email-import/` |
+| 32 | Invoice Radar LPV vs invoice reconciliation + email | `data_quality/32-invoice-radar/` |
+| 33 | Jira Service Desk ingest (incremental + monthly full-load) | `utilities/33-jira-service-desk-ingest/` |
+| 34 | Mailchimp email analytics ingest (6 grains + campaign fan-out) | `utilities/34-mailchimp-email-analytics/` |
+| 35 | POS vendor store-details HMAC CSV ingest | `utilities/35-booq-storedetails-hmac-ingest/` |
+| 36 | Mach2 Odoo sales Excel email report | `odoo_integration/36-mach2-sales-email-report/` |
+| 37 | Payment wallet API ingest (KYC + txn + VOP) | `payment_processing/37-dishpay-api-ingest/` |
+| 38 | POS vendor GA4 rolling event ingest | `utilities/38-booq-ga4-rolling-ingest/` |
+| 39 | Hydra Cloud SQL weekly full export (v2) | `custom_operators/39-hydra-cloudsql-weekly-export/` |
+| 40 | Food Graph ML multi-project propagation | `ml_pipelines/40-foodgraph-ml-propagation/` |
+| 41 | PAIR Finance multi-market case ingest | `payment_processing/41-pair-finance-cases-ingest/` |
+| 42 | Field-sales activities → Odoo CRM | `odoo_integration/42-sales-manager-activities-odoo/` |
+| 43 | Midday POS customer-master refresh | `utilities/43-pos-afternoon-customer-refresh/` |
+| 44 | Lead enrichment + Cloud Run scoring | `ml_pipelines/44-lead-enrichment-cloud-run-scoring/` |
+| 45 | Food Graph Vertex PipelineJob submit | `ml_pipelines/45-foodgraph-vertex-pipeline-job/` |
+| 46 | Food Graph refined multi-country zone | `sql_patterns/46-refined-foodgraph-zone/` |
+| 47 | Absolute multi-channel activity scores | `scoring_analytics/47-absolute-activity-scores/` |
+| 48 | Offer Tool weekday-aware multi-project zone | `sql_patterns/48-customized-offerings-zone/` |
+| 49 | Adobe Analytics hourly Data Feed land | `utilities/49-adobe-analytics-hourly-rawfeed/` |
+| 50 | Overnight multi-country POS land + backfill | `utilities/50-pos-overnight-multi-country/` |
+| 51 | Adobe Analytics app Data Feed land | `utilities/51-adobe-analytics-app-rawfeed/` |
+| 52 | Offer Tool on-demand multi-project zone | `sql_patterns/52-customized-offerings-zone-on-demand/` |
+| 53 | POS Intelligence recommendations → partner event bus | `scoring_analytics/53-pos-intelligence-recommendations-export/` |
+| 54 | Reservation Tool incremental Cloud SQL export | `custom_operators/54-reservation-tool-incremental-export/` |
+| 55 | Menu Engineering VM Postgres land (SSH + dual-bucket) | `utilities/55-menu-engineering-vm-land/` |
+| 56 | Food-ordering multi-shard Cloud SQL SCD Type 2 ingest | `sql_patterns/56-dish-order-sharded-scd-ingest/` |
+| 57 | Keycloak SSO events land (tar.gz → append-only trusted) | `utilities/57-keycloak-sso-events-land/` |
+| 58 | BigQuery product API refined zone + AlloyDB sync | `utilities/58-bq-alloydb-api-sync/` |
+| 59 | Salesforce refined daily aggregates (8-table fan-out) | `salesforce_integration/59-sfdc-refined-daily-aggregates/` |
+| 60 | Delivery order reverse ETL (BQ → Odoo stock.picking) | `odoo_integration/60-delivery-order-reverse-etl/` |
+| 61 | Derived events change-detection (SCD LAG → append subset) | `sql_patterns/61-derived-events-change-detection/` |
+| 62 | Value Creation Zone bi-monthly refresh (staging + PSM SP) | `sql_patterns/62-value-creation-zone-bimonthly/` |
+| 63 | Composer dev DAG bucket snapshot | `utilities/63-composer-dev-dag-snapshot/` |
+| 64 | MAG penetration monthly historization (2nd + corp delta) | `sql_patterns/64-mag-penetration-monthly-hist/` |
+| 65 | MAG sales / acquisitions monthly historization (1st + partner-ID clean) | `sql_patterns/65-mag-sales-acquisitions-monthly-hist/` |
+| 66 | VCD PSM uplift CSV land (GCS fan-out + dbt) | `sql_patterns/66-vcd-psm-csv-land/` |
+| 67 | Daily refined-zone SCD spine (actuals + hash SCD2 + test quarantine) | `sql_patterns/67-daily-refined-zone-scd-spine/` |
+| 68 | Sales data mart two-phase copy (views InsertJob + tables BQ-to-BQ) | `sql_patterns/68-sales-datamart-two-phase-copy/` |
+| 69 | Wholesale NL dual-source land (MCC API + CHD CSV) | `utilities/69-makro-nl-dual-source-land/` |
+| 70 | Wholesale NL HubSpot reverse export (prospects / matched / dedupe) | `utilities/70-wholesale-nl-hubspot-export/` |
+| 71 | Dining Guide DQ-gated multi-env publish (dbt + Blake3 + 15% gate) | `data_quality/71-dining-guide-dq-gated-publish/` |
+| 72 | Odoo sale_order_line snapshot soft-close (GCS ID land) | `odoo_integration/72-sale-order-line-snapshot-cleanup/` |
+| 73 | User Management Cloud SQL SCD Type 2 (serial + bootstrap) | `sql_patterns/73-user-management-cloudsql-scd/` |
+| 74 | Adyen report land v2 (1-day CA + file_name + ensure tables) | `payment_processing/74-adyen-report-land-v2/` |
+| 75 | SEO menu content extraction (HTML → MD → BQML page grain) | `utilities/75-dataforseo-menu-content-extraction/` |
+| 76 | Odoo DWH full extract (Postgres → staging → dbt fan-out) | `odoo_integration/76-odoo-dwh-full-extract/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

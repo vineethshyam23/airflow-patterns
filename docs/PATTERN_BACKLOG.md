@@ -21,7 +21,68 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 | 12 | Ranked menu-gaps export (FARM_FINGERPRINT batches) | `scoring_analytics/12-rex-menu-gaps-export/` | `dags/etl_dana_rex_menu_gaps_export.py` + `dags/horeca_digital/dana_rex_menu_gaps_export.py` + `dana_rex_menu_gaps_query.py` | Shipped 2026-07-26 |
 | 13 | Weekly active Odoo asset ID snapshot | `odoo_integration/13-active-asset-ids-export/` | `dags/etl_dana_odoo_active_asset_ids_export.py` + `dags/horeca_digital/dana_odoo_assets_leads_lifecycle_export.py` (active-ID query/send) | Shipped 2026-07-27 |
 | 14 | Independent-establishment menu-gaps export | `scoring_analytics/14-menu-gaps-independent-export/` | `dags/etl_dana_rex_menu_gaps_non_metro_export.py` + `dags/horeca_digital/dana_rex_menu_gaps_non_metro_export.py` | Shipped 2026-07-29 |
-| 15 | Mailchimp campaign analytics ETL | `marketing_integration/04-mailchimp-campaign-analytics/` | `dags/etl_mailchimp.py` + `dags/horeca_digital/mailchimp.py` | Shipped 2026-08-01 |
+| 15 | Odoo helpdesk Postgres incremental pull | `odoo_integration/15-helpdesk-postgres-pull/` | `dags/horeca_digital/helpdesk_odoo_import.py` + `helpdesk_odoo.py` + `archived/odoo_migration/etl_odoo_helpdesk_import.py` | Shipped 2026-08-12 |
+| 16 | Peer benchmarking gaps (multi-country + Avro) | `scoring_analytics/16-benchmarking-gaps/` | `dags/etl_benchmarking_gaps.py` + `dags/horeca_digital/benchmarking_gaps_queries.py` + `dana_deepideas_benchmarking_gaps_export.py` + delta helpers in `dana_deepideas_query.py` | Shipped 2026-08-13 |
+| 17 | Establishment market-data monthly Avro export | `scoring_analytics/17-dish-market-data-export/` | `dags/etl_dana_dish_market_data_export.py` + `dags/horeca_digital/dana_dish_market_data_export.py` + `foodgraph_queries.dish_market_data_active_isocode_list` | Shipped 2026-08-16 |
+| 18 | SEO business-listing menu URL extraction | `utilities/18-dataforseo-menu-url-extraction/` | `dags/etl_dataforseo_menu_url_extractor.py` + `dataforseo_gbq_menu_url_extractor.py` + `dataforseo_menu_url_discovery.py` + `dataforseo_menu_url_utils.py` | Shipped 2026-08-17 |
+| 19 | Freshdesk REST API ingest (hourly + monthly branch) | `utilities/19-freshdesk-api-ingest/` | `dags/horeca_digital/freshdesk_extract.py` + `archived/etl_freshdesk_import.py` | Shipped 2026-08-19 |
+| 20 | Deepideas establishment attribute weekly Avro export | `scoring_analytics/20-deepideas-establishment-export/` | `dags/etl_dana_deep_ideas_export.py` + `dags/horeca_digital/dana_deepideas_establishment_export.py` + `dana_deepideas_query.py` (Establishment) | Shipped 2026-08-20 |
+| 21 | Deepideas main-category gaps weekly Avro export | `scoring_analytics/21-deepideas-gaps-category-export/` | `dags/etl_dana_deep_ideas_export.py` + `dags/horeca_digital/dana_deepideas_gaps_category_export.py` + `dana_deepideas_query.py` (GapsCategory) | Shipped 2026-08-21 |
+| 22 | Deepideas gap-ingredients weekly Avro export | `scoring_analytics/22-deepideas-gaps-ingredients-export/` | `dags/etl_dana_deep_ideas_export.py` + `dags/horeca_digital/dana_deepideas_gaps_ingredients_export.py` + `dana_deepideas_query.py` (GapIngredients) | Shipped 2026-08-22 |
+| 23 | Multi-country platform-customer footprint export | `scoring_analytics/23-dish-customer-export/` | `dags/etl_dana_DISH_customer_data_export.py` + `dags/horeca_digital/dana_DISH_customer_export.py` + `dana_DISH_customer_query.py` | Shipped 2026-08-23 |
+| 24 | MAG acquisition + penetration monthly export | `scoring_analytics/24-mag-acquisition-penetration/` | `dags/etl_dana_mag_export.py` + `dags/horeca_digital/dana_mag_acquisition.py` + `dana_mag_penetration.py` | Shipped 2026-08-24 |
+| 25 | SEO listing GCS ingest (vendor NDJSON → BQ) | `utilities/25-dataforseo-gcs-ingest/` | `dags/etl_dataforseo_ingestion.py` + `dags/horeca_digital/dataforseo_gcs_ingest.py` | Shipped 2026-08-26 |
+| 26 | Single-market Order + Reservation monthly export | `scoring_analytics/26-pl-dish-orders-reservations/` | `dags/etl_dana_pl_dish_orders_reservations_export.py` + `dags/horeca_digital/dana_pl_dish_orders_export.py` + `dana_pl_dish_orders_query.py` | Shipped 2026-08-27 |
+| 27 | Offer Tool multi-table Cloud SQL SCD Type 2 ingest | `sql_patterns/27-customized-offering-scd-ingest/` | `dags/etl_customized_offering.py` + `dags/horeca_digital/customized_offering_queries.py` (export queries) | Shipped 2026-08-28 |
+| 28 | AppFigures weekly mobile analytics ingest | `utilities/28-appfigures-pipeline/` | `dags/etl_appfigures_pipeline.py` + `dags/horeca_digital/get_appfigures_data.py` | Shipped 2026-08-29 |
+| 29 | Vonage Contact Center daily stats ingest | `utilities/29-vonage-contact-center-ingest/` | `dags/etl_vonage_dbt.py` + `dags/horeca_digital/get_vonage_data.py` | Shipped 2026-08-30 |
+| 30 | Medallia survey feedback SCD Type 2 ingest | `utilities/30-medallia-feedback-ingest/` | `dags/etl_medallia.py` + `dags/horeca_digital/medallia.py` | Shipped 2026-08-31 |
+| 31 | Maileon email marketing import (8 reports + metadata + dbt) | `utilities/31-maileon-email-import/` | `dags/etl_maileon_import.py` + `dags/horeca_digital/maileon.py` + `get_maileon_names.py` | Shipped 2026-09-01 |
+| 32 | Invoice Radar LPV vs invoice reconciliation + email report | `data_quality/32-invoice-radar/` | `dags/etl_invoice_radar.py` + `invoice_radar/` + `invoice_radar_airflow/` + `email_delivery/` | Shipped 2026-09-02 |
+| 33 | Jira Service Desk ingest (incremental + monthly full-load) | `utilities/33-jira-service-desk-ingest/` | `dags/etl_jira_HDSD.py` + `dags/horeca_digital/jira_hdsd.py` | Shipped 2026-09-03 |
+| 34 | Mailchimp email analytics ingest (6 grains + campaign fan-out) | `utilities/34-mailchimp-email-analytics/` | `dags/etl_mailchimp.py` + `dags/horeca_digital/mailchimp.py` | Shipped 2026-09-04 |
+| 35 | POS vendor store-details HMAC CSV ingest | `utilities/35-booq-storedetails-hmac-ingest/` | `dags/etl_booq_storedetails.py` + `dags/horeca_digital/booq_storedetails.py` | Shipped 2026-09-05 |
+| 36 | Mach2 Odoo sales Excel email report | `odoo_integration/36-mach2-sales-email-report/` | `dags/etl_mach2_report.py` + `dags/horeca_digital/mach2_report/` + `mach2_report_airflow/` + `email_delivery/` | Shipped 2026-09-06 |
+| 37 | Payment wallet API ingest (KYC + txn + VOP) | `payment_processing/37-dishpay-api-ingest/` | `dags/etl_dishpay_dbt.py` + `dags/horeca_digital/get_dish_pay_data.py` | Shipped 2026-09-07 |
+| 38 | POS vendor GA4 rolling event ingest | `utilities/38-booq-ga4-rolling-ingest/` | `dags/etl_booq_google_analytics.py` | Shipped 2026-09-08 |
+| 39 | Hydra Cloud SQL weekly full export (v2) | `custom_operators/39-hydra-cloudsql-weekly-export/` | `dags/etl_hydra_job_v2.py` + `horeca_digital/hydra_raw_export_queries.py` + `operators/cloudsql_retry_operator.py` | Shipped 2026-09-09 |
+| 40 | Food Graph ML multi-project propagation | `ml_pipelines/40-foodgraph-ml-propagation/` | `dags/etl_foodgraph.py` + `dags/horeca_digital/foodgraph_queries.py` | Shipped 2026-09-10 |
+| 41 | PAIR Finance multi-market case ingest | `payment_processing/41-pair-finance-cases-ingest/` | `dags/etl_pair_finance_cases_daily.py` + `dags/horeca_digital/pair_finance_api.py` + `pair_finance_pipeline.py` | Shipped 2026-09-11 |
+| 42 | Field-sales activities → Odoo CRM | `odoo_integration/42-sales-manager-activities-odoo/` | `dags/etl_sales_manager_activities.py` + `dags/horeca_digital/sales_manager_activities.py` | Shipped 2026-09-12 |
+| 43 | Midday POS customer-master refresh | `utilities/43-pos-afternoon-customer-refresh/` | `dags/etl_dish_pos_afternoon.py` | Shipped 2026-09-13 |
+| 44 | Lead enrichment + Cloud Run scoring | `ml_pipelines/44-lead-enrichment-cloud-run-scoring/` | `dags/etl_leads_enrichment.py` (+ pattern 02 Odoo push) | Shipped 2026-09-14 |
+| 45 | Food Graph Vertex PipelineJob submit | `ml_pipelines/45-foodgraph-vertex-pipeline-job/` | `dags/horeca_digital/archived/etl_food_graph_vertex.py` + `food_graph_vertex.py` + `food_graph_vertex_utils.py` | Shipped 2026-09-15 |
+| 46 | Food Graph refined multi-country zone | `sql_patterns/46-refined-foodgraph-zone/` | `dags/etl_refined_foodgraph_zone.py` + `dags/horeca_digital/foodgraph_queries.py` | Shipped 2026-09-16 |
+| 47 | Absolute multi-channel activity scores | `scoring_analytics/47-absolute-activity-scores/` | `dags/absolute_activityscores.py` | Shipped 2026-09-17 |
+| 48 | Offer Tool weekday-aware multi-project zone | `sql_patterns/48-customized-offerings-zone/` | `dags/etl_customized_offering_zone.py` + `dags/horeca_digital/customized_offering_queries.py` | Shipped 2026-09-18 |
+| 49 | Adobe Analytics hourly Data Feed land | `utilities/49-adobe-analytics-hourly-rawfeed/` | `dags/etl_aa_adobe_rawfeed_hourly.py` | Shipped 2026-09-19 |
+| 50 | Overnight multi-country POS land + backfill | `utilities/50-pos-overnight-multi-country/` | `dags/etl_dish_pos.py` | Shipped 2026-09-20 |
+| 51 | Adobe Analytics app Data Feed land | `utilities/51-adobe-analytics-app-rawfeed/` | `dags/etl_aa_adobe_rawfeed_app.py` | Shipped 2026-09-21 |
+| 52 | Offer Tool on-demand multi-project zone | `sql_patterns/52-customized-offerings-zone-on-demand/` | `dags/etl_customized_offerings_zone_on_demand.py` + `dags/horeca_digital/customized_offering_queries.py` | Shipped 2026-09-22 |
+| 53 | POS Intelligence recommendations → partner event bus | `scoring_analytics/53-pos-intelligence-recommendations-export/` | `dags/etl_dana_pos_intelligence_recommendations_export.py` + `dags/horeca_digital/dana_pos_intelligence_export.py` | Shipped 2026-09-23 |
+| 54 | Reservation Tool incremental Cloud SQL export (id-watermark + Sunday full sync) | `custom_operators/54-reservation-tool-incremental-export/` | `dags/etl_reservationtool_v2.py` + `dags/horeca_digital/rt_table_config.py` + `operators/cloudsql_retry_operator.py` | Shipped 2026-09-24 |
+| 55 | Menu Engineering VM Postgres land (SSH COPY + dual-bucket) | `utilities/55-menu-engineering-vm-land/` | `dags/etl_deepideas_to_DWH.py` | Shipped 2026-09-25 |
+| 56 | Food-ordering multi-shard Cloud SQL SCD Type 2 ingest | `sql_patterns/56-dish-order-sharded-scd-ingest/` | `dags/etl_dishorder.py` (+ Composer-mounted bash scripts) | Shipped 2026-09-26 |
+| 57 | Keycloak SSO events land (tar.gz → rawzone → append-only trusted) | `utilities/57-keycloak-sso-events-land/` | `dags/etl_sso.py` | Shipped 2026-09-27 |
+| 58 | BigQuery product API refined zone + AlloyDB incremental sync | `utilities/58-bq-alloydb-api-sync/` | `dags/etl_api_alloydb.py` + `dags/horeca_digital/DISH_api_query.py` | Shipped 2026-09-28 |
+| 59 | Salesforce refined daily aggregates (8-table fan-out) | `salesforce_integration/59-sfdc-refined-daily-aggregates/` | `dags/etl_refined_salesforce.py` | Shipped 2026-09-29 |
+| 60 | Delivery order reverse ETL (BQ → Odoo stock.picking) | `odoo_integration/60-delivery-order-reverse-etl/` | `dags/horeca_digital/archived/etl_delivery_order.py` + `archived/odoo_migration/product_installation_odoo.py` (delivery path) | Shipped 2026-09-30 |
+| 61 | Derived events change-detection (SCD LAG → append subset) | `sql_patterns/61-derived-events-change-detection/` | `dags/etl_derived_events.py` | Shipped 2026-10-01; representative 6 of ~58 tasks |
+| 62 | Value Creation Zone bi-monthly refresh (staging + PSM SP barrier) | `sql_patterns/62-value-creation-zone-bimonthly/` | `dags/etl_value_creation_zone_3rd_and_8th_of_month_v2.py` | Shipped 2026-10-02; distinct from Food Graph #46 / Offer Tool #48 |
+| 63 | Composer dev DAG bucket snapshot | `utilities/63-composer-dev-dag-snapshot/` | Composer 3 env DAG bucket (sanitized snapshot) | Already on main before 2026-10-03 run; tracked for continuity |
+| 64 | MAG penetration monthly historization (2nd + corp delta) | `sql_patterns/64-mag-penetration-monthly-hist/` | `dags/etl_refined_zone_2nd_of_month.py` | Shipped 2026-10-03; distinct from MAG export #24 / zones #46/#48/#62 |
+| 65 | MAG sales / acquisitions monthly historization (1st + partner-ID clean) | `sql_patterns/65-mag-sales-acquisitions-monthly-hist/` | `dags/horeca_digital/archived/etl_refined_zone_monthly.py` | Shipped 2026-10-04; distinct from penetration #64 / MAG export #24 |
+| 66 | VCD PSM uplift CSV land (GCS fan-out + dbt) | `sql_patterns/66-vcd-psm-csv-land/` | `dags/etl_value_creation_zone_3rd_and_8th_of_month_psm.py` (+ `horeca_digital/sql/vcdb_psm.sql`) | Shipped 2026-10-05; sibling of #62 SP producer |
+| 67 | Daily refined-zone SCD spine (actuals + hash SCD2 + test quarantine) | `sql_patterns/67-daily-refined-zone-scd-spine/` | `dags/etl_refined_zone.py` (+ `horeca_digital/bq_reservation.py`) | Shipped 2026-10-06; focused subset of ~4.7k-line monolith |
+| 68 | Sales data mart two-phase copy (views InsertJob + tables BQ-to-BQ) | `sql_patterns/68-sales-datamart-two-phase-copy/` | `dags/etl_dwh_sales_export.py` | Shipped 2026-10-07; distinct from SFDC refined #59 / refined SCD spine #67 |
+| 69 | Wholesale NL dual-source land (MCC API + CHD CSV) | `utilities/69-makro-nl-dual-source-land/` | `dags/etl_makro_NL.py` + `dags/horeca_digital/makro_customers_api.py` (inbound) | Shipped 2026-10-08; distinct from SEO land #25 / POS HMAC CSV #35 |
+| 70 | Wholesale NL HubSpot reverse export (prospects / matched / dedupe) | `utilities/70-wholesale-nl-hubspot-export/` | `dags/etl_makro_hubspot_export.py` + `dags/horeca_digital/makro_customers_api.py` (export_*) | Shipped 2026-10-09; outbound sibling of inbound #69 |
+| 71 | Dining Guide DQ-gated multi-env publish (dbt + Blake3 + 15% gate) | `data_quality/71-dining-guide-dq-gated-publish/` | `dags/etl_refined_dish_dine.py` (+ ratings SQL stubbed) | Shipped 2026-10-10; distinct from Food Graph #40 / Invoice Radar #32 / refined SCD #67 |
+| 72 | Odoo sale_order_line snapshot soft-close (GCS ID land) | `odoo_integration/72-sale-order-line-snapshot-cleanup/` | `dags/etl_odoo_sale_order_line_cleanup_optimized.py` | Shipped 2026-10-11; distinct from inbound #06–#15 / active-ID #13 / reverse ETL #60 |
+| 73 | User Management Cloud SQL SCD Type 2 (serial export + bootstrap) | `sql_patterns/73-user-management-cloudsql-scd/` | `dags/etl_user_management.py` (+ `operators/cloudsql_retry_operator.py`) | Shipped 2026-10-12; distinct from Offer Tool #27 / Hydra #39 / Reservation #54 / food-order #56 |
+| 74 | Adyen report land v2 (1-day CA download + file_name + ensure tables) | `payment_processing/74-adyen-report-land-v2/` | `dags/etl_eijsink_adyen_reports_v2.py` + `dags/horeca_digital/eijsink_adyen_reports_v2.py` + `dags/schema_json/eijsink_adyen_v2_*.json` | Shipped 2026-10-13; distinct from Management API #03 |
+| 75 | SEO menu content extraction (HTML → MD → BQML page grain) | `utilities/75-dataforseo-menu-content-extraction/` | `dags/etl_dataforseo_menu_extraction.py` + `horeca_digital/dataforseo_{classify,fetch,convert,stage,extract}_*` | Shipped 2026-10-14; downstream of URL discovery #18 |
+| 76 | Odoo DWH full extract (Postgres → staging → dbt fan-out) | `odoo_integration/76-odoo-dwh-full-extract/` | `dags/etl_odoo_data_import_DWH.py` + `horeca_digital/odoo_data_export.py` + `utils/odoo_utils.py` (connect) | Shipped 2026-10-15; representative 16 of ~105 tables |
 
 ## Also already in repo (not from daily automation priority queue)
 
@@ -35,15 +96,29 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 
 ## Next (priority order)
 
-1. **Maileon import** — `etl_maileon_import.py` (secondary email platform; distinct from Mailchimp pattern 15)
-2. **Odoo helpdesk pull** — `helpdesk_odoo_import.py` (Postgres incremental extractor; distinct from pattern 06 event export)
-2. Deepideas / benchmarking gaps export family (`dana_deepideas_*` / `etl_benchmarking_gaps.py`) if still unused
-3. Additional Salesforce DAG only if clearly distinct from asset history
-4. Dish market data export (`dana_dish_market_data_export.py`) if still unused
+1. `etl_adobe_traffic_data.py` — Hydra Adobe traffic metrics CSV → downstream GCS (distinct from AA rawfeed #49/#51)
+2. Remaining `etl_refined_zone` arms (MCC / mappings / Order) — only if new contract beyond #67
+3. Exchange rates / Tourism NRW — skip unless engineering depth returns
+4. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets
+5. Skip thin dbt wrappers: matching-engine, activity-score, app rawfeed job / hourly_v2 test, master_id, owg_v2
+6. Skip `etl_leads_odoo_hist_load.py` (stub; logic commented out)
+7. Do not confuse `bq_reservation.py` (BQ slot helper, #67) with Reservation Tool product (#54)
+8. Do not re-ship #56–#76
+9. Pattern 76 = Odoo DWH inbound spine (subset); do not re-ship remaining ~90 table pull methods unless a new extract contract appears
+10. Pattern 75 = menu content extract; do not re-ship URL discovery #18 or SEO land #25 as the same pattern
+11. Pattern 74 = Adyen report land v2; do not re-ship v1 merge path or Management API #03
+12. Pattern 73 = UM Cloud SQL SCD2; do not re-ship remaining oauth/session/invitation arms unless a new contract appears
+13. Pattern 15 = helpdesk-only pull; do not re-ship as the DWH spine (#76)
+
 
 ## Skipped
 
-_None yet._
+| Pattern | Source | Reason | Date |
+|---------|--------|--------|------|
+| Eijsink GA4 rolling ingest | `dags/etl_eijsink_google_analytics.py` | Same 7-day DELETE+INSERT + dbt pattern as #38; only delta is missing Data Transfer + different property/staging | 2026-09-09 |
+| Matching Engine dbt Cloud wrapper | `dags/etl_matching_engine.py` / `matching_engine_prod_job` | Thin dbt Cloud job trigger; SCD already #01, partner export #10 | 2026-09-18 |
+| Automize acquisition IDs monthly snapshot | `dags/horeca_digital/archived/etl_auto_history_acquisition_IDs_1st_of_month.py` | Thin single WRITE_APPEND from same MAG acquisition view as #65; CURRENT_DATE() catchup footgun without a new mart/SCD contract | 2026-10-07 |
+| Reservation CE/CP centralization | `dags/etl_dish_reservation_centralization.py` | Three sequential WRITE_TRUNCATE denorm extracts; no watermark/DQ/cross-system contract beyond #54 land / #61 events | 2026-10-10 |
 
 ## Blockers
 

@@ -1,0 +1,61 @@
+# Great Expectations configuration file
+# This file configures the data context for Great Expectations
+# Used by Airflow DAG: quality_check_try
+
+config_version: 3.0
+
+# Datasources configuration
+datasources:
+  bigquery_datasource:
+    class_name: Datasource
+    execution_engine:
+      class_name: SqlAlchemyExecutionEngine
+      connection_string: bigquery://source_project/dwh_de_test
+      # Credentials handled via Airflow GCP connection (google_cloud_default)
+      # Format: bigquery://project_id/dataset_id (not as query parameters)
+    data_connectors:
+      default_runtime_data_connector:
+        class_name: RuntimeDataConnector
+        batch_identifiers:
+          - default_identifier_name
+
+# Stores configuration - all relative to data_context_root_dir
+stores:
+  expectations_store:
+    class_name: ExpectationsStore
+    store_backend:
+      class_name: TupleFilesystemStoreBackend
+      base_directory: expectations/
+  
+  validations_store:
+    class_name: ValidationsStore
+    store_backend:
+      class_name: TupleFilesystemStoreBackend
+      base_directory: validations/
+  
+  evaluation_parameter_store:
+    class_name: EvaluationParameterStore
+  
+  checkpoint_store:
+    class_name: CheckpointStore
+    store_backend:
+      class_name: TupleFilesystemStoreBackend
+      base_directory: checkpoints/
+
+# Store names - specify which stores to use
+expectations_store_name: expectations_store
+validations_store_name: validations_store
+evaluation_parameter_store_name: evaluation_parameter_store
+checkpoint_store_name: checkpoint_store
+
+# Data docs configuration (optional - for viewing validation results)
+data_docs_sites:
+  local_site:
+    class_name: SiteBuilder
+    show_how_to_buttons: true
+    store_backend:
+      class_name: TupleFilesystemStoreBackend
+      base_directory: data_docs/local_site/
+
+# Note: validation_operators are deprecated in GE v0.13+
+# Validation actions are now configured in checkpoints (see checkpoints/check_export.yml)

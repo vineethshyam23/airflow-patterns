@@ -1,0 +1,894 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Invoice Radar — Daily Alert</title>
+  </head>
+  <body
+    style="
+      margin: 0;
+      padding: 0;
+      background: #0b0f18;
+      font-family:
+        -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Arial,
+        sans-serif;
+      color: #e2e8f0;
+      -webkit-font-smoothing: antialiased;
+    "
+  >
+    <div style="display: none; max-height: 0; overflow: hidden; color: #0b0f18">
+      Invoice Radar · Daily Alert — Review your {{ report_date_label }}
+      discrepancy summary and take action.
+    </div>
+    <table
+      width="100%"
+      cellpadding="0"
+      cellspacing="0"
+      border="0"
+      style="background: #0b0f18; padding: 40px 16px"
+    >
+      <tr>
+        <td align="center">
+          <table
+            width="620"
+            cellpadding="0"
+            cellspacing="0"
+            border="0"
+            style="max-width: 620px; width: 100%"
+          >
+            <!-- HEADER -->
+            <tr>
+              <td
+                style="
+                  background: linear-gradient(160deg, #141c2e 0%, #0d1117 100%);
+                  border-radius: 14px 14px 0 0;
+                  padding: 36px 40px 32px;
+                  border: 1px solid #1e2d45;
+                  border-bottom: none;
+                "
+              >
+                <table
+                  cellpadding="0"
+                  cellspacing="0"
+                  border="0"
+                  style="margin-bottom: 28px"
+                >
+                  <tr>
+                    <td style="vertical-align: middle">
+                      <table cellpadding="0" cellspacing="0" border="0">
+                        <tr>
+                          <td
+                            style="
+                              background: linear-gradient(
+                                135deg,
+                                #f59e0b,
+                                #ef4444
+                              );
+                              border-radius: 9px;
+                              width: 38px;
+                              height: 38px;
+                              text-align: center;
+                              vertical-align: middle;
+                              font-size: 20px;
+                              line-height: 38px;
+                            "
+                          >
+                            ⚡
+                          </td>
+                          <td
+                            style="padding-left: 12px; vertical-align: middle"
+                          >
+                            <span
+                              style="
+                                font-size: 17px;
+                                font-weight: 700;
+                                color: #f1f5f9;
+                                letter-spacing: -0.02em;
+                              "
+                              >Invoice Radar</span
+                            >
+                            &nbsp;
+                            <span
+                              style="
+                                font-size: 10px;
+                                font-weight: 600;
+                                color: #f59e0b;
+                                background: rgba(245, 158, 11, 0.12);
+                                border: 1px solid rgba(245, 158, 11, 0.28);
+                                border-radius: 4px;
+                                padding: 2px 7px;
+                                letter-spacing: 0.07em;
+                                text-transform: uppercase;
+                              "
+                              >IR</span
+                            >
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+                <div
+                  style="
+                    font-size: 26px;
+                    font-weight: 800;
+                    color: #f8fafc;
+                    letter-spacing: -0.03em;
+                    line-height: 1.2;
+                    margin-bottom: 8px;
+                  "
+                >
+                  Daily Alert
+                </div>
+                <div style="font-size: 13px; color: #64748b; line-height: 1.5">
+                  Automated discrepancy summary for your review and action.
+                </div>
+                <div style="margin-top: 22px">
+                  <span
+                    style="
+                      display: inline-flex;
+                      align-items: center;
+                      gap: 6px;
+                      background: rgba(59, 130, 246, 0.1);
+                      border: 1px solid rgba(59, 130, 246, 0.22);
+                      color: #60a5fa;
+                      font-size: 12px;
+                      font-weight: 500;
+                      padding: 5px 14px;
+                      border-radius: 20px;
+                    "
+                  >
+                    📅&nbsp; Reporting Date:
+                    <strong>{{ report_date_label }}</strong> &nbsp;·&nbsp;
+                    Generated {{ generated_date }}
+                  </span>
+                </div>
+              </td>
+            </tr>
+            <!-- BODY -->
+            <tr>
+              <td
+                style="
+                  background: #0f1520;
+                  border: 1px solid #1e2d45;
+                  border-top: none;
+                  padding: 36px 40px;
+                "
+              >
+                <!-- Portfolio Overview -->
+                <div
+                  style="
+                    font-size: 10px;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    letter-spacing: 0.1em;
+                    color: #334155;
+                    margin-bottom: 14px;
+                  "
+                >
+                  Portfolio Overview
+                </div>
+                <table
+                  width="100%"
+                  cellpadding="0"
+                  cellspacing="0"
+                  border="0"
+                  style="margin-bottom: 10px"
+                >
+                  <tr>
+                    <td
+                      width="49%"
+                      style="
+                        background: #141c2e;
+                        border: 1px solid rgba(245, 158, 11, 0.3);
+                        border-radius: 10px;
+                        padding: 18px 20px;
+                        vertical-align: top;
+                      "
+                    >
+                      <div
+                        style="
+                          font-size: 10px;
+                          font-weight: 700;
+                          text-transform: uppercase;
+                          letter-spacing: 0.08em;
+                          color: #64748b;
+                          margin-bottom: 7px;
+                        "
+                      >
+                        Total LPV
+                      </div>
+                      <div
+                        style="
+                          font-size: 26px;
+                          font-weight: 800;
+                          color: #f1f5f9;
+                          letter-spacing: -0.03em;
+                          line-height: 1;
+                        "
+                      >
+                        {{ total_lpv_sales }}
+                      </div>
+                      <div
+                        style="font-size: 11px; color: #475569; margin-top: 5px"
+                      >
+                        Expected recurring revenue
+                      </div>
+                    </td>
+                    <td width="2%">&nbsp;</td>
+                    <td
+                      width="49%"
+                      style="
+                        background: #141c2e;
+                        border: 1px solid #1e2d45;
+                        border-radius: 10px;
+                        padding: 18px 20px;
+                        vertical-align: top;
+                      "
+                    >
+                      <div
+                        style="
+                          font-size: 10px;
+                          font-weight: 700;
+                          text-transform: uppercase;
+                          letter-spacing: 0.08em;
+                          color: #64748b;
+                          margin-bottom: 7px;
+                        "
+                      >
+                        Total Invoiced
+                      </div>
+                      <div
+                        style="
+                          font-size: 26px;
+                          font-weight: 800;
+                          color: #f1f5f9;
+                          letter-spacing: -0.03em;
+                          line-height: 1;
+                        "
+                      >
+                        {{ total_lpv_invoiced }}
+                      </div>
+                      <div
+                        style="font-size: 11px; color: #475569; margin-top: 5px"
+                      >
+                        Actually invoiced to customers
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+                <!-- Divider -->
+                <table
+                  width="100%"
+                  cellpadding="0"
+                  cellspacing="0"
+                  border="0"
+                  style="margin-top: 20px; margin-bottom: 28px"
+                >
+                  <tr>
+                    <td
+                      style="
+                        height: 1px;
+                        background: linear-gradient(
+                          90deg,
+                          transparent,
+                          #1e2d45 20%,
+                          #1e2d45 80%,
+                          transparent
+                        );
+                      "
+                    ></td>
+                  </tr>
+                </table>
+                <!-- Discrepancy Breakdown -->
+                <div
+                  style="
+                    font-size: 10px;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    letter-spacing: 0.1em;
+                    color: #334155;
+                    margin-bottom: 14px;
+                  "
+                >
+                  Discrepancy Breakdown
+                </div>
+                <div
+                  style="
+                    font-size: 9px;
+                    font-weight: 600;
+                    text-transform: uppercase;
+                    letter-spacing: 0.08em;
+                    color: #475569;
+                    margin-bottom: 8px;
+                  "
+                >
+                  ⚠ Missing
+                </div>
+                <table
+                  width="100%"
+                  cellpadding="0"
+                  cellspacing="0"
+                  border="0"
+                  style="margin-bottom: 10px"
+                >
+                  <tr>
+                    <td
+                      width="49%"
+                      style="
+                        background: rgba(239, 68, 68, 0.07);
+                        border: 1px solid rgba(239, 68, 68, 0.22);
+                        border-radius: 10px;
+                        padding: 16px 14px;
+                        text-align: center;
+                        vertical-align: top;
+                      "
+                    >
+                      <div style="font-size: 18px; margin-bottom: 6px">⚠️</div>
+                      <div
+                        style="
+                          font-size: 9px;
+                          font-weight: 700;
+                          text-transform: uppercase;
+                          letter-spacing: 0.09em;
+                          color: #f87171;
+                          margin-bottom: 10px;
+                        "
+                      >
+                        Missing in Invoiced
+                      </div>
+                      <div
+                        style="
+                          font-size: 28px;
+                          font-weight: 800;
+                          color: #f1f5f9;
+                          letter-spacing: -0.03em;
+                          line-height: 1;
+                          margin-bottom: 5px;
+                        "
+                      >
+                        {{ missing_inv_count }}
+                      </div>
+                      <div style="font-size: 11px; color: #64748b">
+                        {{ missing_inv_amount }}
+                      </div>
+                      <div
+                        style="font-size: 10px; color: #475569; margin-top: 4px"
+                      >
+                        No invoice raised
+                      </div>
+                    </td>
+                    <td width="2%">&nbsp;</td>
+                    <td
+                      width="49%"
+                      style="
+                        background: rgba(220, 38, 38, 0.06);
+                        border: 1px solid rgba(220, 38, 38, 0.18);
+                        border-radius: 10px;
+                        padding: 16px 14px;
+                        text-align: center;
+                        vertical-align: top;
+                      "
+                    >
+                      <div style="font-size: 18px; margin-bottom: 6px">📋</div>
+                      <div
+                        style="
+                          font-size: 9px;
+                          font-weight: 700;
+                          text-transform: uppercase;
+                          letter-spacing: 0.09em;
+                          color: #fca5a5;
+                          margin-bottom: 10px;
+                        "
+                      >
+                        Missing in OPS
+                      </div>
+                      <div
+                        style="
+                          font-size: 28px;
+                          font-weight: 800;
+                          color: #f1f5f9;
+                          letter-spacing: -0.03em;
+                          line-height: 1;
+                          margin-bottom: 5px;
+                        "
+                      >
+                        {{ missing_lpv_count }}
+                      </div>
+                      <div style="font-size: 11px; color: #64748b">
+                        {{ missing_lpv_amount }}
+                      </div>
+                      <div
+                        style="font-size: 10px; color: #475569; margin-top: 4px"
+                      >
+                        Invoice raised
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+                <!-- Under + Over -->
+                <table
+                  width="100%"
+                  cellpadding="0"
+                  cellspacing="0"
+                  border="0"
+                  style="margin-bottom: 30px"
+                >
+                  <tr>
+                    <td
+                      width="49%"
+                      style="
+                        background: rgba(245, 158, 11, 0.07);
+                        border: 1px solid rgba(245, 158, 11, 0.22);
+                        border-radius: 10px;
+                        padding: 16px 14px;
+                        text-align: center;
+                        vertical-align: top;
+                      "
+                    >
+                      <div style="font-size: 18px; margin-bottom: 6px">↓</div>
+                      <div
+                        style="
+                          font-size: 9px;
+                          font-weight: 700;
+                          text-transform: uppercase;
+                          letter-spacing: 0.09em;
+                          color: #fbbf24;
+                          margin-bottom: 10px;
+                        "
+                      >
+                        Under-invoiced
+                      </div>
+                      <div
+                        style="
+                          font-size: 28px;
+                          font-weight: 800;
+                          color: #f1f5f9;
+                          letter-spacing: -0.03em;
+                          line-height: 1;
+                          margin-bottom: 5px;
+                        "
+                      >
+                        {{ under_count }}
+                      </div>
+                      <div style="font-size: 11px; color: #64748b">
+                        {{ under_amount }} gap
+                      </div>
+                    </td>
+                    <td width="2%">&nbsp;</td>
+                    <td
+                      width="49%"
+                      style="
+                        background: rgba(59, 130, 246, 0.07);
+                        border: 1px solid rgba(59, 130, 246, 0.22);
+                        border-radius: 10px;
+                        padding: 16px 14px;
+                        text-align: center;
+                        vertical-align: top;
+                      "
+                    >
+                      <div style="font-size: 18px; margin-bottom: 6px">↑</div>
+                      <div
+                        style="
+                          font-size: 9px;
+                          font-weight: 700;
+                          text-transform: uppercase;
+                          letter-spacing: 0.09em;
+                          color: #60a5fa;
+                          margin-bottom: 10px;
+                        "
+                      >
+                        Over-invoiced
+                      </div>
+                      <div
+                        style="
+                          font-size: 28px;
+                          font-weight: 800;
+                          color: #f1f5f9;
+                          letter-spacing: -0.03em;
+                          line-height: 1;
+                          margin-bottom: 5px;
+                        "
+                      >
+                        {{ over_count }}
+                      </div>
+                      <div style="font-size: 11px; color: #64748b">
+                        {{ over_amount }} excess
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+                <!-- Divider -->
+                <table
+                  width="100%"
+                  cellpadding="0"
+                  cellspacing="0"
+                  border="0"
+                  style="margin-bottom: 28px"
+                >
+                  <tr>
+                    <td
+                      style="
+                        height: 1px;
+                        background: linear-gradient(
+                          90deg,
+                          transparent,
+                          #1e2d45 20%,
+                          #1e2d45 80%,
+                          transparent
+                        );
+                      "
+                    ></td>
+                  </tr>
+                </table>
+                <!-- Invoice Type Breakdown -->
+                <div
+                  style="
+                    font-size: 10px;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    letter-spacing: 0.1em;
+                    color: #334155;
+                    margin-bottom: 14px;
+                  "
+                >
+                  Invoice Type Breakdown
+                </div>
+                <table
+                  width="100%"
+                  cellpadding="0"
+                  cellspacing="0"
+                  border="0"
+                  style="margin-bottom: 30px"
+                >
+                  <tr>
+                    <td
+                      width="49%"
+                      style="
+                        background: #141c2e;
+                        border: 1px solid rgba(34, 197, 94, 0.22);
+                        border-radius: 10px;
+                        padding: 18px 20px;
+                        text-align: center;
+                        vertical-align: top;
+                      "
+                    >
+                      <div style="font-size: 18px; margin-bottom: 6px">🔄</div>
+                      <div
+                        style="
+                          font-size: 9px;
+                          font-weight: 700;
+                          text-transform: uppercase;
+                          letter-spacing: 0.09em;
+                          color: #4ade80;
+                          margin-bottom: 10px;
+                        "
+                      >
+                        Recurring
+                      </div>
+                      <div
+                        style="
+                          font-size: 32px;
+                          font-weight: 800;
+                          color: #f1f5f9;
+                          letter-spacing: -0.03em;
+                          line-height: 1;
+                          margin-bottom: 5px;
+                        "
+                      >
+                        {{ recurring_count }}
+                      </div>
+                    </td>
+                    <td width="2%">&nbsp;</td>
+                    <td
+                      width="49%"
+                      style="
+                        background: #141c2e;
+                        border: 1px solid rgba(168, 85, 247, 0.22);
+                        border-radius: 10px;
+                        padding: 18px 20px;
+                        text-align: center;
+                        vertical-align: top;
+                      "
+                    >
+                      <div style="font-size: 18px; margin-bottom: 6px">1️⃣</div>
+                      <div
+                        style="
+                          font-size: 9px;
+                          font-weight: 700;
+                          text-transform: uppercase;
+                          letter-spacing: 0.09em;
+                          color: #c084fc;
+                          margin-bottom: 10px;
+                        "
+                      >
+                        One-time / Setup
+                      </div>
+                      <div
+                        style="
+                          font-size: 32px;
+                          font-weight: 800;
+                          color: #f1f5f9;
+                          letter-spacing: -0.03em;
+                          line-height: 1;
+                          margin-bottom: 5px;
+                        "
+                      >
+                        {{ onetime_count }}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+                <!-- Divider -->
+                <table
+                  width="100%"
+                  cellpadding="0"
+                  cellspacing="0"
+                  border="0"
+                  style="margin-bottom: 28px"
+                >
+                  <tr>
+                    <td
+                      style="
+                        height: 1px;
+                        background: linear-gradient(
+                          90deg,
+                          transparent,
+                          #1e2d45 20%,
+                          #1e2d45 80%,
+                          transparent
+                        );
+                      "
+                    ></td>
+                  </tr>
+                </table>
+                <!-- Actionable Summary -->
+                <div
+                  style="
+                    font-size: 10px;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    letter-spacing: 0.1em;
+                    color: #334155;
+                    margin-bottom: 14px;
+                  "
+                >
+                  Actionable Summary
+                </div>
+                <table
+                  width="100%"
+                  cellpadding="0"
+                  cellspacing="0"
+                  border="0"
+                  style="
+                    background: #141c2e;
+                    border: 1px solid #1e2d45;
+                    border-radius: 12px;
+                    margin-bottom: 30px;
+                  "
+                >
+                  <tr>
+                    <td style="padding: 24px 26px">
+                      <div
+                        style="
+                          font-size: 13px;
+                          font-weight: 700;
+                          color: #f1f5f9;
+                          margin-bottom: 18px;
+                        "
+                      >
+                        🎯 &nbsp;Actions Required
+                      </div>
+                      <table
+                        width="100%"
+                        cellpadding="0"
+                        cellspacing="0"
+                        border="0"
+                        style="margin-bottom: 16px"
+                      >
+                        <tr>
+                          <td
+                            width="10"
+                            style="vertical-align: top; padding-top: 4px"
+                          >
+                            <div
+                              style="
+                                width: 8px;
+                                height: 8px;
+                                border-radius: 50%;
+                                background: #ef4444;
+                              "
+                            ></div>
+                          </td>
+                          <td
+                            style="
+                              padding-left: 12px;
+                              font-size: 12px;
+                              color: #94a3b8;
+                              line-height: 1.65;
+                            "
+                          >
+                            <strong style="color: #e2e8f0"
+                              >{{ missing_inv_count }} invoices are
+                              missing</strong
+                            >
+                            — LPV revenue of
+                            <strong style="color: #f87171"
+                              >{{ missing_inv_amount }}</strong
+                            >
+                            is booked but no invoice has been raised.
+                          </td>
+                        </tr>
+                      </table>
+                      <table
+                        width="100%"
+                        cellpadding="0"
+                        cellspacing="0"
+                        border="0"
+                        style="margin-bottom: 16px"
+                      >
+                        <tr>
+                          <td
+                            width="10"
+                            style="vertical-align: top; padding-top: 4px"
+                          >
+                            <div
+                              style="
+                                width: 8px;
+                                height: 8px;
+                                border-radius: 50%;
+                                background: #dc2626;
+                              "
+                            ></div>
+                          </td>
+                          <td
+                            style="
+                              padding-left: 12px;
+                              font-size: 12px;
+                              color: #94a3b8;
+                              line-height: 1.65;
+                            "
+                          >
+                            <strong style="color: #e2e8f0"
+                              >{{ missing_lpv_count }} invoices have no LPV
+                              record</strong
+                            >
+                            — invoiced amount of
+                            <strong style="color: #fca5a5"
+                              >{{ missing_lpv_amount }}</strong
+                            >
+                            was collected but the OPS entry is missing.
+                          </td>
+                        </tr>
+                      </table>
+                      <table
+                        width="100%"
+                        cellpadding="0"
+                        cellspacing="0"
+                        border="0"
+                        style="margin-bottom: 16px"
+                      >
+                        <tr>
+                          <td
+                            width="10"
+                            style="vertical-align: top; padding-top: 4px"
+                          >
+                            <div
+                              style="
+                                width: 8px;
+                                height: 8px;
+                                border-radius: 50%;
+                                background: #f59e0b;
+                              "
+                            ></div>
+                          </td>
+                          <td
+                            style="
+                              padding-left: 12px;
+                              font-size: 12px;
+                              color: #94a3b8;
+                              line-height: 1.65;
+                            "
+                          >
+                            <strong style="color: #e2e8f0"
+                              >{{ under_count }} orders are
+                              under-invoiced</strong
+                            >
+                            by a total of
+                            <strong style="color: #fbbf24"
+                              >{{ under_amount }}</strong
+                            >.
+                          </td>
+                        </tr>
+                      </table>
+                      <table
+                        width="100%"
+                        cellpadding="0"
+                        cellspacing="0"
+                        border="0"
+                      >
+                        <tr>
+                          <td
+                            width="10"
+                            style="vertical-align: top; padding-top: 4px"
+                          >
+                            <div
+                              style="
+                                width: 8px;
+                                height: 8px;
+                                border-radius: 50%;
+                                background: #3b82f6;
+                              "
+                            ></div>
+                          </td>
+                          <td
+                            style="
+                              padding-left: 12px;
+                              font-size: 12px;
+                              color: #94a3b8;
+                              line-height: 1.65;
+                            "
+                          >
+                            <strong style="color: #e2e8f0"
+                              >{{ over_count }} orders are over-invoiced</strong
+                            >
+                            by
+                            <strong style="color: #60a5fa"
+                              >{{ over_amount }}</strong
+                            >.
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+                <div
+                  style="
+                    font-size: 11px;
+                    color: #1e2d45;
+                    text-align: center;
+                    line-height: 1.7;
+                  "
+                >
+                  Automated alert
+                </div>
+              </td>
+            </tr>
+            <!-- FOOTER -->
+            <tr>
+              <td
+                style="
+                  background: #080c14;
+                  border: 1px solid #1e2d45;
+                  border-top: none;
+                  border-radius: 0 0 14px 14px;
+                  padding: 18px 40px;
+                "
+              >
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                  <tr>
+                    <td style="font-size: 11px; color: #1e2d45">
+                      Platform Data &nbsp;·&nbsp; Internal Tool
+                      &nbsp;·&nbsp; Do not forward externally
+                    </td>
+                    <td
+                      align="right"
+                      style="
+                        font-size: 11px;
+                        color: #1e2d45;
+                        font-family: &quot;Courier New&quot;, monospace;
+                      "
+                    >
+                      Invoice Radar v1.0
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

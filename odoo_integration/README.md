@@ -193,7 +193,7 @@ Every Odoo pattern follows this architecture:
 
 **Notes**:
 - Companion to the warehouse→event-bus family (scoring, SFDC assets), but Odoo helpdesk domain
-- Not the Postgres pull extractor (`helpdesk_odoo_import.py`) — that is a separate candidate
+- Warehouse ingest side is pattern 15 (`15-helpdesk-postgres-pull/`)
 
 [View Pattern →](./06-helpdesk-tickets-export/)
 
@@ -273,6 +273,91 @@ Every Odoo pattern follows this architecture:
 [View Pattern →](./13-active-asset-ids-export/)
 
 ---
+
+
+### 36 - Mach2 Sales Excel Email Report
+
+Daily operational pack: five BigQuery-backed Excel workbooks (sales channels,
+activation add-ons, cancellation add-ons, POS activation, POS cancellation)
+emailed to partner/sales audiences via SendGrid or SMTP.
+
+**Key Features**:
+- Generate→XCom→send split so mail retries do not re-query BigQuery
+- Airflow Variable JSON config with DEV recipient override
+- Partner CRM matching join + fiscal UUID defaults for POS activation
+- Shared email delivery helper (SendGrid / SMTP + attachment)
+
+**Why This Pattern**:
+Ops needs yesterday's POS/add-on lifecycle changes as Excel before standup —
+distinct from Invoice Radar (pattern 32) revenue reconciliation.
+
+[View Pattern →](./36-mach2-sales-email-report/)
+
+
+### 42 - Field-sales Activities → Odoo CRM
+
+Daily multi-country field-sales (SAM) activities API ingest into BigQuery,
+dbt lead model, then Odoo `crm.lead` create — with same-day branch skip
+so accidental re-queues do not double-pull the API.
+
+**Key Features**:
+- OAuth2 password grant + paginated country fan-out (8 markets)
+- NDJSON land → GCS copy → BigQuery APPEND staging
+- Same-calendar-day BranchPython skip
+- dbt Cloud job gate + thin Odoo adapter (pattern 02 engine)
+- Count monitor + Slack
+
+[View Pattern →](./42-sales-manager-activities-odoo/)
+
+
+### 60 - Delivery Order Reverse ETL (BQ → stock.picking)
+
+On-demand reverse ETL from a curated BigQuery delivery table into Odoo
+`stock.picking` — insert vs update via `ir.model.data`, product catalog
+resolution, serial lots, machine codes, and fulfilment validation.
+
+**Key Features**:
+- Dual connection (OdooRPC writes + Postgres ID lookups)
+- External-id idempotency for create vs update
+- Nested delivery line details → stock.move / move.line
+- Timeout retry for flaky Odoo HTTP; availability errors collected
+- Distinct from inbound Odoo exports (06–15) and CRM push (42)
+
+[View Pattern →](./60-delivery-order-reverse-etl/)
+
+
+### 72 - Sale Order Line Snapshot Soft-Close Cleanup
+
+Weekly reconcile of live Odoo `sale_order_line` IDs against the dbt
+snapshot: land IDs via GCS → BigQuery temp table, soft-close open
+orphans (`dbt_valid_to`), log sync bands. Avoids XCom payload limits.
+
+**Key Features**:
+- ID-only Postgres extract + GCSHook upload (no Composer FUSE)
+- Temp-table LEFT JOIN orphan detection before UPDATE
+- Soft-close preserves snapshot history (no hard DELETE)
+- Sync bands (<100 / 100–1000 / >1000) in post-run summary logs
+- Distinct from inbound exports (06–15), active-ID push (13), reverse ETL (60)
+
+[View Pattern →](./72-sale-order-line-snapshot-cleanup/)
+
+
+### 76 - Odoo DWH Full Extract (Postgres → staging → dbt)
+
+Daily primary inbound spine: multi-table Odoo Postgres extract to GCS /
+BigQuery staging (`WRITE_TRUNCATE`), then parallel dbt Cloud domain jobs
+and a datacore view refresh. Portfolio ships a representative subset of
+the ~105-table production DAG.
+
+**Key Features**:
+- One parse-time TaskGroup (avoids DagBag import timeout)
+- `max_active_tasks` throttle + `dagrun_timeout` against stuck dbt HTTP
+- Local-disk NDJSON + GCSHook upload (no Composer FUSE race)
+- Incremental create/write lookback for heavy tables; 50k chunks for tax/SOL rel
+- Distinct from helpdesk-only pull (15) and outbound / reverse family (06–14, 60, 72)
+
+[View Pattern →](./76-odoo-dwh-full-extract/)
+
 
 ## Technology Stack
 

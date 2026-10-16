@@ -135,6 +135,7 @@ Helper modules and enrichment jobs:
 - Wholesale NL dual-source land (MCC OAuth mutation API + CHD CSV ShortCircuit clean → staging → dbt)
 - Wholesale NL HubSpot reverse export (manual full-table prospects / matched / dedupe → MCC OAuth POST)
 - SEO menu content extraction (control table + HTML→MD→BQML page grain; downstream of URL discovery)
+- Hydra Adobe traffic CSV publish (refined marts → staging → overwrite + 60-day retention)
 - BigQuery utilities
 - Error handling / retry helpers
 - Logging utilities
@@ -285,6 +286,7 @@ Shipped so far (sanitized portfolio samples):
 | 74 | Adyen report land v2 (1-day CA + file_name + ensure tables) | `payment_processing/74-adyen-report-land-v2/` |
 | 75 | SEO menu content extraction (HTML → MD → BQML page grain) | `utilities/75-dataforseo-menu-content-extraction/` |
 | 76 | Odoo DWH full extract (Postgres → staging → dbt fan-out) | `odoo_integration/76-odoo-dwh-full-extract/` |
+| 77 | Hydra Adobe traffic CSV publish (refined → overwrite + retention) | `utilities/77-hydra-adobe-traffic-csv-export/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

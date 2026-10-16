@@ -97,20 +97,21 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 
 ## Next (priority order)
 
-1. Remaining `etl_refined_zone` arms (MCC / mappings / Order) — only if new contract beyond #67
-2. `etl_adobe_datafeed_reports.py` / `adobe_datafeed_reports.py` — only if distinct from #49/#51 land and #77 CSV publish
-3. Exchange rates / Tourism NRW — skip unless engineering depth returns
-4. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets
-5. Skip thin dbt wrappers: matching-engine, activity-score, app rawfeed job / hourly_v2 test, master_id, owg_v2
-6. Skip `etl_leads_odoo_hist_load.py` (stub; logic commented out)
-7. Do not confuse `bq_reservation.py` (BQ slot helper, #67) with Reservation Tool product (#54)
-8. Do not re-ship #56–#77
-9. Pattern 77 = refined site-traffic CSV publish; do not re-ship as AA rawfeed land (#49/#51)
-10. Pattern 76 = Odoo DWH inbound spine (subset); do not re-ship remaining ~90 table pull methods unless a new extract contract appears
-11. Pattern 75 = menu content extract; do not re-ship URL discovery #18 or SEO land #25 as the same pattern
-12. Pattern 74 = Adyen report land v2; do not re-ship v1 merge path or Management API #03
-13. Pattern 73 = UM Cloud SQL SCD2; do not re-ship remaining oauth/session/invitation arms unless a new contract appears
-14. Pattern 15 = helpdesk-only pull; do not re-ship as the DWH spine (#76)
+1. `etl_dana_advanced_replenishment_export.py` — DE Advanced Replenishment Avro → partner ingest (daily hash batches + monthly on 5th); distinct from #12/#14/#53
+2. Else `etl_dana_pos_revenue_export.py` — monthly POS revenue potentials → partner ingest
+3. Remaining `etl_refined_zone` arms (MCC / mappings / Order) — only if new contract beyond #67
+4. Exchange rates / Tourism NRW — skip unless engineering depth returns
+5. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets
+6. Skip thin dbt wrappers: matching-engine, activity-score, app rawfeed job / hourly_v2 test, master_id, owg_v2, weblisting_v2
+7. Skip `etl_leads_odoo_hist_load.py` (stub; logic commented out)
+8. Do not confuse `bq_reservation.py` (BQ slot helper, #67) with Reservation Tool product (#54)
+9. Do not re-ship #56–#77
+10. Pattern 77 = refined site-traffic CSV publish; do not re-ship as AA rawfeed land (#49/#51) or Hydra dump (#39)
+11. Pattern 76 = Odoo DWH inbound spine (subset); do not re-ship remaining ~90 table pull methods unless a new extract contract appears
+12. Pattern 75 = menu content extract; do not re-ship URL discovery #18 or SEO land #25 as the same pattern
+13. Pattern 74 = Adyen report land v2; do not re-ship v1 merge path or Management API #03
+14. Pattern 73 = UM Cloud SQL SCD2; do not re-ship remaining oauth/session/invitation arms unless a new contract appears
+15. Pattern 15 = helpdesk-only pull; do not re-ship as the DWH spine (#76)
 
 
 ## Skipped

@@ -1,0 +1,11 @@
+[
+  {"name": "url_id", "type": "STRING", "mode": "NULLABLE"},
+  {"name": "url", "type": "STRING", "mode": "NULLABLE"},
+  {"name": "total_clicks", "type": "INTEGER", "mode": "NULLABLE"},
+  {"name": "click_percentage", "type": "BIGNUMERIC", "mode": "NULLABLE"},
+  {"name": "unique_clicks", "type": "INTEGER", "mode": "NULLABLE"},
+  {"name": "unique_click_percentage", "type": "BIGNUMERIC", "mode": "NULLABLE"},
+  {"name": "last_click", "type": "STRING", "mode": "NULLABLE"},
+  {"name": "campaign_id", "type": "STRING", "mode": "NULLABLE"},
+  {"name": "load_date", "type": "DATE", "mode": "NULLABLE"}
+]

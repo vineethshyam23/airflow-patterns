@@ -79,6 +79,7 @@ Customer and establishment scoring algorithms:
 - Multi-country product-footprint customer exports
 - Monthly acquisition + penetration management reporting
 - Advanced Replenishment predicted-quantity Avro export (daily hash batches + monthly customer/articles on the 5th)
+- Platform POS revenue potential monthly Avro export (SAM-aligned annualisation, sequential countries)
 - Single-market Order + Reservation lifetime partner exports
 - Absolute multi-channel activity scores (0–3) with MoM transitions
 - POS Intelligence wholesale article recommendations (Vertex → Avro event bus)
@@ -289,6 +290,7 @@ Shipped so far (sanitized portfolio samples):
 | 76 | Odoo DWH full extract (Postgres → staging → dbt fan-out) | `odoo_integration/76-odoo-dwh-full-extract/` |
 | 77 | Hydra Adobe traffic CSV publish (refined → overwrite + retention) | `utilities/77-hydra-adobe-traffic-csv-export/` |
 | 78 | Advanced Replenishment Avro export (daily hash batches + monthly on 5th) | `scoring_analytics/78-advanced-replenishment-export/` |
+| 79 | Platform POS revenue potential Avro export (monthly sequential countries) | `scoring_analytics/79-pos-revenue-export/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

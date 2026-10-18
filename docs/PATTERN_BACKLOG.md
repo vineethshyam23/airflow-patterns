@@ -85,6 +85,7 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 | 76 | Odoo DWH full extract (Postgres → staging → dbt fan-out) | `odoo_integration/76-odoo-dwh-full-extract/` | `dags/etl_odoo_data_import_DWH.py` + `horeca_digital/odoo_data_export.py` + `utils/odoo_utils.py` (connect) | Shipped 2026-10-15; representative 16 of ~105 tables |
 | 77 | Hydra Adobe traffic CSV publish (refined → staging → overwrite + retention) | `utilities/77-hydra-adobe-traffic-csv-export/` | `dags/etl_adobe_traffic_data.py` | Shipped 2026-10-16; distinct from AA rawfeed land #49/#51 |
 | 78 | Advanced Replenishment Avro export (daily hash batches + monthly on 5th) | `scoring_analytics/78-advanced-replenishment-export/` | `dags/etl_dana_advanced_replenishment_export.py` + `dags/horeca_digital/dana_advanced_replenishment_export.py` (+ `dana_auth.py` helpers) | Shipped 2026-10-17; distinct from menu-gaps #12/#14 and POS intel #53 |
+| 79 | Platform POS revenue potential Avro export (monthly sequential countries) | `scoring_analytics/79-pos-revenue-export/` | `dags/etl_dana_pos_revenue_export.py` + `dags/horeca_digital/dana_pos_revenue_export.py` | Shipped 2026-10-18; distinct from AR #78 / menu-gaps #12/#14 / POS intel #53 |
 
 ## Also already in repo (not from daily automation priority queue)
 
@@ -98,14 +99,14 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 
 ## Next (priority order)
 
-1. `etl_dana_pos_revenue_export.py` — monthly POS revenue potentials → partner ingest; distinct from AR #78 / menu-gaps #12/#14 / POS intel #53
-2. Remaining `etl_refined_zone` arms (MCC / mappings / Order) — only if new contract beyond #67
-3. Exchange rates / Tourism NRW — skip unless engineering depth returns
-4. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets
-5. Skip thin dbt wrappers: matching-engine, activity-score, app rawfeed job / hourly_v2 test, master_id, owg_v2, weblisting_v2
-6. Skip `etl_leads_odoo_hist_load.py` (stub; logic commented out)
-7. Do not confuse `bq_reservation.py` (BQ slot helper, #67) with Reservation Tool product (#54)
-8. Do not re-ship #56–#78
+1. Remaining `etl_refined_zone` arms (MCC / mappings / Order) — only if new contract beyond #67
+2. Exchange rates / Tourism NRW — skip unless engineering depth returns
+3. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets
+4. Skip thin dbt wrappers: matching-engine, activity-score, app rawfeed job / hourly_v2 test, master_id, owg_v2, weblisting_v2
+5. Skip `etl_leads_odoo_hist_load.py` (stub; logic commented out)
+6. Do not confuse `bq_reservation.py` (BQ slot helper, #67) with Reservation Tool product (#54)
+7. Do not re-ship #56–#79
+8. Pattern 79 = customer-grain annualised POS revenue (SAM annual_sale); do not re-ship as AR #78 / menu-gaps #12/#14 / POS intel #53
 9. Pattern 78 = AR predicted-quantity + monthly customer/a2i; do not re-ship as menu-gaps (#12/#14) or POS intel (#53)
 10. Pattern 77 = refined site-traffic CSV publish; do not re-ship as AA rawfeed land (#49/#51) or Hydra dump (#39)
 11. Pattern 76 = Odoo DWH inbound spine (subset); do not re-ship remaining ~90 table pull methods unless a new extract contract appears

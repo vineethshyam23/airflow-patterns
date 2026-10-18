@@ -29,6 +29,7 @@ airflow-patterns/
 ├── ml_pipelines/                # ML model deployment and scoring
 ├── scoring_analytics/           # Customer scoring and analytics
 ├── payment_processing/          # Payment system integrations
+├── marketing_integration/       # Email / campaign platform integrations
 ├── data_quality/                # Validation and reconciliation
 ├── custom_operators/            # Reusable Airflow operators
 ├── utilities/                   # Helper functions and decorators
@@ -95,6 +96,13 @@ Financial data processing patterns:
 - Payment reconciliation
 - Multi-currency handling
 - Compliance and audit trails
+
+### Marketing Integration
+Email and campaign platform patterns:
+- Mailchimp Marketing API extraction (6 report entities)
+- Paginated fetch with 90-day lookback window
+- JSONL → GCS → BigQuery staging → trusted snapshot
+- Audience merge field flattening for CRM joins
 
 ### Data Quality
 Production data quality frameworks:

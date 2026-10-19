@@ -138,6 +138,7 @@ Helper modules and enrichment jobs:
 - Wholesale NL HubSpot reverse export (manual full-table prospects / matched / dedupe → MCC OAuth POST)
 - SEO menu content extraction (control table + HTML→MD→BQML page grain; downstream of URL discovery)
 - Hydra Adobe traffic CSV publish (refined marts → staging → overwrite + 60-day retention)
+- HD export → trusted MCC parallel materialization (country fan-out + Slack failure aggregate)
 - BigQuery utilities
 - Error handling / retry helpers
 - Logging utilities
@@ -291,6 +292,7 @@ Shipped so far (sanitized portfolio samples):
 | 77 | Hydra Adobe traffic CSV publish (refined → overwrite + retention) | `utilities/77-hydra-adobe-traffic-csv-export/` |
 | 78 | Advanced Replenishment Avro export (daily hash batches + monthly on 5th) | `scoring_analytics/78-advanced-replenishment-export/` |
 | 79 | Platform POS revenue potential Avro export (monthly sequential countries) | `scoring_analytics/79-pos-revenue-export/` |
+| 80 | HD export → trusted MCC parallel materialization (Slack failure aggregate) | `utilities/80-hd-export-to-trusted-mcc/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

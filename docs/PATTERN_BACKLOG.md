@@ -87,6 +87,7 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 | 78 | Advanced Replenishment Avro export (daily hash batches + monthly on 5th) | `scoring_analytics/78-advanced-replenishment-export/` | `dags/etl_dana_advanced_replenishment_export.py` + `dags/horeca_digital/dana_advanced_replenishment_export.py` (+ `dana_auth.py` helpers) | Shipped 2026-10-17; distinct from menu-gaps #12/#14 and POS intel #53 |
 | 79 | Platform POS revenue potential Avro export (monthly sequential countries) | `scoring_analytics/79-pos-revenue-export/` | `dags/etl_dana_pos_revenue_export.py` + `dags/horeca_digital/dana_pos_revenue_export.py` | Shipped 2026-10-18; distinct from AR #78 / menu-gaps #12/#14 / POS intel #53 |
 | 80 | HD export → trusted MCC parallel materialization (Slack failure aggregate) | `utilities/80-hd-export-to-trusted-mcc/` | `dags/etl_hd_export_to_trusted_mcc.py` + `dags/horeca_digital/hd_export_to_trusted_mcc.py` | Shipped 2026-10-19; distinct from wholesale NL #69/#70 / refined SCD #67 |
+| 81 | Recommender Vertex weekly mirror (copy_jobs WRITE_TRUNCATE registry) | `utilities/81-recommender-vertex-weekly-mirror/` | `dags/etl_recommender_vertex.py` + `dags/dish_insights_share_queries.py` | Shipped 2026-10-20; distinct from Food Graph #40/#45 / POS intel #53 / MCC materialize #80 |
 
 ## Also already in repo (not from daily automation priority queue)
 
@@ -100,15 +101,15 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 
 ## Next (priority order)
 
-1. `etl_recommender_vertex.py` — weekly multi copy_jobs WRITE_TRUNCATE mirror pattern
-2. Else `etl_lpv_report.py` — monthly LPV Excel email (Invoice Radar sibling) if depth warrants
-3. Remaining `etl_refined_zone` arms (MCC / mappings / Order) — only if new contract beyond #67
-4. Exchange rates / Tourism NRW — skip unless engineering depth returns
-5. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets
-6. Skip thin dbt wrappers: matching-engine, activity-score, app rawfeed job / hourly_v2 test, master_id, owg_v2, weblisting_v2
-7. Skip `etl_leads_odoo_hist_load.py` (stub; logic commented out)
-8. Do not confuse `bq_reservation.py` (BQ slot helper, #67) with Reservation Tool product (#54)
-9. Do not re-ship #56–#80
+1. `etl_lpv_report.py` — monthly LPV Excel email (Invoice Radar sibling) if depth warrants
+2. Remaining `etl_refined_zone` arms (MCC / mappings / Order) — only if new contract beyond #67
+3. Exchange rates / Tourism NRW — skip unless engineering depth returns
+4. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets
+5. Skip thin dbt wrappers: matching-engine, activity-score, app rawfeed job / hourly_v2 test, master_id, owg_v2, weblisting_v2
+6. Skip `etl_leads_odoo_hist_load.py` (stub; logic commented out)
+7. Do not confuse `bq_reservation.py` (BQ slot helper, #67) with Reservation Tool product (#54)
+8. Do not re-ship #56–#81
+9. Pattern 81 = weekly copy_jobs WRITE_TRUNCATE registry (REX + insights_share); do not re-ship as #40/#45/#53/#80
 10. Pattern 80 = parallel export_* → trusted_mcc + Slack aggregate; do not re-ship as wholesale NL #69/#70 or refined SCD #67
 11. Pattern 79 = customer-grain annualised POS revenue (SAM annual_sale); do not re-ship as AR #78 / menu-gaps #12/#14 / POS intel #53
 12. Pattern 78 = AR predicted-quantity + monthly customer/a2i; do not re-ship as menu-gaps (#12/#14) or POS intel (#53)

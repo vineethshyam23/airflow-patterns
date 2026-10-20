@@ -139,6 +139,7 @@ Helper modules and enrichment jobs:
 - SEO menu content extraction (control table + HTML→MD→BQML page grain; downstream of URL discovery)
 - Hydra Adobe traffic CSV publish (refined marts → staging → overwrite + 60-day retention)
 - HD export → trusted MCC parallel materialization (country fan-out + Slack failure aggregate)
+- Recommender Vertex weekly mirror (copy_jobs WRITE_TRUNCATE registry: REX + insights share)
 - BigQuery utilities
 - Error handling / retry helpers
 - Logging utilities
@@ -293,6 +294,7 @@ Shipped so far (sanitized portfolio samples):
 | 78 | Advanced Replenishment Avro export (daily hash batches + monthly on 5th) | `scoring_analytics/78-advanced-replenishment-export/` |
 | 79 | Platform POS revenue potential Avro export (monthly sequential countries) | `scoring_analytics/79-pos-revenue-export/` |
 | 80 | HD export → trusted MCC parallel materialization (Slack failure aggregate) | `utilities/80-hd-export-to-trusted-mcc/` |
+| 81 | Recommender Vertex weekly mirror (copy_jobs WRITE_TRUNCATE registry) | `utilities/81-recommender-vertex-weekly-mirror/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

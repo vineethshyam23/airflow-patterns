@@ -101,6 +101,7 @@ Production data quality frameworks:
 - Multi-layer validation strategies
 - Automated reconciliation
 - Invoice Radar — LPV vs invoice discrepancy report (Excel + email)
+- LPV Adjustment monthly report (previous-month country CSV zip + GCS size offload)
 - Dining Guide DQ-gated multi-env publish (dbt + Blake3 dine_id + 15% proportion gate → app BQ projects)
 - Anomaly detection
 - SLA monitoring and alerting
@@ -295,6 +296,7 @@ Shipped so far (sanitized portfolio samples):
 | 79 | Platform POS revenue potential Avro export (monthly sequential countries) | `scoring_analytics/79-pos-revenue-export/` |
 | 80 | HD export → trusted MCC parallel materialization (Slack failure aggregate) | `utilities/80-hd-export-to-trusted-mcc/` |
 | 81 | Recommender Vertex weekly mirror (copy_jobs WRITE_TRUNCATE registry) | `utilities/81-recommender-vertex-weekly-mirror/` |
+| 82 | LPV Adjustment monthly report (country CSV zip + GCS size offload) | `data_quality/82-lpv-adjustment-monthly-report/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

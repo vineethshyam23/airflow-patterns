@@ -102,8 +102,9 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 
 ## Next (priority order)
 
-1. Scan remaining `dags/` / `horeca_digital/` for unused high-value DAGs (prefer Salesforce, complex SQL, reusable operators)
-2. Remaining `etl_refined_zone` arms (MCC / mappings / Order) — only if new contract beyond #67
+1. `bq_consumption_statistics_slack.py` — daily BQ usage → Slack cost awareness if depth warrants
+2. `etl_dana_odoo_invoices_export.py` — Odoo invoices partner export (distinct from WSL #08) if depth warrants
+3. Remaining `etl_refined_zone` arms (MCC / mappings / Order) — only if new contract beyond #67
 3. Exchange rates / Tourism NRW — skip unless engineering depth returns
 4. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets
 5. Skip thin dbt wrappers: matching-engine, activity-score, app rawfeed job / hourly_v2 test, master_id, owg_v2, weblisting_v2

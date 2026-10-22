@@ -141,6 +141,7 @@ Helper modules and enrichment jobs:
 - Hydra Adobe traffic CSV publish (refined marts → staging → overwrite + 60-day retention)
 - HD export → trusted MCC parallel materialization (country fan-out + Slack failure aggregate)
 - Recommender Vertex weekly mirror (copy_jobs WRITE_TRUNCATE registry: REX + insights share)
+- BigQuery consumption Slack digest (daily top-3 humans + GB/query ratio + MTD cost)
 - BigQuery utilities
 - Error handling / retry helpers
 - Logging utilities
@@ -297,6 +298,7 @@ Shipped so far (sanitized portfolio samples):
 | 80 | HD export → trusted MCC parallel materialization (Slack failure aggregate) | `utilities/80-hd-export-to-trusted-mcc/` |
 | 81 | Recommender Vertex weekly mirror (copy_jobs WRITE_TRUNCATE registry) | `utilities/81-recommender-vertex-weekly-mirror/` |
 | 82 | LPV Adjustment monthly report (country CSV zip + GCS size offload) | `data_quality/82-lpv-adjustment-monthly-report/` |
+| 83 | BigQuery consumption Slack digest (top-3 + ratio + MTD) | `utilities/83-bq-consumption-slack-report/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

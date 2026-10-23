@@ -51,6 +51,7 @@ Patterns from a 3-year, 116-DAG ERP migration project:
 - Delivery-order reverse ETL (BQ → Odoo stock.picking insert/update)
 - Weekly sale_order_line dbt-snapshot soft-close (GCS ID land, avoid XCom)
 - Daily Odoo DWH inbound spine (Postgres → staging → parallel dbt + datacore)
+- General Odoo invoice-line partner export (FR/ES fingerprint batches)
 - Data reconciliation frameworks
 
 ### CRM Integration (Salesforce)
@@ -299,6 +300,7 @@ Shipped so far (sanitized portfolio samples):
 | 81 | Recommender Vertex weekly mirror (copy_jobs WRITE_TRUNCATE registry) | `utilities/81-recommender-vertex-weekly-mirror/` |
 | 82 | LPV Adjustment monthly report (country CSV zip + GCS size offload) | `data_quality/82-lpv-adjustment-monthly-report/` |
 | 83 | BigQuery consumption Slack digest (top-3 + ratio + MTD) | `utilities/83-bq-consumption-slack-report/` |
+| 84 | Odoo invoices partner export (FR/ES fingerprint batches) | `odoo_integration/84-odoo-invoices-partner-export/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

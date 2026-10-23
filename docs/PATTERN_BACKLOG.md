@@ -90,6 +90,7 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 | 81 | Recommender Vertex weekly mirror (copy_jobs WRITE_TRUNCATE registry) | `utilities/81-recommender-vertex-weekly-mirror/` | `dags/etl_recommender_vertex.py` + `dags/dish_insights_share_queries.py` | Shipped 2026-10-20; distinct from Food Graph #40/#45 / POS intel #53 / MCC materialize #80 |
 | 82 | LPV Adjustment monthly report (country CSV zip + GCS size offload) | `data_quality/82-lpv-adjustment-monthly-report/` | `dags/etl_lpv_report.py` + `dags/horeca_digital/lpv_report/lpv_report.py` + `lpv_report_airflow/*` | Shipped 2026-10-21; distinct from Invoice Radar #32 |
 | 83 | BigQuery consumption Slack digest (top-3 + ratio + MTD) | `utilities/83-bq-consumption-slack-report/` | `dags/bq_consumption_statistics_slack.py` | Shipped 2026-10-22; distinct from Slack failure aggregate #80 |
+| 84 | Odoo invoices partner export (FR/ES fingerprint batches) | `odoo_integration/84-odoo-invoices-partner-export/` | `dags/etl_dana_odoo_invoices_export.py` + `dags/horeca_digital/dana_odoo_invoices_export.py` | Shipped 2026-10-23; distinct from WSL dual export #08 / Invoice Radar #32 / LPV #82 |
 
 ## Also already in repo (not from daily automation priority queue)
 
@@ -103,15 +104,15 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 
 ## Next (priority order)
 
-1. `etl_dana_odoo_invoices_export.py` — Odoo invoices partner export (distinct from WSL #08) if depth warrants
-2. `adobe_marketing_utm.py` / `etl_di_import.py` / `etl_liquikit.py` — only if new contract beyond shipped Adobe/Menu/GCS land patterns
-3. Remaining `etl_refined_zone` arms (MCC / mappings / Order) — only if new contract beyond #67
-4. Exchange rates / Tourism NRW — skip unless engineering depth returns
-5. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets
-6. Skip thin dbt wrappers: matching-engine, activity-score, app rawfeed job / hourly_v2 test, master_id, owg_v2, weblisting_v2
-7. Skip `etl_leads_odoo_hist_load.py` (stub; logic commented out)
-8. Do not confuse `bq_reservation.py` (BQ slot helper, #67) with Reservation Tool product (#54)
-9. Do not re-ship #56–#83
+1. `adobe_marketing_utm.py` / `etl_di_import.py` / `etl_liquikit.py` — only if new contract beyond shipped Adobe/Menu/GCS land patterns
+2. Remaining `etl_refined_zone` arms (MCC / mappings / Order) — only if new contract beyond #67
+3. Exchange rates / Tourism NRW — skip unless engineering depth returns
+4. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets
+5. Skip thin dbt wrappers: matching-engine, activity-score, app rawfeed job / hourly_v2 test, master_id, owg_v2, weblisting_v2
+6. Skip `etl_leads_odoo_hist_load.py` (stub; logic commented out)
+7. Do not confuse `bq_reservation.py` (BQ slot helper, #67) with Reservation Tool product (#54)
+8. Do not re-ship #56–#84
+9. Pattern 84 = general Odoo invoice-line partner feed (FR/ES fingerprint batches); do not re-ship as WSL dual export #08
 10. Pattern 83 = daily BQ usage Slack digest (top-3 + ratio + MTD); do not re-ship as Slack failure aggregate #80
 11. Pattern 82 = monthly LPV country CSV zip + SendGrid GCS offload; do not re-ship as Invoice Radar #32
 12. Pattern 81 = weekly copy_jobs WRITE_TRUNCATE registry (REX + insights_share); do not re-ship as #40/#45/#53/#80

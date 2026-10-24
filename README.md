@@ -81,6 +81,7 @@ Customer and establishment scoring algorithms:
 - Monthly acquisition + penetration management reporting
 - Advanced Replenishment predicted-quantity Avro export (daily hash batches + monthly customer/articles on the 5th)
 - Platform POS revenue potential monthly Avro export (SAM-aligned annualisation, sequential countries)
+- Adobe marketing UTM attribution (funnel flags + referral pivots + eVars from datafeed)
 - Single-market Order + Reservation lifetime partner exports
 - Absolute multi-channel activity scores (0–3) with MoM transitions
 - POS Intelligence wholesale article recommendations (Vertex → Avro event bus)
@@ -301,6 +302,7 @@ Shipped so far (sanitized portfolio samples):
 | 82 | LPV Adjustment monthly report (country CSV zip + GCS size offload) | `data_quality/82-lpv-adjustment-monthly-report/` |
 | 83 | BigQuery consumption Slack digest (top-3 + ratio + MTD) | `utilities/83-bq-consumption-slack-report/` |
 | 84 | Odoo invoices partner export (FR/ES fingerprint batches) | `odoo_integration/84-odoo-invoices-partner-export/` |
+| 85 | Adobe marketing UTM attribution (funnel + referral + eVars) | `scoring_analytics/85-adobe-marketing-utm-attribution/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

@@ -106,29 +106,30 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 
 ## Next (priority order)
 
-1. `etl_di_import.py` — cross-project BQ WRITE_TRUNCATE bridge (DeepIdeas → trusted) only if new contract beyond Menu Engineering VM land #55 / BQ copy #68/#81
-2. Remaining `etl_refined_zone` arms (MCC / mappings / Order) — only if new contract beyond #67
-3. Exchange rates / Tourism NRW — skip unless engineering depth returns
-4. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets
-5. Skip thin dbt wrappers: matching-engine, activity-score, app rawfeed job / hourly_v2 test, master_id, owg_v2, weblisting_v2, adobe analytical / datafeed report jobs
-6. Skip `etl_leads_odoo_hist_load.py` (stub; logic commented out)
-7. Do not confuse `bq_reservation.py` (BQ slot helper, #67) with Reservation Tool product (#54)
-8. Do not re-ship #56–#86
-9. Pattern 86 = multi-entity finance-kit CSV land + in-DAG hash-delta; do not re-ship as SEO NDJSON #25 / HMAC CSV #35 / refined SCD #67
-10. Pattern 85 = refined Adobe marketing UTM attribution append; do not re-ship as AA rawfeed land #49/#51 or traffic CSV publish #77
-11. Pattern 84 = general Odoo invoice-line partner feed (FR/ES fingerprint batches); do not re-ship as WSL dual export #08
-12. Pattern 83 = daily BQ usage Slack digest (top-3 + ratio + MTD); do not re-ship as Slack failure aggregate #80
-13. Pattern 82 = monthly LPV country CSV zip + SendGrid GCS offload; do not re-ship as Invoice Radar #32
-14. Pattern 81 = weekly copy_jobs WRITE_TRUNCATE registry (REX + insights_share); do not re-ship as #40/#45/#53/#80
-15. Pattern 80 = parallel export_* → trusted_mcc + Slack aggregate; do not re-ship as wholesale NL #69/#70 or refined SCD #67
-16. Pattern 79 = customer-grain annualised POS revenue (SAM annual_sale); do not re-ship as AR #78 / menu-gaps #12/#14 / POS intel #53
-17. Pattern 78 = AR predicted-quantity + monthly customer/a2i; do not re-ship as menu-gaps (#12/#14) or POS intel (#53)
-18. Pattern 77 = refined site-traffic CSV publish; do not re-ship as AA rawfeed land (#49/#51) or Hydra dump (#39)
-19. Pattern 76 = Odoo DWH inbound spine (subset); do not re-ship remaining ~90 table pull methods unless a new extract contract appears
-20. Pattern 75 = menu content extract; do not re-ship URL discovery #18 or SEO land #25 as the same pattern
-21. Pattern 74 = Adyen report land v2; do not re-ship v1 merge path or Management API #03
-22. Pattern 73 = UM Cloud SQL SCD2; do not re-ship remaining oauth/session/invitation arms unless a new contract appears
-23. Pattern 15 = helpdesk-only pull; do not re-ship as the DWH spine (#76)
+1. `etl_oex.py` — Open Exchange Rates API → nested JSON land → UNNEST + EUR/USD cross-rates + timestamp dedupe (depth returned; was previously parked under “exchange rates skip”)
+2. `etl_di_import.py` — cross-project BQ WRITE_TRUNCATE bridge (DeepIdeas → trusted) only if new contract beyond Menu Engineering VM land #55 / BQ copy #68/#81
+3. `dbt_jobs_status.py` — dbt Cloud job status → Slack ops digest only if distinct from BQ consumption Slack #83 / failure aggregate #80
+4. Remaining `etl_refined_zone` arms (MCC / mappings / Order) — only if new contract beyond #67
+5. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets
+6. Skip thin dbt wrappers: matching-engine, activity-score, app rawfeed job / hourly_v2 test, master_id, owg_v2, weblisting_v2, adobe analytical / datafeed report jobs
+7. Skip `etl_leads_odoo_hist_load.py` (stub; logic commented out)
+8. Do not confuse `bq_reservation.py` (BQ slot helper, #67) with Reservation Tool product (#54)
+9. Do not re-ship #56–#86
+10. Pattern 86 = multi-entity finance-kit CSV land + in-DAG hash-delta; do not re-ship as SEO NDJSON #25 / HMAC CSV #35 / refined SCD #67
+11. Pattern 85 = refined Adobe marketing UTM attribution append; do not re-ship as AA rawfeed land #49/#51 or traffic CSV publish #77
+12. Pattern 84 = general Odoo invoice-line partner feed (FR/ES fingerprint batches); do not re-ship as WSL dual export #08
+13. Pattern 83 = daily BQ usage Slack digest (top-3 + ratio + MTD); do not re-ship as Slack failure aggregate #80
+14. Pattern 82 = monthly LPV country CSV zip + SendGrid GCS offload; do not re-ship as Invoice Radar #32
+15. Pattern 81 = weekly copy_jobs WRITE_TRUNCATE registry (REX + insights_share); do not re-ship as #40/#45/#53/#80
+16. Pattern 80 = parallel export_* → trusted_mcc + Slack aggregate; do not re-ship as wholesale NL #69/#70 or refined SCD #67
+17. Pattern 79 = customer-grain annualised POS revenue (SAM annual_sale); do not re-ship as AR #78 / menu-gaps #12/#14 / POS intel #53
+18. Pattern 78 = AR predicted-quantity + monthly customer/a2i; do not re-ship as menu-gaps (#12/#14) or POS intel (#53)
+19. Pattern 77 = refined site-traffic CSV publish; do not re-ship as AA rawfeed land (#49/#51) or Hydra dump (#39)
+20. Pattern 76 = Odoo DWH inbound spine (subset); do not re-ship remaining ~90 table pull methods unless a new extract contract appears
+21. Pattern 75 = menu content extract; do not re-ship URL discovery #18 or SEO land #25 as the same pattern
+22. Pattern 74 = Adyen report land v2; do not re-ship v1 merge path or Management API #03
+23. Pattern 73 = UM Cloud SQL SCD2; do not re-ship remaining oauth/session/invitation arms unless a new contract appears
+24. Pattern 15 = helpdesk-only pull; do not re-ship as the DWH spine (#76)
 
 
 ## Skipped

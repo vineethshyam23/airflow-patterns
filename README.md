@@ -145,6 +145,7 @@ Helper modules and enrichment jobs:
 - Recommender Vertex weekly mirror (copy_jobs WRITE_TRUNCATE registry: REX + insights share)
 - BigQuery consumption Slack digest (daily top-3 humans + GB/query ratio + MTD cost)
 - Finance-kit multi-entity CSV land (landing → rawzone → staging TRUNCATE → hash-delta trusted)
+- Open Exchange Rates FX land (nested JSON → UNNEST + EUR/USD factors + timestamp dedupe)
 - BigQuery utilities
 - Error handling / retry helpers
 - Logging utilities
@@ -305,6 +306,7 @@ Shipped so far (sanitized portfolio samples):
 | 84 | Odoo invoices partner export (FR/ES fingerprint batches) | `odoo_integration/84-odoo-invoices-partner-export/` |
 | 85 | Adobe marketing UTM attribution (funnel + referral + eVars) | `scoring_analytics/85-adobe-marketing-utm-attribution/` |
 | 86 | Finance-kit multi-entity CSV land + hash-delta | `utilities/86-finance-kit-csv-hash-delta-land/` |
+| 87 | Open Exchange Rates FX land (nested JSON + EUR/USD factors) | `utilities/87-open-exchange-rates-fx-land/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

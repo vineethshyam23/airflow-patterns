@@ -93,6 +93,7 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 | 84 | Odoo invoices partner export (FR/ES fingerprint batches) | `odoo_integration/84-odoo-invoices-partner-export/` | `dags/etl_dana_odoo_invoices_export.py` + `dags/horeca_digital/dana_odoo_invoices_export.py` | Shipped 2026-10-23; distinct from WSL dual export #08 / Invoice Radar #32 / LPV #82 |
 | 85 | Adobe marketing UTM attribution (funnel + referral + eVars) | `scoring_analytics/85-adobe-marketing-utm-attribution/` | `dags/adobe_marketing_utm.py` | Shipped 2026-10-24; distinct from AA rawfeed land #49/#51 / traffic CSV publish #77 |
 | 86 | Finance-kit multi-entity CSV land + hash-delta | `utilities/86-finance-kit-csv-hash-delta-land/` | `dags/etl_liquikit.py` | Shipped 2026-10-25; distinct from SEO NDJSON land #25 / POS HMAC CSV #35 / refined SCD #67 |
+| 87 | Open Exchange Rates FX land (nested JSON + EUR/USD factors) | `utilities/87-open-exchange-rates-fx-land/` | `dags/etl_oex.py` (+ `horeca_digital/exchangerates.py` legacy) | Shipped 2026-10-26; distinct from AppFigures #28 / finance-kit hash-delta #86 |
 
 ## Also already in repo (not from daily automation priority queue)
 
@@ -106,15 +107,15 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 
 ## Next (priority order)
 
-1. `etl_oex.py` — Open Exchange Rates API → nested JSON land → UNNEST + EUR/USD cross-rates + timestamp dedupe (depth returned; was previously parked under “exchange rates skip”)
-2. `etl_di_import.py` — cross-project BQ WRITE_TRUNCATE bridge (DeepIdeas → trusted) only if new contract beyond Menu Engineering VM land #55 / BQ copy #68/#81
-3. `dbt_jobs_status.py` — dbt Cloud job status → Slack ops digest only if distinct from BQ consumption Slack #83 / failure aggregate #80
-4. Remaining `etl_refined_zone` arms (MCC / mappings / Order) — only if new contract beyond #67
-5. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets
-6. Skip thin dbt wrappers: matching-engine, activity-score, app rawfeed job / hourly_v2 test, master_id, owg_v2, weblisting_v2, adobe analytical / datafeed report jobs
-7. Skip `etl_leads_odoo_hist_load.py` (stub; logic commented out)
-8. Do not confuse `bq_reservation.py` (BQ slot helper, #67) with Reservation Tool product (#54)
-9. Do not re-ship #56–#86
+1. `dbt_jobs_status.py` — dbt Cloud run-id Variable scan → job status Slack digest (distinct from BQ consumption Slack #83 / failure aggregate #80)
+2. `etl_di_import.py` — cross-project BQ WRITE_TRUNCATE bridge (DeepIdeas refined `co_menus` → trusted) only if framed as a distinct bridge contract beyond Menu Engineering VM land #55 / BQ copy #68/#81
+3. Remaining `etl_refined_zone` arms (MCC / mappings / Order) — only if new contract beyond #67
+4. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets
+5. Skip thin dbt wrappers: matching-engine, activity-score, app rawfeed job / hourly_v2 test, master_id, owg_v2, weblisting_v2, adobe analytical / datafeed report jobs
+6. Skip `etl_leads_odoo_hist_load.py` (stub; logic commented out)
+7. Do not confuse `bq_reservation.py` (BQ slot helper, #67) with Reservation Tool product (#54)
+8. Do not re-ship #56–#87
+9. Pattern 87 = OEX nested JSON FX land + EUR/USD factors + timestamp dedupe; do not re-ship as AppFigures #28 / finance-kit #86
 10. Pattern 86 = multi-entity finance-kit CSV land + in-DAG hash-delta; do not re-ship as SEO NDJSON #25 / HMAC CSV #35 / refined SCD #67
 11. Pattern 85 = refined Adobe marketing UTM attribution append; do not re-ship as AA rawfeed land #49/#51 or traffic CSV publish #77
 12. Pattern 84 = general Odoo invoice-line partner feed (FR/ES fingerprint batches); do not re-ship as WSL dual export #08

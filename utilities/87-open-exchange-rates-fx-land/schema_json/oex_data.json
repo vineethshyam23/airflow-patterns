@@ -1,0 +1,26 @@
+[
+  {
+    "name": "timestamp",
+    "type": "INTEGER",
+    "mode": "REQUIRED",
+    "description": "Unix epoch seconds from OEX API snapshot"
+  },
+  {
+    "name": "rates",
+    "type": "RECORD",
+    "mode": "REPEATED",
+    "description": "Currency → USD-base rate pairs from latest.json",
+    "fields": [
+      {
+        "name": "currency",
+        "type": "STRING",
+        "mode": "REQUIRED"
+      },
+      {
+        "name": "rate",
+        "type": "FLOAT",
+        "mode": "REQUIRED"
+      }
+    ]
+  }
+]

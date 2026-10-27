@@ -94,6 +94,7 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 | 85 | Adobe marketing UTM attribution (funnel + referral + eVars) | `scoring_analytics/85-adobe-marketing-utm-attribution/` | `dags/adobe_marketing_utm.py` | Shipped 2026-10-24; distinct from AA rawfeed land #49/#51 / traffic CSV publish #77 |
 | 86 | Finance-kit multi-entity CSV land + hash-delta | `utilities/86-finance-kit-csv-hash-delta-land/` | `dags/etl_liquikit.py` | Shipped 2026-10-25; distinct from SEO NDJSON land #25 / POS HMAC CSV #35 / refined SCD #67 |
 | 87 | Open Exchange Rates FX land (nested JSON + EUR/USD factors) | `utilities/87-open-exchange-rates-fx-land/` | `dags/etl_oex.py` (+ `horeca_digital/exchangerates.py` legacy) | Shipped 2026-10-26; distinct from AppFigures #28 / finance-kit hash-delta #86 |
+| 88 | dbt Cloud run status Slack digest (Variable scan → Failed-only) | `utilities/88-dbt-cloud-run-status-slack/` | `dags/dbt_jobs_status.py` | Shipped 2026-10-27; distinct from Slack failure aggregate #80 / BQ consumption #83 |
 
 ## Also already in repo (not from daily automation priority queue)
 
@@ -107,14 +108,14 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 
 ## Next (priority order)
 
-1. `dbt_jobs_status.py` — dbt Cloud run-id Variable scan → job status Slack digest (distinct from BQ consumption Slack #83 / failure aggregate #80)
-2. `etl_di_import.py` — cross-project BQ WRITE_TRUNCATE bridge (DeepIdeas refined `co_menus` → trusted) only if framed as a distinct bridge contract beyond Menu Engineering VM land #55 / BQ copy #68/#81
-3. Remaining `etl_refined_zone` arms (MCC / mappings / Order) — only if new contract beyond #67
-4. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets
-5. Skip thin dbt wrappers: matching-engine, activity-score, app rawfeed job / hourly_v2 test, master_id, owg_v2, weblisting_v2, adobe analytical / datafeed report jobs
-6. Skip `etl_leads_odoo_hist_load.py` (stub; logic commented out)
-7. Do not confuse `bq_reservation.py` (BQ slot helper, #67) with Reservation Tool product (#54)
-8. Do not re-ship #56–#87
+1. `etl_di_import.py` — cross-project BQ WRITE_TRUNCATE bridge (DeepIdeas refined `co_menus` → trusted); distinct from Menu Engineering VM land #55 / sales mart copy #68 / weekly copy_jobs registry #81 if framed as the external-project → trusted bridge
+2. Remaining `etl_refined_zone` arms (MCC / mappings / Order) — only if new contract beyond #67
+3. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets
+4. Skip thin dbt wrappers: matching-engine, activity-score, app rawfeed job / hourly_v2 test, master_id, owg_v2, weblisting_v2, adobe analytical / datafeed report jobs
+5. Skip `etl_leads_odoo_hist_load.py` (stub; logic commented out)
+6. Do not confuse `bq_reservation.py` (BQ slot helper, #67) with Reservation Tool product (#54)
+7. Do not re-ship #56–#88
+8. Pattern 88 = dbt Cloud Variable scan → Failed-only Slack; do not re-ship as #80 / #83; do not ship thin dbt Cloud trigger wrappers as this pattern
 9. Pattern 87 = OEX nested JSON FX land + EUR/USD factors + timestamp dedupe; do not re-ship as AppFigures #28 / finance-kit #86
 10. Pattern 86 = multi-entity finance-kit CSV land + in-DAG hash-delta; do not re-ship as SEO NDJSON #25 / HMAC CSV #35 / refined SCD #67
 11. Pattern 85 = refined Adobe marketing UTM attribution append; do not re-ship as AA rawfeed land #49/#51 or traffic CSV publish #77

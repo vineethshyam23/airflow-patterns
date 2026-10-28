@@ -147,6 +147,7 @@ Helper modules and enrichment jobs:
 - Finance-kit multi-entity CSV land (landing → rawzone → staging TRUNCATE → hash-delta trusted)
 - Open Exchange Rates FX land (nested JSON → UNNEST + EUR/USD factors + timestamp dedupe)
 - dbt Cloud run status Slack digest (Variable `*dbt_runids*` scan → Failed-only webhook)
+- Menu-engineering cross-project BQ bridge (refined `co_menus` → trusted WRITE_TRUNCATE)
 - BigQuery utilities
 - Error handling / retry helpers
 - Logging utilities
@@ -309,6 +310,7 @@ Shipped so far (sanitized portfolio samples):
 | 86 | Finance-kit multi-entity CSV land + hash-delta | `utilities/86-finance-kit-csv-hash-delta-land/` |
 | 87 | Open Exchange Rates FX land (nested JSON + EUR/USD factors) | `utilities/87-open-exchange-rates-fx-land/` |
 | 88 | dbt Cloud run status Slack digest (Variable scan → Failed-only) | `utilities/88-dbt-cloud-run-status-slack/` |
+| 89 | Menu-engineering cross-project BQ bridge (refined → trusted) | `utilities/89-deepideas-cross-project-bq-bridge/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).

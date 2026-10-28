@@ -95,6 +95,7 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 | 86 | Finance-kit multi-entity CSV land + hash-delta | `utilities/86-finance-kit-csv-hash-delta-land/` | `dags/etl_liquikit.py` | Shipped 2026-10-25; distinct from SEO NDJSON land #25 / POS HMAC CSV #35 / refined SCD #67 |
 | 87 | Open Exchange Rates FX land (nested JSON + EUR/USD factors) | `utilities/87-open-exchange-rates-fx-land/` | `dags/etl_oex.py` (+ `horeca_digital/exchangerates.py` legacy) | Shipped 2026-10-26; distinct from AppFigures #28 / finance-kit hash-delta #86 |
 | 88 | dbt Cloud run status Slack digest (Variable scan → Failed-only) | `utilities/88-dbt-cloud-run-status-slack/` | `dags/dbt_jobs_status.py` | Shipped 2026-10-27; distinct from Slack failure aggregate #80 / BQ consumption #83 |
+| 89 | Menu-engineering cross-project BQ bridge (refined co_menus → trusted) | `utilities/89-deepideas-cross-project-bq-bridge/` | `dags/etl_di_import.py` | Shipped 2026-10-28; distinct from Menu Engineering VM land #55 / sales mart #68 / weekly copy_jobs #81 |
 
 ## Also already in repo (not from daily automation priority queue)
 
@@ -108,30 +109,32 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 
 ## Next (priority order)
 
-1. `etl_di_import.py` — cross-project BQ WRITE_TRUNCATE bridge (DeepIdeas refined `co_menus` → trusted); distinct from Menu Engineering VM land #55 / sales mart copy #68 / weekly copy_jobs registry #81 if framed as the external-project → trusted bridge
+1. `etl_first_best_offer.py` — First Best Offer scoring SCD (keyhash/rowhash + valid_from/to); distinct from dana scoring #04 / absolute activity #47 / refined SCD spine #67
 2. Remaining `etl_refined_zone` arms (MCC / mappings / Order) — only if new contract beyond #67
-3. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets
-4. Skip thin dbt wrappers: matching-engine, activity-score, app rawfeed job / hourly_v2 test, master_id, owg_v2, weblisting_v2, adobe analytical / datafeed report jobs
-5. Skip `etl_leads_odoo_hist_load.py` (stub; logic commented out)
-6. Do not confuse `bq_reservation.py` (BQ slot helper, #67) with Reservation Tool product (#54)
-7. Do not re-ship #56–#88
-8. Pattern 88 = dbt Cloud Variable scan → Failed-only Slack; do not re-ship as #80 / #83; do not ship thin dbt Cloud trigger wrappers as this pattern
-9. Pattern 87 = OEX nested JSON FX land + EUR/USD factors + timestamp dedupe; do not re-ship as AppFigures #28 / finance-kit #86
-10. Pattern 86 = multi-entity finance-kit CSV land + in-DAG hash-delta; do not re-ship as SEO NDJSON #25 / HMAC CSV #35 / refined SCD #67
-11. Pattern 85 = refined Adobe marketing UTM attribution append; do not re-ship as AA rawfeed land #49/#51 or traffic CSV publish #77
-12. Pattern 84 = general Odoo invoice-line partner feed (FR/ES fingerprint batches); do not re-ship as WSL dual export #08
-13. Pattern 83 = daily BQ usage Slack digest (top-3 + ratio + MTD); do not re-ship as Slack failure aggregate #80
-14. Pattern 82 = monthly LPV country CSV zip + SendGrid GCS offload; do not re-ship as Invoice Radar #32
-15. Pattern 81 = weekly copy_jobs WRITE_TRUNCATE registry (REX + insights_share); do not re-ship as #40/#45/#53/#80
-16. Pattern 80 = parallel export_* → trusted_mcc + Slack aggregate; do not re-ship as wholesale NL #69/#70 or refined SCD #67
-17. Pattern 79 = customer-grain annualised POS revenue (SAM annual_sale); do not re-ship as AR #78 / menu-gaps #12/#14 / POS intel #53
-18. Pattern 78 = AR predicted-quantity + monthly customer/a2i; do not re-ship as menu-gaps (#12/#14) or POS intel (#53)
-19. Pattern 77 = refined site-traffic CSV publish; do not re-ship as AA rawfeed land (#49/#51) or Hydra dump (#39)
-20. Pattern 76 = Odoo DWH inbound spine (subset); do not re-ship remaining ~90 table pull methods unless a new extract contract appears
-21. Pattern 75 = menu content extract; do not re-ship URL discovery #18 or SEO land #25 as the same pattern
-22. Pattern 74 = Adyen report land v2; do not re-ship v1 merge path or Management API #03
-23. Pattern 73 = UM Cloud SQL SCD2; do not re-ship remaining oauth/session/invitation arms unless a new contract appears
-24. Pattern 15 = helpdesk-only pull; do not re-ship as the DWH spine (#76)
+3. Skip `etl_tourismnrw.py` (thin dbt Cloud job trigger only; HasData extract removed)
+4. Skip `invoice_ai_data_import.py` unless rewritten without embedded secrets
+5. Skip thin dbt wrappers: matching-engine, activity-score, app rawfeed job / hourly_v2 test, master_id, owg_v2, weblisting_v2, adobe analytical / datafeed report jobs
+6. Skip `etl_leads_odoo_hist_load.py` (stub; logic commented out)
+7. Do not confuse `bq_reservation.py` (BQ slot helper, #67) with Reservation Tool product (#54)
+8. Do not re-ship #56–#89
+9. Pattern 89 = external-project → trusted single-table WRITE_TRUNCATE bridge; do not re-ship as #55 / #68 / #81
+10. Pattern 88 = dbt Cloud Variable scan → Failed-only Slack; do not re-ship as #80 / #83; do not ship thin dbt Cloud trigger wrappers as this pattern
+11. Pattern 87 = OEX nested JSON FX land + EUR/USD factors + timestamp dedupe; do not re-ship as AppFigures #28 / finance-kit #86
+12. Pattern 86 = multi-entity finance-kit CSV land + in-DAG hash-delta; do not re-ship as SEO NDJSON #25 / HMAC CSV #35 / refined SCD #67
+13. Pattern 85 = refined Adobe marketing UTM attribution append; do not re-ship as AA rawfeed land #49/#51 or traffic CSV publish #77
+14. Pattern 84 = general Odoo invoice-line partner feed (FR/ES fingerprint batches); do not re-ship as WSL dual export #08
+15. Pattern 83 = daily BQ usage Slack digest (top-3 + ratio + MTD); do not re-ship as Slack failure aggregate #80
+16. Pattern 82 = monthly LPV country CSV zip + SendGrid GCS offload; do not re-ship as Invoice Radar #32
+17. Pattern 81 = weekly copy_jobs WRITE_TRUNCATE registry (REX + insights_share); do not re-ship as #40/#45/#53/#80
+18. Pattern 80 = parallel export_* → trusted_mcc + Slack aggregate; do not re-ship as wholesale NL #69/#70 or refined SCD #67
+19. Pattern 79 = customer-grain annualised POS revenue (SAM annual_sale); do not re-ship as AR #78 / menu-gaps #12/#14 / POS intel #53
+20. Pattern 78 = AR predicted-quantity + monthly customer/a2i; do not re-ship as menu-gaps (#12/#14) or POS intel (#53)
+21. Pattern 77 = refined site-traffic CSV publish; do not re-ship as AA rawfeed land (#49/#51) or Hydra dump (#39)
+22. Pattern 76 = Odoo DWH inbound spine (subset); do not re-ship remaining ~90 table pull methods unless a new extract contract appears
+23. Pattern 75 = menu content extract; do not re-ship URL discovery #18 or SEO land #25 as the same pattern
+24. Pattern 74 = Adyen report land v2; do not re-ship v1 merge path or Management API #03
+25. Pattern 73 = UM Cloud SQL SCD2; do not re-ship remaining oauth/session/invitation arms unless a new contract appears
+26. Pattern 15 = helpdesk-only pull; do not re-ship as the DWH spine (#76)
 
 
 ## Skipped
@@ -142,6 +145,7 @@ Source of truth for Done / Next / Skipped is also mirrored in automation Memorie
 | Matching Engine dbt Cloud wrapper | `dags/etl_matching_engine.py` / `matching_engine_prod_job` | Thin dbt Cloud job trigger; SCD already #01, partner export #10 | 2026-09-18 |
 | Automize acquisition IDs monthly snapshot | `dags/horeca_digital/archived/etl_auto_history_acquisition_IDs_1st_of_month.py` | Thin single WRITE_APPEND from same MAG acquisition view as #65; CURRENT_DATE() catchup footgun without a new mart/SCD contract | 2026-10-07 |
 | Reservation CE/CP centralization | `dags/etl_dish_reservation_centralization.py` | Three sequential WRITE_TRUNCATE denorm extracts; no watermark/DQ/cross-system contract beyond #54 land / #61 events | 2026-10-10 |
+| Tourism NRW dbt Cloud trigger | `dags/etl_tourismnrw.py` | Thin `DbtCloudRunJobOperator` only; HasData extract removed; no new land/DQ contract | 2026-10-28 |
 
 ## Blockers
 

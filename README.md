@@ -82,6 +82,7 @@ Customer and establishment scoring algorithms:
 - Advanced Replenishment predicted-quantity Avro export (daily hash batches + monthly customer/articles on the 5th)
 - Platform POS revenue potential monthly Avro export (SAM-aligned annualisation, sequential countries)
 - Adobe marketing UTM attribution (funnel flags + referral pivots + eVars from datafeed)
+- First Best Offer weekly VM scoring + keyhash/rowhash SCD historization
 - Single-market Order + Reservation lifetime partner exports
 - Absolute multi-channel activity scores (0–3) with MoM transitions
 - POS Intelligence wholesale article recommendations (Vertex → Avro event bus)
@@ -311,6 +312,7 @@ Shipped so far (sanitized portfolio samples):
 | 87 | Open Exchange Rates FX land (nested JSON + EUR/USD factors) | `utilities/87-open-exchange-rates-fx-land/` |
 | 88 | dbt Cloud run status Slack digest (Variable scan → Failed-only) | `utilities/88-dbt-cloud-run-status-slack/` |
 | 89 | Menu-engineering cross-project BQ bridge (refined → trusted) | `utilities/89-deepideas-cross-project-bq-bridge/` |
+| 90 | First Best Offer weekly scoring SCD (VM predict + keyhash/rowhash) | `scoring_analytics/90-first-best-offer-scoring-scd/` |
 | — | Odoo integration set (01–05) | `odoo_integration/01`–`05` |
 
 Backlog and phase tracking: [`docs/PATTERN_BACKLOG.md`](docs/PATTERN_BACKLOG.md).
